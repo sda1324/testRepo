@@ -111,6 +111,7 @@ public class Project {
 	}
 	
 	public void drawAll() {
+		System.out.println(furniture_list.size());
 		for(Furniture f : furniture_list)
 		{
 			f.setJPanel();

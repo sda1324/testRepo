@@ -43,10 +43,12 @@ public class SaveData {
 			furnitureObject.put("x", f.getX());
 			furnitureObject.put("y", f.getY());
 			furnitureList.add(furnitureObject);
+			MainFrame.getInstance().panel_1.remove(f.panel);
 		}
 		projectInfo.put("furnitureList", furnitureList);
 		
 		System.out.println(projectInfo.toString());
+		MainFrame.getInstance().panel_1.repaint();
 		
 		/*
 		JSONObject roomList = new JSONObject(); 
@@ -58,14 +60,14 @@ public class SaveData {
 		}
 		projectInfo.put("furnitureList", furnitureList);
 		*/
-		/*
+		
 		try { 
 			FileWriter file = new FileWriter("src/text/save.json"); 
 			file.write(projectInfo.toJSONString()); 
 			file.flush(); file.close(); 
 		} catch (IOException e) { e.printStackTrace(); } 
 		System.out.print(projectInfo);
-		*/
+		
 
 
 	}
@@ -74,14 +76,11 @@ public class SaveData {
 		JSONParser parser = new JSONParser(); 
 		try { 
 			Object obj = parser.parse(new FileReader("src/text/save.json"));
-			
 			JSONObject jsonObject = (JSONObject) obj; 
-		
 			p.width = Integer.parseInt(jsonObject.get("width").toString());
 			p.height = Integer.parseInt(jsonObject.get("height").toString());
 			p.basic_x = Integer.parseInt(jsonObject.get("basic_x").toString());
 			p.basic_y = Integer.parseInt(jsonObject.get("basic_y").toString());
-
 			JSONArray JSONfurnitureList = (JSONArray) jsonObject.get("furnitureList");
 			for(int i=0;i<JSONfurnitureList.size();i++) {
 				JSONObject j = (JSONObject) JSONfurnitureList.get(i);
@@ -92,15 +91,13 @@ public class SaveData {
 				f.setImage((ImageIcon) j.get("imageicon"));
 				f.setX(Integer.parseInt(j.get("x").toString()));
 				f.setY(Integer.parseInt(j.get("y").toString()));
-				
+				p.furniture_list.add(f);
 			}
 			
 		} catch (FileNotFoundException e) { e.printStackTrace(); 
 		} catch (IOException e) { e.printStackTrace(); 
 		} catch (ParseException e) { e.printStackTrace(); 
 		}
-			
-
 		return p;
 	}
 }

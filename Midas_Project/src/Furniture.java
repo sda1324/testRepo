@@ -17,11 +17,13 @@ class FurniturePanel extends JPanel {
     public void paintComponent(Graphics g) {
        super.paintComponent(g);
        Graphics2D g2 = (Graphics2D) g;
+       if(f.getImage()!=null)
           g.drawImage(f.getImage().getImage(), 0, 0, null);
     }
 }
 public class Furniture {
 
+	private String imageUrl;
 	private int width;
 	private int height;
 	private String name;
@@ -37,11 +39,26 @@ public class Furniture {
 	}
 	public Furniture() {
 	}
+	public String getURL()
+	{
+		return imageUrl;
+	}
+	public void setURL(String s)
+	{
+		imageUrl = s;
+	}
 	public ImageIcon getImage() {
-		Image originImg = this.imageicon.getImage(); 
+		if(imageicon != null)
+		{
+		Image originImg = this.imageicon.getImage();
 		Image changedImg= originImg.getScaledInstance(width, height, Image.SCALE_SMOOTH );
 		ImageIcon icon = new ImageIcon(changedImg);
+		icon = new ImageIcon(changedImg);
 		return icon;
+		}
+		else
+			return null;
+
 	}
 	public void RemoveFurniture()
 	{
@@ -69,7 +86,6 @@ public class Furniture {
 		panel.setLocation(x,y);
 		panel.repaint();
 	}
-	
 	public void setImage(ImageIcon imageicon)
 	{
 		this.imageicon = imageicon;
