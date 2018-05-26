@@ -29,15 +29,17 @@ public class Wall extends JPanel {
 	}
 
 	public void RemoveWindow(Window window) {
+
 		if (window == null) {
-			for (Window w : windowArray) {
-				MainFrame.getInstance().panel_1.remove(w.panel);
-				windowArray.remove(w);
+			for (int i = 0; i < windowArray.size(); ++i) {
+				MainFrame.getInstance().panel_1.remove(windowArray.get(i).panel);
+				windowArray.remove(i);
+				MainFrame.getInstance().panel_1.revalidate();
+				MainFrame.getInstance().panel_1.repaint();
 			}
-			MainFrame.getInstance().panel_1.revalidate();
-			MainFrame.getInstance().panel_1.repaint();
-		} else {
-			if (windowArray.size() != 1) {
+		} 
+		else {
+			if (windowArray.size() != 0) {
 				for (int i = 0; i < windowArray.size(); ++i) {
 					if (windowArray.get(i) == window) {
 						MainFrame.getInstance().panel_1.remove(window.panel);
@@ -126,21 +128,21 @@ public class Wall extends JPanel {
 		panel.setBackground(Color.BLACK);
 		switch (vector) {
 		case 0:
-			panel.setBounds(x, y, width + 1, 1);
+			panel.setBounds(x, y, width + 1, 2);
 			panel.addMouseListener(new MouseOverListener(this));
 			break;
 		case 1:
-			panel.setBounds(x + width - 1, y, 1, height + 1);
+			panel.setBounds(x + width - 1, y, 2, height + 1);
 
 			panel.addMouseListener(new MouseOverListener(this));
 			break;
 		case 2:
-			panel.setBounds(x, y + height - 1, width + 1, 1);
+			panel.setBounds(x, y + height - 1, width + 1, 2);
 			panel.addMouseListener(new MouseOverListener(this));
 
 			break;
 		case 3:
-			panel.setBounds(x, y, 1, height + 1);
+			panel.setBounds(x, y, 2, height + 1);
 			panel.addMouseListener(new MouseOverListener(this));
 
 			break;
