@@ -15,27 +15,26 @@ public class Window {
 
 	}
 
-	public Window(int x, int y, int width, int height) {
+	public Window(int x, int y, int width, int height, Wall w) {
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
+		this.wall = w;
+		
 	}
 
-	public void EditPosition() {
-		int w1;
-		int w2;
+	public void EditPosition(int new_x, int new_y) {
 		
 		if(dir == 0)
 		{
-			w1 = wall.getY();
-			w2 = wall.getHeight();
+			x = new_x;
 		}
 		else
 		{
-			w1 = wall.getX();
-			w2 = wall.getWidth();
+			y = new_y;
 		}
+		SetJPanelSize(new_x,new_y,width,height,this.wall);
 	}
 	public void RemoveWindow()
 	{

@@ -33,9 +33,9 @@ public class PopupMenuWindow extends JPanel {
 			System.out.println("Popup menu item [" + e.getActionCommand() + "] was pressed.");
 			switch(e.getActionCommand()) {
 			case "Add Room":
-
-				System.out.println(pnt_x + " " + pnt_y);
 				main.panel_1.addMouseListener(new AddRoomListener());
+				break;
+			case "move Door":
 				break;
 			default:
 				break;
@@ -59,11 +59,10 @@ public class PopupMenuWindow extends JPanel {
 		@Override
 		public void mouseReleased(MouseEvent e) {
 			// TODO Auto-generated method stub
-			clicked_x = e.getXOnScreen()-main.getBounds().x -14;
-			clicked_y = e.getYOnScreen()-main.getBounds().y -36;
+			clicked_x = e.getXOnScreen() - main.getLocation().x - 14;
+			clicked_y = e.getYOnScreen() - main.getLocation().y - 36;
 			int width = pnt_x - clicked_x;
 			int height = pnt_y - clicked_y;
-			System.out.println(width + " " + height);
 			JPanel north = new JPanel();
 			JPanel south = new JPanel();
 			JPanel west = new JPanel();
@@ -76,10 +75,10 @@ public class PopupMenuWindow extends JPanel {
 					south.setBounds(pnt_x, clicked_y, width, 1);
 					west.setBounds(pnt_x, pnt_y, 1, height);
 					east.setBounds(clicked_x, pnt_y, 1, height);
-					north.addMouseListener(new MouseOverListener(north));
-					south.addMouseListener(new MouseOverListener(south));
-					west.addMouseListener(new MouseOverListener(west));
-					east.addMouseListener(new MouseOverListener(east));
+					north.addMouseListener(new MouseOverListener(new Wall(pnt_x,pnt_y,width,height,0,new Room())));
+					south.addMouseListener(new MouseOverListener(new Wall(pnt_x,pnt_y,width,height,2,new Room())));
+					west.addMouseListener(new MouseOverListener(new Wall(pnt_x,pnt_y,width,height,3,new Room())));
+					east.addMouseListener(new MouseOverListener(new Wall(pnt_x,pnt_y,width,height,1,new Room())));
 					main.panel_1.shapeArray.add(new Rectangle2D.Float(pnt_x, pnt_y, width, 1));
 					main.panel_1.shapeArray.add(new Rectangle2D.Float(pnt_x, clicked_y, width, 1));
 					main.panel_1.shapeArray.add(new Rectangle2D.Float(pnt_x, pnt_y, 1, height));
@@ -92,6 +91,10 @@ public class PopupMenuWindow extends JPanel {
 					south.setBounds(pnt_x, pnt_y, width, 1);
 					west.setBounds(pnt_x, clicked_y, 1, height);
 					east.setBounds(clicked_x, clicked_y, 1, height);
+					north.addMouseListener(new MouseOverListener(new Wall(pnt_x,clicked_y,width,height,0,new Room())));
+					south.addMouseListener(new MouseOverListener(new Wall(pnt_x,clicked_y,width,height,2,new Room())));
+					west.addMouseListener(new MouseOverListener(new Wall(pnt_x,clicked_y,width,height,3,new Room())));
+					east.addMouseListener(new MouseOverListener(new Wall(pnt_x,clicked_y,width,height,1,new Room())));
 					main.panel_1.shapeArray.add(new Rectangle2D.Float(pnt_x, clicked_y, width, 1));
 					main.panel_1.shapeArray.add(new Rectangle2D.Float(pnt_x, pnt_y, width, 1));
 					main.panel_1.shapeArray.add(new Rectangle2D.Float(pnt_x, clicked_y, 1, height));
@@ -106,6 +109,10 @@ public class PopupMenuWindow extends JPanel {
 					south.setBounds(clicked_x, clicked_y, width, 1);
 					west.setBounds(clicked_x, pnt_y, 1, height);
 					east.setBounds(pnt_x, pnt_y, 1, height);
+					north.addMouseListener(new MouseOverListener(new Wall(clicked_x,pnt_y,width,height,0,new Room())));
+					south.addMouseListener(new MouseOverListener(new Wall(clicked_x,pnt_y,width,height,2,new Room())));
+					west.addMouseListener(new MouseOverListener(new Wall(clicked_x,pnt_y,width,height,3,new Room())));
+					east.addMouseListener(new MouseOverListener(new Wall(clicked_x,pnt_y,width,height,1,new Room())));
 					main.panel_1.shapeArray.add(new Rectangle2D.Float(clicked_x, pnt_y, width, 1));
 					main.panel_1.shapeArray.add(new Rectangle2D.Float(clicked_x, clicked_y, width, 1));
 					main.panel_1.shapeArray.add(new Rectangle2D.Float(clicked_x, pnt_y, 1, height));
@@ -116,6 +123,10 @@ public class PopupMenuWindow extends JPanel {
 					south.setBounds(clicked_x, pnt_y, width, 1);
 					west.setBounds(clicked_x, clicked_y, 1, height);
 					east.setBounds(pnt_x, clicked_y, 1, height);
+					north.addMouseListener(new MouseOverListener(new Wall(clicked_x,clicked_y,width,height,0,new Room())));
+					south.addMouseListener(new MouseOverListener(new Wall(clicked_x,clicked_y,width,height,2,new Room())));
+					west.addMouseListener(new MouseOverListener(new Wall(clicked_x,clicked_y,width,height,3,new Room())));
+					east.addMouseListener(new MouseOverListener(new Wall(clicked_x,clicked_y,width,height,1,new Room())));
 					main.panel_1.shapeArray.add(new Rectangle2D.Float(clicked_x, clicked_y, width, 1));
 					main.panel_1.shapeArray.add(new Rectangle2D.Float(clicked_x, pnt_y, width, 1));
 					main.panel_1.shapeArray.add(new Rectangle2D.Float(clicked_x, clicked_y, 1, height));
@@ -156,6 +167,44 @@ public class PopupMenuWindow extends JPanel {
 			
 		}
 	}
+	class moveWindowListener implements MouseListener{
+		Window win;
+		public moveWindowListener(Window window) {
+			win = window;
+		}
+
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			// TODO Auto-generated method stub
+		}
+
+		@Override
+		public void mousePressed(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent e) {
+			int x = e.getXOnScreen() - main.getLocation().x - 14;
+			int y = e.getYOnScreen() - main.getLocation().y - 36;
+			win.EditPosition(x,y);
+			main.panel_1.removeMouseListener(this);
+			
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseExited(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+	}
 	ActionListener makeWindow = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -169,7 +218,7 @@ public class PopupMenuWindow extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			Window window = (Window)source;
-			window.EditPosition();
+			main.panel_1.addMouseListener(new moveWindowListener(window));
 
 		}
 	};
@@ -209,8 +258,8 @@ public class PopupMenuWindow extends JPanel {
 		return popup;
 	}
 	public void show(int x, int y) {
-		pnt_x = x-14;
-		pnt_y = y - 36;
+		pnt_x = x -14;
+		pnt_y = y -36;
 		popup.show(main, x, y);
 	}
 	public void SetItem(String className) {
