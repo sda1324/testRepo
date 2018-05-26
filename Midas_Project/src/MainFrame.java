@@ -170,25 +170,22 @@ public class MainFrame extends JFrame {
 			panel_1.setLayout(null);
 			int x0 = project.basic_x;
 			int y0 = project.basic_y;
-<<<<<<< HEAD
 			int y1 = project.basic_y + project.height;
 			
 			s = new Rectangle2D.Float(project.basic_x, project.basic_y, project.width, project.height);
 			shapeArray.add(s);
 			
-=======
 			int width = project.width;
 			int height = project.height;
 
->>>>>>> 52d02b722e4f4d83253bd266be89aa35e09c2ba8
 			Room mainRoom = new Room();
 			mainRoom.north = new Wall(x0, y0, width, 1, 0, mainRoom);
 			mainRoom.north.JPanelSize();
 			mainRoom.north.addMouseListener(new MouseOverListener(mainRoom.north.panel));
 			panel_1.add(mainRoom.north.panel);
 			mainRoom.north.panel.setVisible(true);
-			s = new Rectangle2D.Float(mainRoom.north.getFirst_x(), mainRoom.north.getFirst_y(), 
-					mainRoom.north.getSecond_x()-mainRoom.north.getFirst_x(), mainRoom.north.getSecond_y()-mainRoom.north.getFirst_y());
+			//s = new Rectangle2D.Float(mainRoom.north.getFirst_x(), mainRoom.north.getFirst_y(), 
+			//		mainRoom.north.getSecond_x()-mainRoom.north.getFirst_x(), mainRoom.north.getSecond_y()-mainRoom.north.getFirst_y());
 			shapeArray.add(s);
 
 			mainRoom.east = new Wall(x0+width, y0, 1, height, 1, mainRoom);
