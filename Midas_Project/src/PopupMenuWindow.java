@@ -237,12 +237,20 @@ public class PopupMenuWindow extends JPanel {
 			door.RemoveDoor();
 		}
 	};
+	ActionListener removeFurniture = new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			Furniture furniture = (Furniture) source;
+			furniture.RemoveFurniture();
+		}
+	};
 	public JPopupMenu GetPopup() {
 		return popup;
 	}
 	public void show(int x, int y, int xX, int yY, int xXX, int yYY) {
-		pnt_x = x;
-		pnt_y = y;
+		pnt_x = xX;
+		pnt_y = yY;
 		popup.show(main, x, y);
 	}
 	public void SetItem(String className) {
@@ -284,10 +292,10 @@ public class PopupMenuWindow extends JPanel {
 			item.addActionListener(removeRoom);
 			break;
 		case "Furniture":
-			popup.add(item = new JMenuItem("Resize Furniture"));
-			item.addActionListener(menuListener);
+			//popup.add(item = new JMenuItem("Resize Furniture"));
+			//item.addActionListener(menuListener);
 			popup.add(item = new JMenuItem("Remove Furniture"));
-			item.addActionListener(menuListener);
+			item.addActionListener(removeFurniture);
 			popup.add(item = new JMenuItem("move Furniture"));
 			item.addActionListener(menuListener);
 			break;

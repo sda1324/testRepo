@@ -44,8 +44,8 @@ public class MouseOverListener extends JPanel implements MouseListener {
 			popupT.SetItem(source.getClass().getSimpleName());
 			popupT.show(
 					e.getXOnScreen()-main.getBounds().x, e.getYOnScreen()-main.getBounds().y,
-					e.getXOnScreen(), e.getYOnScreen(),
-					e.getX(), e.getY()
+					e.getLocationOnScreen().x-main.getBounds().x, e.getLocationOnScreen().y-main.getBounds().y,
+					e.getLocationOnScreen().x, e.getLocationOnScreen().y
 					);
 			System.out.println("here");
 		}
