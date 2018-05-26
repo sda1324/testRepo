@@ -25,7 +25,7 @@ public class Furniture {
 	private int width;
 	private int height;
 	private String name;
-	private Color color;
+	private javafx.scene.paint.Color color;
 	private ImageIcon imageicon;
 	private int x;
 	private int y;
@@ -74,13 +74,13 @@ public class Furniture {
 		this.imageicon = imageicon;
 	}
 
-	public Color getColor()
+	public javafx.scene.paint.Color getColor()
 	{
 		return color;
 	}
-	public void setColor(Color color)
+	public void setColor(javafx.scene.paint.Color color2)
 	{
-		this.color = color;
+		this.color = color2;
 	}
 	public String getName()
 	{

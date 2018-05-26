@@ -25,6 +25,7 @@ import javax.swing.border.EmptyBorder;
 
 public class MainFrame extends JFrame {
 
+
    private static MainFrame instance;
 
    public static MainFrame getInstance() {
@@ -91,9 +92,32 @@ public class MainFrame extends JFrame {
       panel.add(btnNewButton);
 
       JButton btnNewButton_1 = new JButton("Save Project");
+      btnNewButton_1.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+        	  SaveData s= new SaveData ();
+        	  s.save(project);
+        	  
+        	  ArrayList<Furniture> a = new ArrayList<Furniture>();
+        	  for(Furniture f : a )
+        		  f.RemoveFurniture();
+        	  ArrayList<Room> b = new ArrayList<Room>();
+        	  for(Room r : b )
+        		  r.RemoveRoom();
+        	  project = new Project();
+        	  
+        	  panel_1.removeAll();
+        	  panel_1.updateUI();
+          }
+       });
       panel.add(btnNewButton_1);
 
       JButton btnNewButton_2 = new JButton("Open Project");
+      btnNewButton.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+        	  SaveData s = new SaveData();
+        	  s.getData();
+          }
+       });
 
       panel.add(btnNewButton_2);
 
