@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Shape;
 import java.util.ArrayList;
 
@@ -107,5 +108,15 @@ public class Project {
 		this.shapeArray = shapeArray;
 	}
 	
+	public void drawAll() {
+		for(Furniture f : furniture_list)
+		{
+			MainFrame.getInstance().panel_1.furnitureArray.add(f);
+			f.panel.setBackground(Color.BLACK);
+			MainFrame.getInstance().panel_1.add(f.panel);
+			MainFrame.getInstance().panel_1.revalidate();
+			MainFrame.getInstance().panel_1.repaint();
+		}
+	}
 	
 }

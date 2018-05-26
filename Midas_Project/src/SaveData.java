@@ -23,15 +23,14 @@ public class SaveData {
 		projectInfo.put("basic_x", p.getBasic_x());
 		projectInfo.put("basic_y", p.getBasic_y());
 		
-		JSONObject furnitureObject = new JSONObject(); 
+		
 		JSONArray furnitureList = new JSONArray(); 
 		
 		for(Furniture f : p.getFurniture_list()) {
+			JSONObject furnitureObject = new JSONObject(); 
 			furnitureObject.put("width", f.getWidth() );
 			furnitureObject.put("height", f.getHeight());
 			furnitureObject.put("name", f.getName());
-			furnitureObject.put("color", f.getColor());
-			furnitureObject.put("imageicon", f.getImage());
 			furnitureObject.put("x", f.getX());
 			furnitureObject.put("y", f.getY());
 			furnitureList.add(furnitureObject);
@@ -78,7 +77,6 @@ public class SaveData {
 				f.setWidth(Integer.parseInt(j.get("width").toString()));
 				f.setHeight(Integer.parseInt(j.get("height").toString()));
 				f.setName((String)j.get("name"));
-				f.setColor((Color) j.get("color"));
 				f.setImage((ImageIcon) j.get("imageicon"));
 				f.setX(Integer.parseInt(j.get("x").toString()));
 				f.setY(Integer.parseInt(j.get("y").toString()));
