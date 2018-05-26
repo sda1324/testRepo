@@ -191,7 +191,7 @@ public class SaveData {
 
 
 			//furniture
-			JSONArray JSONfurnitureList = (JSONArray) jsonObject.get("furnitureList");
+			JSONArray JSONfurnitureList = (JSONArray) jsonObject.get("furniture_list");
 			for(int i=0;i<JSONfurnitureList.size();i++) {
 				JSONObject j = (JSONObject) JSONfurnitureList.get(i);
 				Furniture f = new Furniture();
