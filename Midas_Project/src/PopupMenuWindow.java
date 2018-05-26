@@ -52,70 +52,104 @@ public class PopupMenuWindow extends JPanel {
 
 		@Override
 		public void mousePressed(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
+			// TODO Auto-generated method stub			
 		}
-
 		@Override
 		public void mouseReleased(MouseEvent e) {
 			// TODO Auto-generated method stub
-			clicked_x = e.getXOnScreen()-main.getBounds().x -14;
-			clicked_y = e.getYOnScreen()-main.getBounds().y -36;
+			clicked_x = e.getX();
+			clicked_y = e.getY();
 			int width = pnt_x - clicked_x;
 			int height = pnt_y - clicked_y;
 			System.out.println(width + " " + height);
+			/*
 			JPanel north = new JPanel();
 			JPanel south = new JPanel();
 			JPanel west = new JPanel();
 			JPanel east = new JPanel();
+			*/
+			Room newRoom;
 			if(width < 0) {
 				width = -width;
 				if(height < 0) {
 					height = -height;
-					north.setBounds(pnt_x, pnt_y, width, 1);
-					south.setBounds(pnt_x, clicked_y, width, 1);
-					west.setBounds(pnt_x, pnt_y, 1, height);
-					east.setBounds(clicked_x, pnt_y, 1, height);
-					north.addMouseListener(new MouseOverListener(north));
-					south.addMouseListener(new MouseOverListener(south));
-					west.addMouseListener(new MouseOverListener(west));
-					east.addMouseListener(new MouseOverListener(east));
+					newRoom = new Room();
+					newRoom.north = new Wall(pnt_x, pnt_y, width, 1,0, newRoom);
+					newRoom.north.addMouseListener(new MouseOverListener(newRoom.north.panel));
+					newRoom.north.JPanelSize();
+					newRoom.south = new Wall(pnt_x, clicked_y, width, 1,2, newRoom);
+					newRoom.south.addMouseListener(new MouseOverListener(newRoom.south.panel));
+					newRoom.south.JPanelSize();
+					newRoom.west = new Wall(pnt_x, pnt_y, 1, height,3, newRoom);
+					newRoom.west.addMouseListener(new MouseOverListener(newRoom.west.panel));
+					newRoom.west.JPanelSize();
+					newRoom.east = new Wall(clicked_x, pnt_y, 1, height,1, newRoom);
+					newRoom.east.addMouseListener(new MouseOverListener(newRoom.east.panel));
+					newRoom.east.JPanelSize();
+					newRoom.SetDefaultDoor(pnt_x, pnt_y, width, height);
 					main.panel_1.shapeArray.add(new Rectangle2D.Float(pnt_x, pnt_y, width, 1));
 					main.panel_1.shapeArray.add(new Rectangle2D.Float(pnt_x, clicked_y, width, 1));
 					main.panel_1.shapeArray.add(new Rectangle2D.Float(pnt_x, pnt_y, 1, height));
 					main.panel_1.shapeArray.add(new Rectangle2D.Float(clicked_x, pnt_y, 1, height));
-					
-					
 				}
-				else {
-					north.setBounds(pnt_x, clicked_y, width, 1);
-					south.setBounds(pnt_x, pnt_y, width, 1);
-					west.setBounds(pnt_x, clicked_y, 1, height);
-					east.setBounds(clicked_x, clicked_y, 1, height);
+				else {		
+					newRoom = new Room();
+					newRoom.north = new Wall(pnt_x, clicked_y, width, 1,0, newRoom);
+					newRoom.north.addMouseListener(new MouseOverListener(newRoom.north.panel));
+					newRoom.north.JPanelSize();
+					newRoom.south = new Wall(pnt_x, pnt_y, width, 1,2, newRoom);
+					newRoom.south.addMouseListener(new MouseOverListener(newRoom.south.panel));
+					newRoom.south.JPanelSize();
+					newRoom.west = new Wall(pnt_x, clicked_y, 1, height,3, newRoom);
+					newRoom.west.addMouseListener(new MouseOverListener(newRoom.west.panel));
+					newRoom.west.JPanelSize();
+					newRoom.east = new Wall(clicked_x, clicked_y, 1, height,1, newRoom);
+					newRoom.east.addMouseListener(new MouseOverListener(newRoom.east.panel));
+					newRoom.east.JPanelSize();
+					newRoom.SetDefaultDoor(pnt_x, clicked_y, width, height);
 					main.panel_1.shapeArray.add(new Rectangle2D.Float(pnt_x, clicked_y, width, 1));
 					main.panel_1.shapeArray.add(new Rectangle2D.Float(pnt_x, pnt_y, width, 1));
 					main.panel_1.shapeArray.add(new Rectangle2D.Float(pnt_x, clicked_y, 1, height));
 					main.panel_1.shapeArray.add(new Rectangle2D.Float(clicked_x, clicked_y, 1, height));
-					
 				}
 			}
 			else {
 				if(height < 0) {
 					height = -height;
-					north.setBounds(clicked_x, pnt_y, width, 1);
-					south.setBounds(clicked_x, clicked_y, width, 1);
-					west.setBounds(clicked_x, pnt_y, 1, height);
-					east.setBounds(pnt_x, pnt_y, 1, height);
+					newRoom = new Room();
+					newRoom.north = new Wall(clicked_x, pnt_y, width, 1,0, newRoom);
+					newRoom.north.addMouseListener(new MouseOverListener(newRoom.north.panel));
+					newRoom.north.JPanelSize();
+					newRoom.south = new Wall(clicked_x, clicked_y, width, 1,2, newRoom);
+					newRoom.south.addMouseListener(new MouseOverListener(newRoom.south.panel));
+					newRoom.south.JPanelSize();
+					newRoom.west = new Wall(clicked_x, pnt_y, 1, height,3, newRoom);
+					newRoom.west.addMouseListener(new MouseOverListener(newRoom.west.panel));
+					newRoom.west.JPanelSize();
+					newRoom.east = new Wall(pnt_x, pnt_y, 1, height,1, newRoom);
+					newRoom.east.addMouseListener(new MouseOverListener(newRoom.east.panel));
+					newRoom.east.JPanelSize();
+					newRoom.SetDefaultDoor(clicked_x, pnt_y, width, height);
 					main.panel_1.shapeArray.add(new Rectangle2D.Float(clicked_x, pnt_y, width, 1));
 					main.panel_1.shapeArray.add(new Rectangle2D.Float(clicked_x, clicked_y, width, 1));
 					main.panel_1.shapeArray.add(new Rectangle2D.Float(clicked_x, pnt_y, 1, height));
 					main.panel_1.shapeArray.add(new Rectangle2D.Float(pnt_x, pnt_y, 1, height));
 				}
 				else {
-					north.setBounds(clicked_x, clicked_y, width, 1);
-					south.setBounds(clicked_x, pnt_y, width, 1);
-					west.setBounds(clicked_x, clicked_y, 1, height);
-					east.setBounds(pnt_x, clicked_y, 1, height);
+					newRoom = new Room();
+					newRoom.north = new Wall(clicked_x, clicked_y, width, 1,0, newRoom);
+					newRoom.north.addMouseListener(new MouseOverListener(newRoom.north.panel));
+					newRoom.north.JPanelSize();
+					newRoom.south = new Wall(clicked_x, pnt_y, width, 1,2, newRoom);
+					newRoom.south.addMouseListener(new MouseOverListener(newRoom.south.panel));
+					newRoom.south.JPanelSize();
+					newRoom.west = new Wall(clicked_x, clicked_y, 1, height,3, newRoom);
+					newRoom.west.addMouseListener(new MouseOverListener(newRoom.west.panel));
+					newRoom.west.JPanelSize();
+					newRoom.east = new Wall(pnt_x, clicked_y, 1, height,1, newRoom);
+					newRoom.east.addMouseListener(new MouseOverListener(newRoom.east.panel));
+					newRoom.east.JPanelSize();
+					newRoom.SetDefaultDoor(clicked_x, clicked_y, width, height);
 					main.panel_1.shapeArray.add(new Rectangle2D.Float(clicked_x, clicked_y, width, 1));
 					main.panel_1.shapeArray.add(new Rectangle2D.Float(clicked_x, pnt_y, width, 1));
 					main.panel_1.shapeArray.add(new Rectangle2D.Float(clicked_x, clicked_y, 1, height));
@@ -123,22 +157,20 @@ public class PopupMenuWindow extends JPanel {
 					
 				}
 			}
-			north.setBackground(Color.BLACK);
-			south.setBackground(Color.BLACK);
-			west.setBackground(Color.BLACK);
-			east.setBackground(Color.BLACK);
-			main.panel_1.add(north);
-			main.panel_1.add(south);
-			main.panel_1.add(west);
-			main.panel_1.add(east);
-			north.setVisible(true);
-			south.setVisible(true);
-			west.setVisible(true);
-			east.setVisible(true);
-			north = null;
-			south = null;
-			west = null;
-			east = null;
+			
+			main.panel_1.add(newRoom.north.panel);
+			main.panel_1.add(newRoom.south.panel);
+			main.panel_1.add(newRoom.west.panel);
+			main.panel_1.add(newRoom.east.panel);
+			newRoom.north.panel.setVisible(true);
+			newRoom.south.panel.setVisible(true);
+			newRoom.east.panel.setVisible(true);
+			newRoom.west.panel.setVisible(true);
+			for(Door d : newRoom.GetDoorList())
+			{
+				main.panel_1.add(d.panel);
+				d.panel.setVisible(true);
+			}
 			main.panel_1.removeMouseListener(this);
 			main.panel_1.repaint();
 			
@@ -208,9 +240,9 @@ public class PopupMenuWindow extends JPanel {
 	public JPopupMenu GetPopup() {
 		return popup;
 	}
-	public void show(int x, int y) {
-		pnt_x = x-14;
-		pnt_y = y - 36;
+	public void show(int x, int y, int xX, int yY, int xXX, int yYY) {
+		pnt_x = x;
+		pnt_y = y;
 		popup.show(main, x, y);
 	}
 	public void SetItem(String className) {

@@ -155,11 +155,13 @@ public class MainFrame extends JFrame {
 		
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
+			/*
 			Graphics2D g2 = (Graphics2D) g;
 			for (Shape s : shapeArray)
 				g2.draw(s);
 			for(Furniture f : furnitureArray) 
 				g.drawImage(f.getImage().getImage(), f.getX(), f.getY(), null);
+				*/
 		}
 		
 		public void drawOutline() { // 가장자리 벽면 그리는 함수
@@ -174,7 +176,7 @@ public class MainFrame extends JFrame {
 			int height = project.height;
 
 			Room mainRoom = new Room();
-			mainRoom.north = new Wall(x0, y0, width, 2, 0, mainRoom);
+			mainRoom.north = new Wall(x0, y0, width, 1, 0, mainRoom);
 			mainRoom.north.JPanelSize();
 			mainRoom.north.addMouseListener(new MouseOverListener(mainRoom.north.panel));
 			panel_1.add(mainRoom.north.panel);
@@ -183,7 +185,7 @@ public class MainFrame extends JFrame {
 					mainRoom.north.getWidth(), mainRoom.north.getHeight());
 			shapeArray.add(s);
 
-			mainRoom.east = new Wall(x0+width, y0, 2, height, 1, mainRoom);
+			mainRoom.east = new Wall(x0+width, y0, 1, height, 1, mainRoom);
 			mainRoom.east.addMouseListener(new MouseOverListener(mainRoom.east.panel));
 			mainRoom.east.JPanelSize();
 			panel_1.add(mainRoom.east.panel);
@@ -192,7 +194,7 @@ public class MainFrame extends JFrame {
 					mainRoom.east.getWidth(), mainRoom.east.getHeight());
 			shapeArray.add(s);
 
-			mainRoom.south = new Wall(x0, y0+height, width, 2, 2, mainRoom);
+			mainRoom.south = new Wall(x0, y0+height, width, 1, 2, mainRoom);
 			mainRoom.south.addMouseListener(new MouseOverListener(mainRoom.south.panel));
 			mainRoom.south.JPanelSize();
 			panel_1.add(mainRoom.south.panel);
@@ -201,7 +203,7 @@ public class MainFrame extends JFrame {
 					mainRoom.south.getWidth(), mainRoom.south.getHeight());
 			shapeArray.add(s);
 
-			mainRoom.west = new Wall(x0, y0, 2, height, 3, mainRoom);
+			mainRoom.west = new Wall(x0, y0, 1, height, 3, mainRoom);
 			mainRoom.west.addMouseListener(new MouseOverListener(mainRoom.west.panel));
 			mainRoom.west.JPanelSize();
 			panel_1.add(mainRoom.west.panel);
