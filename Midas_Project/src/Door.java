@@ -97,4 +97,40 @@ public class Door {
 	public void setDir(int dir) {
 		this.dir = dir;
 	}
+	public JPanel getPanel() {
+		return panel;
+	}
+	public void setPanel(JPanel panel) {
+		this.panel = panel;
+	}
+	public int getProject_x0() {
+		return project_x0;
+	}
+	public void setProject_x0(int project_x0) {
+		this.project_x0 = project_x0;
+	}
+	public int getProject_y0() {
+		return project_y0;
+	}
+	public void setProject_y0(int project_y0) {
+		this.project_y0 = project_y0;
+	}
+	public int getX0() {
+		return x0;
+	}
+	public void setX0(int x0) {
+		this.x0 = x0;
+	}
+	public int getY0() {
+		return y0;
+	}
+	public void setY0(int y0) {
+		this.y0 = y0;
+	}
+	public Room getRoom() {
+		return room;
+	}
+	public void setRoom(Room room) {
+		this.room = room;
+	}
 }

@@ -149,6 +149,21 @@ public class SaveData {
 				}
 				roomObject.put("south", southObject);
 			}
+			{
+				JSONArray doorList = new JSONArray();
+				for(Door d : r.getDoorArray()) {
+					JSONObject doorObject = new JSONObject();
+					doorObject.put("x", d.getX());
+					doorObject.put("y", d.getY());
+					doorObject.put("width", d.getWidth());
+					doorObject.put("height", d.getHeight());
+					doorObject.put("dir", d.getDir());
+					doorObject.put("x0", d.getX0());
+					doorObject.put("y0", d.getY0());
+					doorList.add(doorObject);
+				}
+				roomObject.put("doorArray", doorList);
+			}
 			roomList.add(roomObject);
 		}
 		projectInfo.put("room_list", roomList);
