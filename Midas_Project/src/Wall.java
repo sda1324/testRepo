@@ -37,7 +37,6 @@ public class Wall extends JPanel {
 				MainFrame.getInstance().panel_1.revalidate();
 				MainFrame.getInstance().panel_1.repaint();
 			}
-
 		} 
 		else {
 			if (windowArray.size() != 0) {

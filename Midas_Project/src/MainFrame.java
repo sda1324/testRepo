@@ -187,8 +187,10 @@ public class MainFrame extends JFrame {
 			mainRoom.north.addMouseListener(new MouseOverListener(mainRoom.north.panel));
 			panel_1.add(mainRoom.north.panel);
 			mainRoom.north.panel.setVisible(true);
+
 			s = new Rectangle2D.Float(mainRoom.north.getX(), mainRoom.north.getY(), 
 					mainRoom.north.getWidth(), mainRoom.north.getHeight());
+			
 			shapeArray.add(s);
 
 			mainRoom.east = new Wall(x0+width, y0, 1, height, 1, mainRoom);
