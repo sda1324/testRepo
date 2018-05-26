@@ -6,26 +6,54 @@ import javax.swing.JPanel;
 public class Wall extends JPanel{
 
 	int vector;
-	int first_x;
-	int first_y;
-	int second_x;
-	int second_y;
+	int x;
+	int y;
+	int width;
+	int height;
 	Room room;
 	Window window;
 	ArrayList<Window> windowArray = new ArrayList<Window>();
 	JPanel panel = new JPanel();
-	public Wall(int fX, int fY, int sX, int sY, int vector, Room room)
+	public Wall(int fX, int fY, int width, int height, int vector, Room room)
 	{
-		first_x = fX;
-		first_y = fY;
-		second_x = sX;
-		second_y = sY;
+		x = fX;
+		y = fY;
+		this.width = width;
+		this.height = height;
 		this.vector = vector;
 		this.room = room;
 	}
+	public void SetAdditionalDoor()
+	{
+		room.SetAdditionalDoor(x, y, width, height, vector);
+	}
 	public void SetDefaultWindow()
 	{
-		Window door = new Window(0,0,20,0);
+		window = new Window(0,0,20,0);
+		switch(vector)
+		{
+		case 0:
+			window.SetDir(1);
+			window.SetJPanelSize(x, y, width, height, this);
+			break;
+		case 1:
+			window.SetDir(0);
+			window.SetJPanelSize(x+width, y, width, height, this);
+			break;
+		case 2:
+			window.SetDir(1);
+			window.SetJPanelSize(x, y+height, width, height, this);
+			break;
+		case 3:
+			window.SetDir(0);
+			window.SetJPanelSize(x, y, width, height, this);
+			break;
+		}
+		windowArray.add(window);
+		MainFrame.getInstance().panel_1.add(window.panel);
+		window.panel.setVisible(true);
+		MainFrame.getInstance().panel_1.revalidate();
+		MainFrame.getInstance().panel_1.repaint();
 	}
 	public int getVector() {
 		return vector;
@@ -34,29 +62,29 @@ public class Wall extends JPanel{
 		this.vector = vector;
 	}
 
-	public int getFirst_x() {
-		return first_x;
+	public int getX() {
+		return x;
 	}
-	public void setFirst_x(int first_x) {
-		this.first_x = first_x;
+	public void setX(int x) {
+		this.x = x;
 	}
-	public int getFirst_y() {
-		return first_y;
+	public int getY() {
+		return y;
 	}
-	public void setFirst_y(int first_y) {
-		this.first_y = first_y;
+	public void setY(int y) {
+		this.y = y;
 	}
-	public int getSecond_x() {
-		return second_x;
+	public int getWidth() {
+		return width;
 	}
-	public void setSecond_x(int second_x) {
-		this.second_x = second_x;
+	public void setWidth(int width) {
+		this.width = width;
 	}
-	public int getSecond_y() {
-		return second_y;
+	public int getHeight() {
+		return height;
 	}
-	public void setSecond_y(int second_y) {
-		this.second_y = second_y;
+	public void setHeight(int height) {
+		this.height = height;
 	}
 	public void JPanelSize()
 	{
@@ -64,27 +92,23 @@ public class Wall extends JPanel{
 		switch(vector)
 		{
 		case 0:
-			panel.setBounds(first_x, first_y, second_x - first_x, 1);
-			//panel.setSize(second_x - first_x, 10);
-			//panel.setLocation(first_x, first_y);
+			panel.setBounds(x, y, width+1, 1);
 			panel.addMouseListener(new MouseOverListener(this));
 			break;
 		case 1:
-			panel.setBounds(first_x, first_y, 1,second_y - first_y);
-			//panel.setSize(10,second_y - first_y);
-			//panel.setLocation(first_x, first_y);
+			panel.setBounds(x+width-1, y, 1,height+1);
+
 			panel.addMouseListener(new MouseOverListener(this));
 			break;
 		case 2:
-			panel.setBounds(second_x, second_y, first_x - second_x, 1);
+			panel.setBounds(x, y+height-1, width+1, 1);
 			panel.addMouseListener(new MouseOverListener(this));
-			//panel.setLocation(second_x, second_y);
+
 			break;
 		case 3:
-			panel.setBounds(second_x, second_y, 1, first_y - second_y);
+			panel.setBounds(x, y, 1, height+1);
 			panel.addMouseListener(new MouseOverListener(this));
-			//panel.setSize(10, first_y - second_y);
-			//panel.setLocation(second_x, second_y);
+
 			break;
 		}
 	}
