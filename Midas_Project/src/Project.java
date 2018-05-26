@@ -115,6 +115,7 @@ public class Project {
 		System.out.println(furniture_list.size());
 		for(Furniture f : furniture_list)
 		{
+			f.setImageLoad();
 			f.setJPanel();
 			f.panel.setVisible(true);
 			f.panel.addMouseListener(new MouseOverListener(f));

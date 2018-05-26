@@ -191,15 +191,17 @@ public class SaveData {
 
 
 			//furniture
-			JSONArray JSONfurnitureList = (JSONArray) jsonObject.get("furnitureList");
+			JSONArray JSONfurnitureList = (JSONArray) jsonObject.get("furniture_list");
+			//System.out.println(JSONfurnitureList.size());
 			for(int i=0;i<JSONfurnitureList.size();i++) {
 				JSONObject j = (JSONObject) JSONfurnitureList.get(i);
 				Furniture f = new Furniture();
-				f.setURL(j.get("imageUrl").toString());
+
 				f.setWidth(Integer.parseInt(j.get("width").toString()));
 				f.setHeight(Integer.parseInt(j.get("height").toString()));
 				f.setName((String)j.get("name"));
 				f.setImage((ImageIcon) j.get("imageicon"));
+				f.setURL(j.get("imageUrl").toString());
 				f.setX(Integer.parseInt(j.get("x").toString()));
 				f.setY(Integer.parseInt(j.get("y").toString()));
 				

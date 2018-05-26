@@ -11,13 +11,13 @@ import javax.swing.JPanel;
 class FurniturePanel extends JPanel {
 	Furniture f;
     public FurniturePanel(Furniture f) {
+    	System.out.println(f.getURL());
     	this.f = f;
     }
     
     public void paintComponent(Graphics g) {
        super.paintComponent(g);
        Graphics2D g2 = (Graphics2D) g;
-       if(f.getImage()!=null)
           g.drawImage(f.getImage().getImage(), 0, 0, null);
     }
 }
@@ -38,6 +38,28 @@ public class Furniture {
 		this.name = name;
 	}
 	public Furniture() {
+		
+	}
+	public void setImageLoad()
+	{
+		switch(imageUrl)
+		{
+			case "src/icon/refrigerator.png":
+				setImage(MainFrame.getInstance().f_ref.getImage());
+
+				break;
+			case "src/icon/sofa.png":
+				setImage(MainFrame.getInstance().f_sofa.getImage());
+				break;
+			case "src/icon/tv.png":
+				setImage(MainFrame.getInstance().f_tv.getImage());
+				break;
+			case "src/icon/washing_machine.png":
+				setImage(MainFrame.getInstance().f_wm.getImage());
+				break;
+		}
+		if(imageicon == null)
+			System.out.println("nn");
 	}
 	public String getURL()
 	{
@@ -48,17 +70,12 @@ public class Furniture {
 		imageUrl = s;
 	}
 	public ImageIcon getImage() {
-		if(imageicon != null)
-		{
+
 		Image originImg = this.imageicon.getImage();
 		Image changedImg= originImg.getScaledInstance(width, height, Image.SCALE_SMOOTH );
 		ImageIcon icon = new ImageIcon(changedImg);
 		icon = new ImageIcon(changedImg);
 		return icon;
-		}
-		else
-			return null;
-
 	}
 	public void RemoveFurniture()
 	{
@@ -135,6 +152,11 @@ public class Furniture {
 
 	public void setY(int y) {
 		this.y = y;
+	}
+	public void moveFurniture()
+	{
+		MainFrame.getInstance().exists = true;
+		MainFrame.getInstance().tempFurniture = this;
 	}
 	
 }
