@@ -13,8 +13,6 @@ public class Project {
 	
 	ArrayList<Furniture> furniture_list = new ArrayList<Furniture>();
 	ArrayList<Room> room_list = new ArrayList<Room>();
-	ArrayList<Window> window_list = new ArrayList<Window>();
-	ArrayList<Door> door_list = new ArrayList<Door>();
 	ArrayList<Shape> shapeArray = new ArrayList<Shape>();
 	
 	public Project() {
@@ -86,21 +84,6 @@ public class Project {
 		this.room_list = room_list;
 	}
 
-	public ArrayList<Window> getWindow_list() {
-		return window_list;
-	}
-
-	public void setWindow_list(ArrayList<Window> window_list) {
-		this.window_list = window_list;
-	}
-
-	public ArrayList<Door> getDoor_list() {
-		return door_list;
-	}
-
-	public void setDoor_list(ArrayList<Door> door_list) {
-		this.door_list = door_list;
-	}
 
 	public ArrayList<Shape> getShapeArray() {
 		return shapeArray;

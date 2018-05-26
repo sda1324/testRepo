@@ -99,7 +99,7 @@ public class SaveData {
 					}
 					westObject.put("windowArray", windowList);
 				}
-				roomObject.put("east", westObject);
+				roomObject.put("west", westObject);
 			}
 			{
 				JSONObject northObject = new JSONObject();
@@ -123,7 +123,7 @@ public class SaveData {
 					}
 					northObject.put("windowArray", windowList);
 				}
-				roomObject.put("east", northObject);
+				roomObject.put("north", northObject);
 			}
 			{
 				JSONObject southObject = new JSONObject();
@@ -147,7 +147,7 @@ public class SaveData {
 					}
 					southObject.put("windowArray", windowList);
 				}
-				roomObject.put("east", southObject);
+				roomObject.put("south", southObject);
 			}
 			roomList.add(roomObject);
 		}
@@ -206,7 +206,116 @@ public class SaveData {
 				p.furniture_list.add(f);
 			}
 			
-			
+			//Room
+			JSONArray JSONRoomList = (JSONArray) jsonObject.get("room_list");
+			for(int i=0;i<JSONRoomList.size();i++) {
+				JSONObject j = (JSONObject) JSONRoomList.get(i);
+				Room r = new Room(Integer.parseInt(j.get("first_x").toString()), Integer.parseInt(j.get("first_y").toString()), 
+						Integer.parseInt(j.get("width").toString()), Integer.parseInt(j.get("height").toString()));
+				r.setSecond_x(Integer.parseInt(j.get("second_x").toString()));
+				r.setSecond_y(Integer.parseInt(j.get("second_y").toString()));
+				
+				JSONObject east = (JSONObject) j.get("east");
+				r.east.vector = Integer.parseInt(east.get("vector").toString());
+				r.east.x = Integer.parseInt(east.get("x").toString());
+				r.east.y = Integer.parseInt(east.get("y").toString());
+				r.east.width = Integer.parseInt(east.get("width").toString());
+				r.east.height = Integer.parseInt(east.get("height").toString());
+				JSONArray windowList = (JSONArray) east.get("windowArray");
+				for(int  k=0; k<windowList.size(); k++) {
+					JSONObject jw = (JSONObject) windowList.get(k);
+					Window w = new Window();
+					w.setX(Integer.parseInt(jw.get("x").toString()));
+					w.setY(Integer.parseInt(jw.get("y").toString()));
+					w.setWidth(Integer.parseInt(jw.get("width").toString()));
+					w.setHeight(Integer.parseInt(jw.get("height").toString()));
+					w.setDir(Integer.parseInt(jw.get("dir").toString()));
+					w.setX0(Integer.parseInt(jw.get("x0").toString()));
+					w.setY0(Integer.parseInt(jw.get("y0").toString()));
+					r.east.windowArray.add(w);
+				}
+				//r.east.windowArray = windowList;
+				
+				JSONObject west = (JSONObject) j.get("west");
+				r.west.vector = Integer.parseInt(west.get("vector").toString());
+				r.west.x = Integer.parseInt(west.get("x").toString());
+				r.west.y = Integer.parseInt(west.get("y").toString());
+				r.west.width = Integer.parseInt(west.get("width").toString());
+				r.west.height = Integer.parseInt(west.get("height").toString());
+				JSONArray westwindowList = (JSONArray) west.get("windowArray");
+				for(int  k=0; k<westwindowList.size(); k++) {
+					JSONObject jw = (JSONObject) westwindowList.get(k);
+					Window w = new Window();
+					w.setX(Integer.parseInt(jw.get("x").toString()));
+					w.setY(Integer.parseInt(jw.get("y").toString()));
+					w.setWidth(Integer.parseInt(jw.get("width").toString()));
+					w.setHeight(Integer.parseInt(jw.get("height").toString()));
+					w.setDir(Integer.parseInt(jw.get("dir").toString()));
+					w.setX0(Integer.parseInt(jw.get("x0").toString()));
+					w.setY0(Integer.parseInt(jw.get("y0").toString()));
+					r.west.windowArray.add(w);
+				}
+				//r.west.windowArray = westwindowList;
+				
+				JSONObject north = (JSONObject) j.get("north");
+				r.north.vector = Integer.parseInt(north.get("vector").toString());
+				r.north.x = Integer.parseInt(north.get("x").toString());
+				r.north.y = Integer.parseInt(north.get("y").toString());
+				r.north.width = Integer.parseInt(north.get("width").toString());
+				r.north.height = Integer.parseInt(north.get("height").toString());
+				JSONArray northwindowList = (JSONArray) north.get("windowArray");
+				for(int  k=0; k<northwindowList.size(); k++) {
+					JSONObject jw = (JSONObject) northwindowList.get(k);
+					Window w = new Window();
+					w.setX(Integer.parseInt(jw.get("x").toString()));
+					w.setY(Integer.parseInt(jw.get("y").toString()));
+					w.setWidth(Integer.parseInt(jw.get("width").toString()));
+					w.setHeight(Integer.parseInt(jw.get("height").toString()));
+					w.setDir(Integer.parseInt(jw.get("dir").toString()));
+					w.setX0(Integer.parseInt(jw.get("x0").toString()));
+					w.setY0(Integer.parseInt(jw.get("y0").toString()));
+					r.north.windowArray.add(w);
+				}
+				//r.north.windowArray = northwindowList;
+				
+				JSONObject south = (JSONObject) j.get("south");
+				r.south.vector = Integer.parseInt(south.get("vector").toString());
+				r.south.x = Integer.parseInt(south.get("x").toString());
+				r.south.y = Integer.parseInt(south.get("y").toString());
+				r.south.width = Integer.parseInt(south.get("width").toString());
+				r.south.height = Integer.parseInt(south.get("height").toString());
+				JSONArray southwindowList = (JSONArray) south.get("windowArray");
+				for(int  k=0; k<southwindowList.size(); k++) {
+					JSONObject jw = (JSONObject) southwindowList.get(k);
+					Window w = new Window();
+					w.setX(Integer.parseInt(jw.get("x").toString()));
+					w.setY(Integer.parseInt(jw.get("y").toString()));
+					w.setWidth(Integer.parseInt(jw.get("width").toString()));
+					w.setHeight(Integer.parseInt(jw.get("height").toString()));
+					w.setDir(Integer.parseInt(jw.get("dir").toString()));
+					w.setX0(Integer.parseInt(jw.get("x0").toString()));
+					w.setY0(Integer.parseInt(jw.get("y0").toString()));
+					r.south.windowArray.add(w);
+				}
+				//r.west.windowArray = southwindowList;
+				
+				JSONArray jsondoorList = (JSONArray) j.get("door_list");
+				for(int k=0;k<jsondoorList.size();k++) {
+					JSONObject doorList = (JSONObject) jsondoorList.get(i);
+					Door d = new Door();
+					d.setX(Integer.parseInt(doorList.get("x").toString()));
+					d.setY(Integer.parseInt(doorList.get("y").toString()));
+					d.width = Integer.parseInt(doorList.get("width").toString());
+					d.height = Integer.parseInt(doorList.get("height").toString());
+					d.x0 = Integer.parseInt(doorList.get("x0").toString());
+					d.y0 = Integer.parseInt(doorList.get("y0").toString());
+					d.dir = Integer.parseInt(doorList.get("dir").toString());
+					r.doorArray.add(d);
+				}
+				//r.doorArray= jsondoorList;
+				
+				p.room_list.add(r);
+			}
 			
 		} catch (FileNotFoundException e) { e.printStackTrace(); 
 		} catch (IOException e) { e.printStackTrace(); 
