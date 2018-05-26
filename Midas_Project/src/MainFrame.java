@@ -170,10 +170,6 @@ public class MainFrame extends JFrame {
 			panel_1.setLayout(null);
 			int x0 = project.basic_x;
 			int y0 = project.basic_y;
-			
-			//s = new Rectangle2D.Float(project.basic_x, project.basic_y, project.width, project.height);
-			//shapeArray.add(s);
-		
 			int width = project.width;
 			int height = project.height;
 
@@ -183,9 +179,7 @@ public class MainFrame extends JFrame {
 			mainRoom.north.addMouseListener(new MouseOverListener(mainRoom.north.panel));
 			panel_1.add(mainRoom.north.panel);
 			mainRoom.north.panel.setVisible(true);
-			s = new Rectangle2D.Float(mainRoom.north.getX(), mainRoom.north.getY(), 
-					mainRoom.north.getWidth(), mainRoom.north.getHeight());
-			shapeArray.add(s);
+			//shapeArray.add(s);
 
 			mainRoom.east = new Wall(x0+width, y0, 2, height, 1, mainRoom);
 			mainRoom.east.addMouseListener(new MouseOverListener(mainRoom.east.panel));
