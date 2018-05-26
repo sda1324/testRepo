@@ -109,6 +109,7 @@ public class Project {
 		}
 		for(Room r : room_list)
 		{
+			r.east.room = r;
 			r.east.JPanelSize();
 			r.east.addMouseListener(new MouseOverListener(r.east.panel));
 			m.panel_1.add(r.east.panel);
@@ -118,12 +119,15 @@ public class Project {
 				w.panel.addMouseListener(new MouseOverListener(w));
 				m.panel_1.add(w.panel);
 			}
+			r.west.room = r;
 			r.west.JPanelSize();
 			r.west.addMouseListener(new MouseOverListener(r.west.panel));
 			m.panel_1.add(r.west.panel);
+			r.south.room = r;
 			r.south.JPanelSize();
 			r.south.addMouseListener(new MouseOverListener(r.south.panel));
 			m.panel_1.add(r.south.panel);
+			r.north.room = r;
 			r.north.JPanelSize();
 			r.north.addMouseListener(new MouseOverListener(r.north.panel));
 			m.panel_1.add(r.north.panel);

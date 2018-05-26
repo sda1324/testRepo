@@ -320,7 +320,7 @@ public class SaveData {
 				}
 				//r.west.windowArray = southwindowList;
 				
-				JSONArray jsondoorList = (JSONArray) j.get("door_list");
+				JSONArray jsondoorList = (JSONArray) j.get("doorArray");
 				for(int k=0;k<jsondoorList.size();k++) {
 					JSONObject doorList = (JSONObject) jsondoorList.get(i);
 					Door d = new Door();
