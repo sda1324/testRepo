@@ -48,6 +48,17 @@ public class PopupMenuWindow extends JPanel {
 		@Override
 		public void mouseClicked(MouseEvent e) {
 			// TODO Auto-generated method stub
+		}
+
+		@Override
+		public void mousePressed(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent e) {
+			// TODO Auto-generated method stub
 			clicked_x = e.getXOnScreen()-main.getBounds().x;
 			clicked_y = e.getYOnScreen()-main.getBounds().y;
 			int width = pnt_x - clicked_x;
@@ -74,13 +85,13 @@ public class PopupMenuWindow extends JPanel {
 				}
 				else {
 					north.setBounds(pnt_x, clicked_y, width, 1);
-					south.setBounds(clicked_x, clicked_y, width, 1);
+					south.setBounds(pnt_x, pnt_y, width, 1);
 					west.setBounds(pnt_x, clicked_y, 1, height);
 					east.setBounds(clicked_x, clicked_y, 1, height);
-					main.panel_1.shapeArray.add(new Rectangle2D.Float(pnt_x, pnt_y, width, 1));
 					main.panel_1.shapeArray.add(new Rectangle2D.Float(pnt_x, clicked_y, width, 1));
-					main.panel_1.shapeArray.add(new Rectangle2D.Float(pnt_x, pnt_y, 1, height));
-					main.panel_1.shapeArray.add(new Rectangle2D.Float(clicked_x, pnt_y, 1, height));
+					main.panel_1.shapeArray.add(new Rectangle2D.Float(pnt_x, pnt_y, width, 1));
+					main.panel_1.shapeArray.add(new Rectangle2D.Float(pnt_x, clicked_y, 1, height));
+					main.panel_1.shapeArray.add(new Rectangle2D.Float(clicked_x, clicked_y, 1, height));
 					
 				}
 			}
@@ -107,32 +118,25 @@ public class PopupMenuWindow extends JPanel {
 					main.panel_1.shapeArray.add(new Rectangle2D.Float(pnt_x, clicked_y, 1, height));
 					
 				}
-				north.setBackground(Color.BLACK);
-				south.setBackground(Color.BLACK);
-				west.setBackground(Color.BLACK);
-				east.setBackground(Color.BLACK);
-				main.panel_1.add(north);
-				main.panel_1.add(south);
-				main.panel_1.add(west);
-				main.panel_1.add(east);
-				north.setVisible(true);
-				south.setVisible(true);
-				west.setVisible(true);
-				east.setVisible(true);
-				main.panel_1.addMouseMotionListener(null);
-				main.panel_1.repaint();
 			}
-		}
-
-		@Override
-		public void mousePressed(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void mouseReleased(MouseEvent e) {
-			// TODO Auto-generated method stub
+			north.setBackground(Color.BLACK);
+			south.setBackground(Color.BLACK);
+			west.setBackground(Color.BLACK);
+			east.setBackground(Color.BLACK);
+			main.panel_1.add(north);
+			main.panel_1.add(south);
+			main.panel_1.add(west);
+			main.panel_1.add(east);
+			north.setVisible(true);
+			south.setVisible(true);
+			west.setVisible(true);
+			east.setVisible(true);
+			north = null;
+			south = null;
+			west = null;
+			east = null;
+			main.panel_1.removeMouseListener(this);
+			main.panel_1.repaint();
 			
 		}
 
@@ -147,21 +151,6 @@ public class PopupMenuWindow extends JPanel {
 			// TODO Auto-generated method stub
 			
 		}
-	}
-	class AddRoomMotionListener implements MouseMotionListener{
-
-		@Override
-		public void mouseDragged(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void mouseMoved(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-		
 	}
 	ActionListener makeWindow = new ActionListener() {
 		@Override
