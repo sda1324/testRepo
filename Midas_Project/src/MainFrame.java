@@ -161,37 +161,18 @@ public class MainFrame extends JFrame {
 				g.drawImage(f.getImage().getImage(), f.getX(), f.getY(), null);
 		}
 		
-		/*
-		public void drawOutline() { //draw only outer line
+		
+		public void drawOutline() { // 가장자리 벽면 그리는 함수
 			Shape s = new Rectangle2D.Float(project.basic_x, project.basic_y, project.width, project.height);
 			shapeArray.clear();
 			shapeArray.add(s);
-			repaint();
-		}
-		*/
-		
-		/*
-		public void drawDoor(Door door) { //draw only outer line
-			Shape s;
-			if(door.dir == 1)
-				s = new Rectangle2D.Float(project.basic_x+door.first_x, project.basic_y+door.first_y-3, 30, 6);
-			else
-				s = new Rectangle2D.Float(project.basic_x+door.first_x-3, project.basic_y+door.first_y, 6, 30);
-			shapeArray.add(s);
-			repaint();
-		}*/
-		
-		public void drawOutline() { // 가장자리 벽면 그리는 함수
+
 			panel_1.setLayout(null);
 			int x0 = project.basic_x;
 			int x1 = project.basic_x + project.width;
 			int y0 = project.basic_y;
 			int y1 = project.basic_y + project.height;
-			Shape s = new Rectangle2D.Float(project.basic_x, project.basic_y, project.width, project.height);
-			
-			shapeArray.clear();
-			shapeArray.add(s);
-			
+
 			Room mainRoom = new Room();
 			mainRoom.north = new Wall(x0, y0, x1, y0, 0, mainRoom);
 			mainRoom.north.JPanelSize();
