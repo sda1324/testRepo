@@ -47,6 +47,115 @@ public class SaveData {
 		}
 		projectInfo.put("furnitureList", furnitureList);
 		
+		JSONArray roomList = new JSONArray();
+		for (Room r : p.getRoom_list()) {
+			JSONObject roomObject = new JSONObject(); 
+			roomObject.put("first_x", r.getFirst_x());
+			roomObject.put("first_y", r.getFirst_y());
+			roomObject.put("second_x", r.getSecond_x());
+			roomObject.put("second_y", r.getSecond_y());
+			roomObject.put("width", r.getWidth());
+			roomObject.put("height", r.getHeight());
+			{
+				JSONObject eastObject = new JSONObject();
+				eastObject.put("vector", r.east.getVector());
+				eastObject.put("x", r.east.getX());
+				eastObject.put("y", r.east.getY());
+				eastObject.put("width", r.east.getWidth());
+				eastObject.put("height", r.east.getHeight());
+				{
+					JSONArray windowList = new JSONArray();
+					for(Window w : r.getEast().getWindowArray()) {
+						JSONObject windowObject = new JSONObject();
+						windowObject.put("x", w.getX());
+						windowObject.put("y", w.getY());
+						windowObject.put("width", w.getWidth());
+						windowObject.put("height", w.getHeight());
+						windowObject.put("dir", w.getDir());
+						windowObject.put("x0", w.getX0());
+						windowObject.put("y0", w.getY0());
+						windowList.add(windowObject);
+					}
+					eastObject.put("windowArray", windowList);
+				}
+				roomObject.put("east", eastObject);
+			}
+			{
+				JSONObject westObject = new JSONObject();
+				westObject.put("vector", r.west.getVector());
+				westObject.put("x", r.west.getX());
+				westObject.put("y", r.west.getY());
+				westObject.put("width", r.west.getWidth());
+				westObject.put("height", r.west.getHeight());
+				{
+					JSONArray windowList = new JSONArray();
+					for(Window w : r.getWest().getWindowArray()) {
+						JSONObject windowObject = new JSONObject();
+						windowObject.put("x", w.getX());
+						windowObject.put("y", w.getY());
+						windowObject.put("width", w.getWidth());
+						windowObject.put("height", w.getHeight());
+						windowObject.put("dir", w.getDir());
+						windowObject.put("x0", w.getX0());
+						windowObject.put("y0", w.getY0());
+						windowList.add(windowObject);
+					}
+					westObject.put("windowArray", windowList);
+				}
+				roomObject.put("east", westObject);
+			}
+			{
+				JSONObject northObject = new JSONObject();
+				northObject.put("vector", r.north.getVector());
+				northObject.put("x", r.north.getX());
+				northObject.put("y", r.north.getY());
+				northObject.put("width", r.north.getWidth());
+				northObject.put("height", r.north.getHeight());
+				{
+					JSONArray windowList = new JSONArray();
+					for(Window w : r.getNorth().getWindowArray()) {
+						JSONObject windowObject = new JSONObject();
+						windowObject.put("x", w.getX());
+						windowObject.put("y", w.getY());
+						windowObject.put("width", w.getWidth());
+						windowObject.put("height", w.getHeight());
+						windowObject.put("dir", w.getDir());
+						windowObject.put("x0", w.getX0());
+						windowObject.put("y0", w.getY0());
+						windowList.add(windowObject);
+					}
+					northObject.put("windowArray", windowList);
+				}
+				roomObject.put("east", northObject);
+			}
+			{
+				JSONObject southObject = new JSONObject();
+				southObject.put("vector", r.south.getVector());
+				southObject.put("x", r.south.getX());
+				southObject.put("y", r.south.getY());
+				southObject.put("width", r.south.getWidth());
+				southObject.put("height", r.south.getHeight());
+				{
+					JSONArray windowList = new JSONArray();
+					for(Window w : r.getSouth().getWindowArray()) {
+						JSONObject windowObject = new JSONObject();
+						windowObject.put("x", w.getX());
+						windowObject.put("y", w.getY());
+						windowObject.put("width", w.getWidth());
+						windowObject.put("height", w.getHeight());
+						windowObject.put("dir", w.getDir());
+						windowObject.put("x0", w.getX0());
+						windowObject.put("y0", w.getY0());
+						windowList.add(windowObject);
+					}
+					southObject.put("windowArray", windowList);
+				}
+				roomObject.put("east", southObject);
+			}
+			roomList.add(roomObject);
+		}
+		
+		
 		System.out.println(projectInfo.toString());
 		MainFrame.getInstance().panel_1.repaint();
 		
