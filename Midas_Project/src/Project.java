@@ -18,7 +18,18 @@ public class Project {
 	public Project() {
 		
 	}
-	
+	public void SetRoom(Room room)
+	{
+		room_list.add(room);
+	}
+	public void RemoveRoom(Room room)
+	{
+		for(Room r : room_list)
+		{
+			if(r == room)
+				room_list.remove(r);
+		}
+	}
 	public Project(int width, int height) {
 		this.width= width;
 		this.height = height;

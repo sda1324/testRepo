@@ -11,6 +11,9 @@ public class Window {
 	int dir;
 	Wall wall;
 
+	int x0;
+	int y0;
+	
 	public Window() {
 
 	}
@@ -43,16 +46,27 @@ public class Window {
 	}
 	public void SetJPanelSize(int x0, int y0, int x1, int y1, Wall wall) {
 		panel.setBackground(Color.BLUE);
+		this.x0 = x0;
+		this.y0 = y0;
 		if (dir == 1) {
-			panel.setBounds(x0 + x, y0 + y - 3, 30, 6);
+			panel.setBounds(x0 + x, y0 + y - 3, width, 6);
 			panel.addMouseListener(new MouseOverListener(this));
 		} else {
-			panel.setBounds(x0 + x - 3, y0 + y, 6, 30);
+			panel.setBounds(x0 + x - 3, y0 + y, 6, width);
 			panel.addMouseListener(new MouseOverListener(this));
 		}
 		this.wall = wall;
 	}
-
+	public void SetResizeJPanel(int width) {
+		panel.setBackground(Color.BLUE);
+		if (dir == 1) {
+			panel.setBounds(x0 + x, y0 + y - 3, width, 6);
+			panel.addMouseListener(new MouseOverListener(this));
+		} else {
+			panel.setBounds(x0 + x - 3, y0 + y, 6, width);
+			panel.addMouseListener(new MouseOverListener(this));
+		}
+	}
 	public int getX() {
 		return x;
 	}
