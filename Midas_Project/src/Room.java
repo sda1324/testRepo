@@ -140,5 +140,47 @@ public class Room {
 	public void setSecond_y(int second_y) {
 		this.second_y = second_y;
 	}
+	public int getWidth() {
+		return width;
+	}
+	public void setWidth(int width) {
+		this.width = width;
+	}
+	public int getHeight() {
+		return height;
+	}
+	public void setHeight(int height) {
+		this.height = height;
+	}
+	public Wall getEast() {
+		return east;
+	}
+	public void setEast(Wall east) {
+		this.east = east;
+	}
+	public Wall getWest() {
+		return west;
+	}
+	public void setWest(Wall west) {
+		this.west = west;
+	}
+	public Wall getNorth() {
+		return north;
+	}
+	public void setNorth(Wall north) {
+		this.north = north;
+	}
+	public Wall getSouth() {
+		return south;
+	}
+	public void setSouth(Wall south) {
+		this.south = south;
+	}
+	public ArrayList<Door> getDoorArray() {
+		return doorArray;
+	}
+	public void setDoorArray(ArrayList<Door> doorArray) {
+		this.doorArray = doorArray;
+	}
 
 }

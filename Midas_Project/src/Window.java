@@ -27,6 +27,46 @@ public class Window {
 		
 	}
 
+	public JPanel getPanel() {
+		return panel;
+	}
+
+	public void setPanel(JPanel panel) {
+		this.panel = panel;
+	}
+
+	public int getDir() {
+		return dir;
+	}
+
+	public void setDir(int dir) {
+		this.dir = dir;
+	}
+
+	public Wall getWall() {
+		return wall;
+	}
+
+	public void setWall(Wall wall) {
+		this.wall = wall;
+	}
+
+	public int getX0() {
+		return x0;
+	}
+
+	public void setX0(int x0) {
+		this.x0 = x0;
+	}
+
+	public int getY0() {
+		return y0;
+	}
+
+	public void setY0(int y0) {
+		this.y0 = y0;
+	}
+
 	public void EditPosition(int new_x, int new_y) {
 		
 		if(dir == 0)

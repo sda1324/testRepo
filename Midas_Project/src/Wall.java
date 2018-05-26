@@ -124,6 +124,38 @@ public class Wall extends JPanel {
 		this.height = height;
 	}
 
+	public Room getRoom() {
+		return room;
+	}
+
+	public void setRoom(Room room) {
+		this.room = room;
+	}
+
+	public Window getWindow() {
+		return window;
+	}
+
+	public void setWindow(Window window) {
+		this.window = window;
+	}
+
+	public ArrayList<Window> getWindowArray() {
+		return windowArray;
+	}
+
+	public void setWindowArray(ArrayList<Window> windowArray) {
+		this.windowArray = windowArray;
+	}
+
+	public JPanel getPanel() {
+		return panel;
+	}
+
+	public void setPanel(JPanel panel) {
+		this.panel = panel;
+	}
+
 	public void JPanelSize() {
 		panel.setBackground(Color.BLACK);
 		switch (vector) {
