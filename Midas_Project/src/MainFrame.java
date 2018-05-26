@@ -100,13 +100,7 @@ public class MainFrame extends JFrame {
       btnNewButton_1.addActionListener(new ActionListener() {
           public void actionPerformed(ActionEvent e) {
         	  SaveData s= new SaveData ();
-
-				try {
-					s.save(project);
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+        	  s.save(project);
         	 // s.save(project);
         	 /*
         	  ArrayList<Furniture> a = new ArrayList<Furniture>();
