@@ -92,7 +92,7 @@ public class MainFrame extends JFrame {
 	}
 	
 	public void drawOutline() { //가장자리 벽면 그리는 함수
-		Shape s = new Rectangle2D.Float(project.basic_x, project.basic_y, project.height, project.width);
+		Shape s = new Rectangle2D.Float(project.basic_x, project.basic_y, project.width, project.height);
 		shapeArray.clear();
 		shapeArray.add(s);
 		repaint();
