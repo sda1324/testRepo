@@ -25,10 +25,11 @@ public class Project {
 	}
 	public void RemoveRoom(Room room)
 	{
-		for(Room r : room_list)
+		System.out.println(room_list.size());
+		for(int i = 0; i<room_list.size();++i)
 		{
-			if(r == room)
-				room_list.remove(r);
+			if(room_list.get(i) == room)
+				room_list.remove(i);
 		}
 	}
 	public Project(int width, int height) {

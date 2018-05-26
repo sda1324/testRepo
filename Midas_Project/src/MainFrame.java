@@ -100,8 +100,15 @@ public class MainFrame extends JFrame {
       btnNewButton_1.addActionListener(new ActionListener() {
           public void actionPerformed(ActionEvent e) {
         	  SaveData s= new SaveData ();
-        	  s.save(project);
-        	 
+
+				try {
+					s.save(project);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+        	 // s.save(project);
+        	 /*
         	  ArrayList<Furniture> a = new ArrayList<Furniture>();
         	  for(Furniture f : a )
         		  f.RemoveFurniture();
@@ -112,6 +119,7 @@ public class MainFrame extends JFrame {
         	  
         	  panel_1.removeAll();
         	  panel_1.updateUI();
+        	  */
           }
        });
       panel.add(btnNewButton_1);
@@ -138,17 +146,17 @@ public class MainFrame extends JFrame {
         	       // SaveLocation s = new SaveLocation();
         	        //s.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         	       // s.setVisible(true);
-        	        JFileChooser c = new JFileChooser();
+        	      JFileChooser c = new JFileChooser();
         		      // Demonstrate "Save" dialog:
-        		      int rVal = c.showSaveDialog(MainFrame.this);
+        		    int rVal = c.showSaveDialog(MainFrame.this);
         		      if (rVal == JFileChooser.APPROVE_OPTION) {
         		        //filename.setText(c.getSelectedFile().getName());
         		        //dir.setText(c.getCurrentDirectory().toString());
         		    	  //Save
         		    	  
-        		      }
+        		    }
         		      if (rVal == JFileChooser.CANCEL_OPTION) {
-
+//
         		      }
         	    } catch (IOException ex) {
         	        
