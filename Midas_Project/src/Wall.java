@@ -11,15 +11,16 @@ public class Wall extends JPanel{
 	int first_y;
 	int second_x;
 	int second_y;
+	Room room;
 	JPanel panel = new JPanel();
-	public Wall(int fX, int fY, int sX, int sY, int vector)
+	public Wall(int fX, int fY, int sX, int sY, int vector, Room room)
 	{
 		first_x = fX;
 		first_y = fY;
 		second_x = sX;
 		second_y = sY;
 		this.vector = vector;
-		
+		this.room = room;
 	}
 	public int getVector() {
 		return vector;

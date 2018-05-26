@@ -111,25 +111,25 @@ public class MainFrame extends JFrame {
 			int y1 = project.basic_y + project.height;
 
 			Room mainRoom = new Room();
-			mainRoom.north = new Wall(x0, y0, x1, y0, 0);
+			mainRoom.north = new Wall(x0, y0, x1, y0, 0, mainRoom);
 			mainRoom.north.JPanelSize();
 			mainRoom.north.addMouseListener(new MouseOverListener(mainRoom.north.panel));
 			panel_1.add(mainRoom.north.panel);
 			mainRoom.north.panel.setVisible(true);
 
-			mainRoom.east = new Wall(x1, y0, x1, y1, 1);
+			mainRoom.east = new Wall(x1, y0, x1, y1, 1, mainRoom);
 			mainRoom.east.addMouseListener(new MouseOverListener(mainRoom.east.panel));
 			mainRoom.east.JPanelSize();
 			panel_1.add(mainRoom.east.panel);
 			mainRoom.east.panel.setVisible(true);
 
-			mainRoom.south = new Wall(x1, y1, x0, y1, 2);
+			mainRoom.south = new Wall(x1, y1, x0, y1, 2, mainRoom);
 			mainRoom.south.addMouseListener(new MouseOverListener(mainRoom.south.panel));
 			mainRoom.south.JPanelSize();
 			panel_1.add(mainRoom.south.panel);
 			mainRoom.south.panel.setVisible(true);
 
-			mainRoom.west = new Wall(x0, y1, x0, y0, 3);
+			mainRoom.west = new Wall(x0, y1, x0, y0, 3, mainRoom);
 			mainRoom.west.addMouseListener(new MouseOverListener(mainRoom.west.panel));
 			mainRoom.west.JPanelSize();
 			panel_1.add(mainRoom.west.panel);
