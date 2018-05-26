@@ -5,7 +5,6 @@ public class Project {
 	int width;
 	int height;
 	
-	//기준이 되는 x, y
 	int basic_x; 
 	int basic_y;
 	

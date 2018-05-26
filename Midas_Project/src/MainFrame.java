@@ -64,7 +64,7 @@ public class MainFrame extends JFrame {
 		contentPane.add(panel, BorderLayout.EAST);
 		
 		NewProjectDialog dialog = new NewProjectDialog(this);
-		JButton btnNewButton = new JButton("�깉 �봽濡쒖젥�듃");
+		JButton btnNewButton = new JButton("New Project");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -75,10 +75,10 @@ public class MainFrame extends JFrame {
 		
 		panel.add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("�봽濡쒖젥�듃 ���옣");
+		JButton btnNewButton_1 = new JButton("Save Project");
 		panel.add(btnNewButton_1);
 		
-		JButton btnNewButton_2 = new JButton("�봽濡쒖젥�듃 遺덈윭�삤湲�");
+		JButton btnNewButton_2 = new JButton("Open Project");
 		panel.add(btnNewButton_2);
 		
 		table = new JTable();
@@ -98,7 +98,7 @@ public class MainFrame extends JFrame {
 			g2.draw(s);
 	}
 	
-	public void drawOutline() { //媛��옣�옄由� 踰쎈㈃ 洹몃━�뒗 �븿�닔
+	public void drawOutline() { //draw only outer line
 		Shape s = new Rectangle2D.Float(project.basic_x, project.basic_y, project.width, project.height);
 		shapeArray.clear();
 		shapeArray.add(s);
