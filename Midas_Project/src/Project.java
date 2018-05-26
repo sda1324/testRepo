@@ -111,24 +111,36 @@ public class Project {
 	}
 	
 	public void drawAll() {
+		MainFrame m = MainFrame.getInstance();
 		System.out.println(furniture_list.size());
 		for(Furniture f : furniture_list)
 		{
 			f.setJPanel();
 			f.panel.setVisible(true);
 			f.panel.addMouseListener(new MouseOverListener(f));
-			MainFrame.getInstance().panel_1.furnitureArray.add(f);
+			m.panel_1.furnitureArray.add(f);
 			
-			MainFrame.getInstance().panel_1.add(f.panel);
-			MainFrame.getInstance().panel_1.repaint();
+			m.panel_1.add(f.panel);
+			m.panel_1.repaint();
 		}
 		for(Room r : room_list)
 		{
 			r.east.JPanelSize();
-			r.east.panel.addMouseListener(new MouseOverListener(r));
+			r.east.panel.addMouseListener(new MouseOverListener(r.east));
+			m.panel_1.add(r.east.panel);
 			r.west.JPanelSize();
+			r.west.panel.addMouseListener(new MouseOverListener(r.west));
+			m.panel_1.add(r.west.panel);
 			r.south.JPanelSize();
+			r.south.panel.addMouseListener(new MouseOverListener(r.south));
+			m.panel_1.add(r.south.panel);
 			r.north.JPanelSize();
+			r.north.panel.addMouseListener(new MouseOverListener(r.north));
+			m.panel_1.add(r.north.panel);
+			for(Door d : r.doorArray)
+			{
+				
+			}
 		}
 	}
 	
