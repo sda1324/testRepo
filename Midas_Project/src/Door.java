@@ -45,6 +45,18 @@ public class Door {
 			panel.addMouseListener(new MouseOverListener(this));
 		}
 	}
+	public void SetJPanelMove(int x2, int y2) {
+
+		panel.setBackground(Color.YELLOW);
+		if (dir == 1) {
+
+			panel.setBounds(x0+x+x2-320, y0+y-3, width, 6);
+			panel.addMouseListener(new MouseOverListener(this));
+		} else {
+			panel.setBounds(x0+x-3, y0+y+y2-26,6, width);
+			panel.addMouseListener(new MouseOverListener(this));
+		}
+	}
 	public void SetResizeJPanel(int width) {
 		panel.setBackground(Color.YELLOW);
 		if (dir == 1) {
@@ -73,19 +85,15 @@ public class Door {
 	public void setWidth(int width) {
 		this.width = width;
 	}
-
 	public int getHeight() {
 		return height;
 	}
-
 	public void setHeight(int height) {
 		this.height = height;
 	}
-
 	public int getDir() {
 		return dir;
 	}
-
 	public void setDir(int dir) {
 		this.dir = dir;
 	}

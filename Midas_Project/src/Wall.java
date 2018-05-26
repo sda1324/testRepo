@@ -58,7 +58,7 @@ public class Wall extends JPanel {
 	}
 
 	public void SetDefaultWindow() {
-		window = new Window(0, 0, 20, 0);
+		window = new Window(0, 0, 20, 0, this);
 		switch (vector) {
 		case 0:
 			window.SetDir(1);

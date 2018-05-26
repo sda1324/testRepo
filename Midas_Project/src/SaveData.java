@@ -1,7 +1,10 @@
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import javax.swing.ImageIcon;
 
@@ -14,12 +17,17 @@ import javafx.scene.paint.Color;
 
 public class SaveData {
 	
-	public void save(Project p) {
+	public void save(Project p) throws IOException {
+/*
+		String s=null;
+		for(Furniture f : p.furniture_list)
+		{
+			s+=f.getX() +" " +f.getY()+" "+f.getWidth()+" "+f.getHeight()+" "+f.getColor()+" "+f.getImage()+"&";
+		}
+*/		
 		JSONObject projectInfo = new JSONObject();
-		
 		projectInfo.put("width", p.getWidth());
 		projectInfo.put("height", p.getWidth());
-		
 		projectInfo.put("basic_x", p.getBasic_x());
 		projectInfo.put("basic_y", p.getBasic_y());
 		
@@ -36,6 +44,7 @@ public class SaveData {
 			furnitureObject.put("y", f.getY());
 			furnitureList.add(furnitureObject);
 		}
+		System.out.println(furnitureList.size());
 		projectInfo.put("furnitureList", furnitureList);
 		
 		/*
@@ -48,13 +57,14 @@ public class SaveData {
 		}
 		projectInfo.put("furnitureList", furnitureList);
 		*/
-		
+		/*
 		try { 
 			FileWriter file = new FileWriter("src/text/save.json"); 
 			file.write(projectInfo.toJSONString()); 
 			file.flush(); file.close(); 
 		} catch (IOException e) { e.printStackTrace(); } 
 		System.out.print(projectInfo);
+		*/
 
 
 	}

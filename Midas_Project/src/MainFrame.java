@@ -13,12 +13,17 @@ import java.awt.event.MouseListener;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -95,8 +100,15 @@ public class MainFrame extends JFrame {
       btnNewButton_1.addActionListener(new ActionListener() {
           public void actionPerformed(ActionEvent e) {
         	  SaveData s= new SaveData ();
-        	  s.save(project);
-        	 
+
+				try {
+					s.save(project);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+        	 // s.save(project);
+        	 /*
         	  ArrayList<Furniture> a = new ArrayList<Furniture>();
         	  for(Furniture f : a )
         		  f.RemoveFurniture();
@@ -107,6 +119,7 @@ public class MainFrame extends JFrame {
         	  
         	  panel_1.removeAll();
         	  panel_1.updateUI();
+        	  */
           }
        });
       panel.add(btnNewButton_1);
@@ -126,7 +139,29 @@ public class MainFrame extends JFrame {
       JButton btnNewButton_3 = new JButton("Save image");
       btnNewButton_3.addActionListener(new ActionListener() {
           public void actionPerformed(ActionEvent e) {
-        	  
+        	  BufferedImage image = new BufferedImage(panel_1.getWidth(), panel_1.getHeight(), BufferedImage.TYPE_INT_BGR); 
+        	  Graphics g = image.createGraphics(); 
+        	  panel_1.paint(g); 
+        	  try {
+        	        ImageIO.write(image, "png", new File("Save.png"));
+        	       // SaveLocation s = new SaveLocation();
+        	        //s.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        	       // s.setVisible(true);
+        	      JFileChooser c = new JFileChooser();
+        		      // Demonstrate "Save" dialog:
+        		    int rVal = c.showSaveDialog(MainFrame.this);
+        		      if (rVal == JFileChooser.APPROVE_OPTION) {
+        		        //filename.setText(c.getSelectedFile().getName());
+        		        //dir.setText(c.getCurrentDirectory().toString());
+        		    	  //Save
+        		    	  
+        		    }
+        		      if (rVal == JFileChooser.CANCEL_OPTION) {
+//
+        		      }
+        	    } catch (IOException ex) {
+        	        
+        	   }
           }
        });
       panel.add(btnNewButton_3);

@@ -36,8 +36,6 @@ public class PopupMenuWindow extends JPanel {
 			System.out.println("Popup menu item [" + e.getActionCommand() + "] was pressed.");
 			switch (e.getActionCommand()) {
 			case "Add Room":
-
-				System.out.println(pnt_x + " " + pnt_y);
 				main.panel_1.addMouseListener(new AddRoomListener());
 				break;
 			default:
@@ -62,15 +60,10 @@ public class PopupMenuWindow extends JPanel {
 		@Override
 		public void mouseReleased(MouseEvent e) {
 			// TODO Auto-generated method stub
-			clicked_x = e.getX();
-			clicked_y = e.getY();
+			clicked_x = e.getXOnScreen() - main.getLocation().x - 14;
+			clicked_y = e.getYOnScreen() - main.getLocation().y - 36;
 			int width = pnt_x - clicked_x;
 			int height = pnt_y - clicked_y;
-			System.out.println(width + " " + height);
-			/*
-			 * JPanel north = new JPanel(); JPanel south = new JPanel(); JPanel west = new
-			 * JPanel(); JPanel east = new JPanel();
-			 */
 			Room newRoom;
 			if (width < 0) {
 				width = -width;
@@ -147,7 +140,6 @@ public class PopupMenuWindow extends JPanel {
 					newRoom.east.addMouseListener(new MouseOverListener(newRoom.east.panel));
 					newRoom.east.JPanelSize();
 					newRoom.SetDefaultDoor(clicked_x, clicked_y, width, height);
-
 				}
 			}
 
@@ -181,7 +173,82 @@ public class PopupMenuWindow extends JPanel {
 
 		}
 	}
+	class moveWindowListener implements MouseListener{
+		Window win;
+		public moveWindowListener(Window window) {
+			win = window;
+		}
 
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			// TODO Auto-generated method stub
+		}
+
+		@Override
+		public void mousePressed(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent e) {
+			int x = e.getX();
+			int y = e.getY();
+			win.SetJPanelMove(x, y);
+			main.panel_1.removeMouseListener(this);
+			
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseExited(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+	}
+	class moveDoorListener implements MouseListener{
+		Door door;
+		public moveDoorListener(Door d) {
+			door = d;
+		}
+
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			// TODO Auto-generated method stub
+		}
+
+		@Override
+		public void mousePressed(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent e) {
+			int x = e.getX();
+			int y = e.getY();
+			door.SetJPanelMove(x, y);
+			main.panel_1.removeMouseListener(this);
+			
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseExited(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+	}
 	ActionListener makeWindow = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -194,8 +261,8 @@ public class PopupMenuWindow extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			Window window = (Window) source;
-			window.EditPosition();
+			Window window = (Window)source;
+			main.panel_1.addMouseListener(new moveWindowListener(window));
 
 		}
 	};
@@ -207,6 +274,15 @@ public class PopupMenuWindow extends JPanel {
 			window.RemoveWindow();
 		}
 	};
+	ActionListener moveDoor = new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			Door door = (Door)source;
+			main.panel_1.addMouseListener(new moveDoorListener(door));
+		}
+	};
+	
 	ActionListener removeRoom = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -260,10 +336,9 @@ public class PopupMenuWindow extends JPanel {
 	public JPopupMenu GetPopup() {
 		return popup;
 	}
-
-	public void show(int x, int y, int xX, int yY, int xXX, int yYY) {
-		pnt_x = xX;
-		pnt_y = yY;
+	public void show(int x, int y) {
+		pnt_x = x -14;
+		pnt_y = y -36;
 		popup.show(main, x, y);
 	}
 
@@ -311,7 +386,7 @@ public class PopupMenuWindow extends JPanel {
 			popup.add(item = new JMenuItem("Remove Door"));
 			item.addActionListener(removeDoor);
 			popup.add(item = new JMenuItem("move Door"));
-			item.addActionListener(menuListener);// Do This
+			item.addActionListener(moveDoor);//Do This
 			break;
 		default:
 			popup.add(item = new JMenuItem("Add Furniture"));

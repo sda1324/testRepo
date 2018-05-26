@@ -45,12 +45,13 @@ public class Furniture {
 	}
 	public void RemoveFurniture()
 	{
-		for(Furniture f : MainFrame.getInstance().panel_1.furnitureArray)
+		ArrayList<Furniture> t = MainFrame.getInstance().panel_1.furnitureArray;
+		for(int i = 0; i<t.size();++i)
 		{
-			if(f == this)
+			if(t.get(i) == this)
 			{
-				MainFrame.getInstance().panel_1.furnitureArray.remove(f);
-				MainFrame.getInstance().panel_1.remove(f.panel);
+				MainFrame.getInstance().panel_1.furnitureArray.remove(i);
+				MainFrame.getInstance().panel_1.remove(i);
 				MainFrame.getInstance().panel_1.revalidate();
 				MainFrame.getInstance().panel_1.repaint();
 			}
