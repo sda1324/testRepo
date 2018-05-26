@@ -1,4 +1,6 @@
 import java.awt.Color;
+import java.util.ArrayList;
+
 import javax.swing.JPanel;
 
 public class Wall extends JPanel{
@@ -9,6 +11,8 @@ public class Wall extends JPanel{
 	int second_x;
 	int second_y;
 	Room room;
+	Window window;
+	ArrayList<Window> windowArray = new ArrayList<Window>();
 	JPanel panel = new JPanel();
 	public Wall(int fX, int fY, int sX, int sY, int vector, Room room)
 	{
@@ -18,6 +22,10 @@ public class Wall extends JPanel{
 		second_y = sY;
 		this.vector = vector;
 		this.room = room;
+	}
+	public void SetDefaultWindow()
+	{
+		Window door = new Window(0,0,20,0);
 	}
 	public int getVector() {
 		return vector;

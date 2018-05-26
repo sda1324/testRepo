@@ -1,9 +1,21 @@
+import javax.swing.JPanel;
 
 public class Window {
 	int first_x;
 	int first_y;
 	int second_x;
 	int second_y;
+	JPanel panel;
+
+	public Window() {
+	}
+
+	public Window(int first_x, int first_y, int second_x, int second_y) {
+		this.first_x = first_x;
+		this.first_y = first_y;
+		this.second_x = second_x;
+		this.second_y = second_y;
+	}
 	public int getFirst_x() {
 		return first_x;
 	}

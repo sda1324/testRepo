@@ -42,7 +42,7 @@ public class MouseOverListener extends JPanel implements MouseListener {
 			//5: door
 			PopupMenuWindow popupT = new PopupMenuWindow(source);
 			popupT.SetItem(source.getClass().getSimpleName());
-			popupT.show(e.getXOnScreen()-100, e.getYOnScreen()-100);
+			popupT.show(e.getXOnScreen()-main.getBounds().x, e.getYOnScreen()-main.getBounds().y);
 			System.out.println("here");
 		}
 
