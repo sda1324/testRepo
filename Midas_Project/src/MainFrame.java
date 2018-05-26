@@ -96,9 +96,9 @@ public class MainFrame extends JFrame {
 				SaveData s = new SaveData();
 				s.save(project);
 				project = new Project();
-				panel_1 = new MyPanel();
-				panel_1.setBackground(Color.WHITE);
-				repaint();
+				panel_1.removeAll();
+				panel_1.updateUI();
+				//repaint();
 			}
 		});
 		panel.add(btnNewButton_1);
