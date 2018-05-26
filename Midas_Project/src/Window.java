@@ -37,7 +37,10 @@ public class Window {
 			w2 = wall.getWidth();
 		}
 	}
-
+	public void RemoveWindow()
+	{
+		wall.RemoveWindow(this);
+	}
 	public void SetJPanelSize(int x0, int y0, int x1, int y1, Wall wall) {
 		panel.setBackground(Color.BLUE);
 		if (dir == 1) {

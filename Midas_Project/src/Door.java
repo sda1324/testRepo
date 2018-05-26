@@ -10,17 +10,26 @@ public class Door {
 	int project_x0;
 	int project_y0;
 	int dir; // 1: horizon , 2: vertical
-
+	Room room;
 	public Door() {
 	}
-
 	public Door(int x, int y, int width, int height) {
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
 	}
-
+	public Door(int x, int y, int width, int height, Room room) {
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.height = height;
+		this.room = room;
+	}
+	public void RemoveDoor()
+	{
+		room.RemoveDoor(this);
+	}
 	public void SetJPanelSize(int x0, int y0, int x1, int y1) {
 		panel.setBackground(Color.YELLOW);
 		if (dir == 1) {

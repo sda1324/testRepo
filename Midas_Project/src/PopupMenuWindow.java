@@ -39,12 +39,36 @@ public class PopupMenuWindow extends JPanel {
 
 		}
 	};
+	ActionListener removeWindow = new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			Window window = (Window)source;
+			window.RemoveWindow();
+		}
+	};
+	ActionListener removeRoom = new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			Wall wall = (Wall)source;
+			wall.RemoveRoom();
+		}
+	};
 	ActionListener makeDoor = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			Wall wall = (Wall) source;
 			wall.SetAdditionalDoor();
+		}
+	};
+	ActionListener removeDoor = new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			Door door = (Door) source;
+			door.RemoveDoor();
 		}
 	};
 	public JPopupMenu GetPopup() {
@@ -80,7 +104,7 @@ public class PopupMenuWindow extends JPanel {
 			popup.add(item = new JMenuItem("Add Window"));
 			item.addActionListener(makeWindow);
 			popup.add(item = new JMenuItem("Remove Room"));
-			item.addActionListener(menuListener);
+			item.addActionListener(removeRoom);
 			break;
 		case "Point":
 			popup.add(item = new JMenuItem("Edit Room"));
@@ -88,7 +112,7 @@ public class PopupMenuWindow extends JPanel {
 			popup.add(item = new JMenuItem("Add Room"));
 			item.addActionListener(menuListener);
 			popup.add(item = new JMenuItem("Remove Room"));
-			item.addActionListener(menuListener);
+			item.addActionListener(removeRoom);
 			break;
 		case "Furniture":
 			popup.add(item = new JMenuItem("Resize Furniture"));
@@ -102,7 +126,7 @@ public class PopupMenuWindow extends JPanel {
 			popup.add(item = new JMenuItem("Resize Window"));
 			item.addActionListener(menuListener);
 			popup.add(item = new JMenuItem("Remove Window"));
-			item.addActionListener(menuListener);
+			item.addActionListener(removeWindow);
 			popup.add(item = new JMenuItem("move Window"));
 			item.addActionListener(moveWindow);
 			break;
@@ -110,7 +134,7 @@ public class PopupMenuWindow extends JPanel {
 			popup.add(item = new JMenuItem("Resize Door"));
 			item.addActionListener(menuListener);
 			popup.add(item = new JMenuItem("Remove Door"));
-			item.addActionListener(menuListener);
+			item.addActionListener(removeDoor);
 			popup.add(item = new JMenuItem("move Door"));
 			item.addActionListener(menuListener);
 			break;
