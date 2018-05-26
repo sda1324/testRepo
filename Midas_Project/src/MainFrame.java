@@ -115,7 +115,8 @@ public class MainFrame extends JFrame {
       btnNewButton.addActionListener(new ActionListener() {
           public void actionPerformed(ActionEvent e) {
         	  SaveData s = new SaveData();
-        	  s.getData();
+        	  project = s.getData();
+        	  
           }
        });
 
