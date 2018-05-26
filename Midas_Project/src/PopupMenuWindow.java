@@ -30,6 +30,15 @@ public class PopupMenuWindow extends JPanel {
 			wall.SetDefaultWindow();
 		}
 	};
+	ActionListener moveWindow = new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			Window window = (Window)source;
+			window.EditPosition();
+
+		}
+	};
 	ActionListener makeDoor = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -95,7 +104,7 @@ public class PopupMenuWindow extends JPanel {
 			popup.add(item = new JMenuItem("Remove Window"));
 			item.addActionListener(menuListener);
 			popup.add(item = new JMenuItem("move Window"));
-			item.addActionListener(menuListener);
+			item.addActionListener(moveWindow);
 			break;
 		case "Door":
 			popup.add(item = new JMenuItem("Resize Door"));

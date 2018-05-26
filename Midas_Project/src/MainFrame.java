@@ -161,7 +161,6 @@ public class MainFrame extends JFrame {
 				g.drawImage(f.getImage().getImage(), f.getX(), f.getY(), null);
 		}
 		
-		
 		public void drawOutline() { // 가장자리 벽면 그리는 함수
 			Shape s = new Rectangle2D.Float(project.basic_x, project.basic_y, project.width, project.height);
 			shapeArray.clear();
@@ -169,36 +168,36 @@ public class MainFrame extends JFrame {
 
 			panel_1.setLayout(null);
 			int x0 = project.basic_x;
-			int x1 = project.basic_x + project.width;
 			int y0 = project.basic_y;
-			int y1 = project.basic_y + project.height;
+			int width = project.width;
+			int height = project.height;
 
 			Room mainRoom = new Room();
-			mainRoom.north = new Wall(x0, y0, x1, y0, 0, mainRoom);
+			mainRoom.north = new Wall(x0, y0, width, 1, 0, mainRoom);
 			mainRoom.north.JPanelSize();
 			mainRoom.north.addMouseListener(new MouseOverListener(mainRoom.north.panel));
 			panel_1.add(mainRoom.north.panel);
 			mainRoom.north.panel.setVisible(true);
 
-			mainRoom.east = new Wall(x1, y0, x1, y1, 1, mainRoom);
+			mainRoom.east = new Wall(x0+width, y0, 1, height, 1, mainRoom);
 			mainRoom.east.addMouseListener(new MouseOverListener(mainRoom.east.panel));
 			mainRoom.east.JPanelSize();
 			panel_1.add(mainRoom.east.panel);
 			mainRoom.east.panel.setVisible(true);
 
-			mainRoom.south = new Wall(x1, y1, x0, y1, 2, mainRoom);
+			mainRoom.south = new Wall(x0, y0+height, width, 1, 2, mainRoom);
 			mainRoom.south.addMouseListener(new MouseOverListener(mainRoom.south.panel));
 			mainRoom.south.JPanelSize();
 			panel_1.add(mainRoom.south.panel);
 			mainRoom.south.panel.setVisible(true);
 
-			mainRoom.west = new Wall(x0, y1, x0, y0, 3, mainRoom);
+			mainRoom.west = new Wall(x0, y0, 1, height, 3, mainRoom);
 			mainRoom.west.addMouseListener(new MouseOverListener(mainRoom.west.panel));
 			mainRoom.west.JPanelSize();
 			panel_1.add(mainRoom.west.panel);
 			mainRoom.west.panel.setVisible(true);
 			
-			mainRoom.SetDefaultDoor(x0, y0, x1, y1);
+			mainRoom.SetDefaultDoor(x0, y0, width, height);
 			for(Door d : mainRoom.GetDoorList())
 			{
 				panel_1.add(d.panel);

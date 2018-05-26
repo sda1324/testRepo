@@ -10,24 +10,27 @@ public class Room {
 	Wall north;
 	Wall south;
 	ArrayList<Door> doorArray = new ArrayList<Door>();
-	public void SetAdditionalDoor(int x0, int y0, int x1, int y1, int vector)
+	public void SetAdditionalDoor(int x, int y, int width, int height, int vector)
 	{
 		Door door = new Door(0,0,20,0);
 		switch(vector)
 		{
+		
 		case 0:
 			door.setDir(1);
-			door.SetJPanelSize(x0, y0, x1, y1);
+			door.SetJPanelSize(x, y, width, height);
 			break;
 		case 1:
-			door.SetJPanelSize(x0, y0, x1, y1);
+			door.setDir(0);
+			door.SetJPanelSize(x+width, y, width, height);
 			break;
 		case 2:
 			door.setDir(1);
-			door.SetJPanelSize(x1, y1, x0, y0);
+			door.SetJPanelSize(x, y+height, width, height);
 			break;
 		case 3:
-			door.SetJPanelSize(x1, y1, x0, y0);
+			door.setDir(0);
+			door.SetJPanelSize(x, y, width, height);
 			break;
 		}
 		doorArray.add(door);
