@@ -18,6 +18,11 @@ import javax.swing.border.EmptyBorder;
 
 public class MainFrame extends JFrame {
 
+	private static MainFrame instance;
+	public static MainFrame getInstance()
+	{
+		return instance;
+	}
 	private JPanel contentPane;
 	private JTable table;
 	MyPanel panel_1;
@@ -32,7 +37,9 @@ public class MainFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					
 					MainFrame frame = new MainFrame();
+					instance = frame;
 					frame.setVisible(true);
 					
 				} catch (Exception e) {
@@ -57,7 +64,7 @@ public class MainFrame extends JFrame {
 		contentPane.add(panel, BorderLayout.EAST);
 		
 		NewProjectDialog dialog = new NewProjectDialog(this);
-		JButton btnNewButton = new JButton("새 프로젝트");
+		JButton btnNewButton = new JButton("�깉 �봽濡쒖젥�듃");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -68,10 +75,10 @@ public class MainFrame extends JFrame {
 		
 		panel.add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("프로젝트 저장");
+		JButton btnNewButton_1 = new JButton("�봽濡쒖젥�듃 ���옣");
 		panel.add(btnNewButton_1);
 		
-		JButton btnNewButton_2 = new JButton("프로젝트 불러오기");
+		JButton btnNewButton_2 = new JButton("�봽濡쒖젥�듃 遺덈윭�삤湲�");
 		panel.add(btnNewButton_2);
 		
 		table = new JTable();
@@ -91,7 +98,7 @@ public class MainFrame extends JFrame {
 			g2.draw(s);
 	}
 	
-	public void drawOutline() { //가장자리 벽면 그리는 함수
+	public void drawOutline() { //媛��옣�옄由� 踰쎈㈃ 洹몃━�뒗 �븿�닔
 		Shape s = new Rectangle2D.Float(project.basic_x, project.basic_y, project.width, project.height);
 		shapeArray.clear();
 		shapeArray.add(s);
