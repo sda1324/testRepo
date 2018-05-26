@@ -94,25 +94,46 @@ public class Project {
 	}
 	
 	public void drawAll() {
+		MainFrame m = MainFrame.getInstance();
 		System.out.println(furniture_list.size());
 		for(Furniture f : furniture_list)
 		{
 			f.setJPanel();
 			f.panel.setVisible(true);
 			f.panel.addMouseListener(new MouseOverListener(f));
-			MainFrame.getInstance().panel_1.furnitureArray.add(f);
+			m.panel_1.furnitureArray.add(f);
 			
-			MainFrame.getInstance().panel_1.add(f.panel);
-			MainFrame.getInstance().panel_1.repaint();
+			m.panel_1.add(f.panel);
+			m.panel_1.repaint();
 		}
 		for(Room r : room_list)
 		{
 			r.east.JPanelSize();
-			r.east.panel.addMouseListener(new MouseOverListener(r));
+			r.east.addMouseListener(new MouseOverListener(r.east.panel));
+			m.panel_1.add(r.east.panel);
+			for(Window w : r.east.windowArray)
+			{
+				w.SetResizeJPanel(w.getWidth());
+				w.panel.addMouseListener(new MouseOverListener(w));
+				m.panel_1.add(w.panel);
+			}
 			r.west.JPanelSize();
+			r.west.addMouseListener(new MouseOverListener(r.west.panel));
+			m.panel_1.add(r.west.panel);
 			r.south.JPanelSize();
+			r.south.addMouseListener(new MouseOverListener(r.south.panel));
+			m.panel_1.add(r.south.panel);
 			r.north.JPanelSize();
+			r.north.addMouseListener(new MouseOverListener(r.north.panel));
+			m.panel_1.add(r.north.panel);
+			for(Door d : r.doorArray)
+			{
+				d.SetResizeJPanel(d.getWidth());
+				d.panel.addMouseListener(new MouseOverListener(d));
+				m.panel_1.add(d.panel);
+			}
 		}
+		m.panel_1.repaint();
 	}
 	
 }
