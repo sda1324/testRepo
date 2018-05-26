@@ -51,7 +51,7 @@ public class Furniture {
 	{
 		this.name = name;
 	}
-	public float getWidth()
+	public int getWidth()
 	{
 		return width;
 	}
@@ -60,7 +60,7 @@ public class Furniture {
 		this.width = width;
 	}
 
-	public float getHeight()
+	public int getHeight()
 	{
 		return height;
 	}

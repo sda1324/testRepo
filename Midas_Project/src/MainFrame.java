@@ -261,11 +261,12 @@ public class MainFrame extends JFrame {
 		}
 		
 		void drawFurniture(MouseEvent e) {
-			Furniture f = new Furniture();
+			Furniture f;
 			switch (cmd) {
 			case 'T': {
+				f = new Furniture(f_tv.getWidth(), f_tv.getHeight(), f_tv.getName());
 				//s = new Rectangle2D.Float(e.getX(), e.getY(), fixedWidth, fixedHeight);
-				f = f_tv;
+				f.setImage(f_tv.getImage());
 				f.setX(e.getX());
 				f.setY(e.getY());
 				
