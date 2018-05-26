@@ -94,6 +94,7 @@ public class PopupMenuWindow extends JPanel {
 			popup.add(item = new JMenuItem("Save File"));
 			item.addActionListener(menuListener);
 			break;
+			
 		case "Wall":
 			popup.add(item = new JMenuItem("Edit Room"));
 			item.addActionListener(menuListener);
@@ -147,7 +148,6 @@ public class PopupMenuWindow extends JPanel {
 			popup.add(item = new JMenuItem("Save File"));
 			item.addActionListener(menuListener);
 			break;
-		
 		}
 	}
 }

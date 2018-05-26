@@ -1,6 +1,7 @@
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 
 import javafx.scene.paint.Color;
 
@@ -13,7 +14,7 @@ public class Furniture {
 	private ImageIcon imageicon;
 	private int x;
 	private int y;
-	
+	public JPanel panel = new JPanel();
 	public Furniture (int width, int height, String name) {
 		this.width = width;
 		this.height = height;
@@ -30,7 +31,15 @@ public class Furniture {
 		ImageIcon icon = new ImageIcon(changedImg);
 		return icon;
 	}
-	
+	public JPanel getJPanel()
+	{
+		return panel;
+	}
+	public void setJPanel()
+	{
+		panel.setSize(width, height);
+		panel.setLocation(x, y);
+	}
 	public void setImage(ImageIcon imageicon)
 	{
 		this.imageicon = imageicon;

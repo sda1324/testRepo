@@ -212,13 +212,14 @@ public class MainFrame extends JFrame {
 			public void mousePressed(MouseEvent e) {
 			}
 			public void mouseReleased(MouseEvent e) {
+				drawFurniture(e);
 			}
 			public void mouseEntered(MouseEvent e) {
 			}
 			public void mouseExited(MouseEvent e) {
 			}
 			public void mouseClicked(MouseEvent e) {
-				drawFurniture(e);
+				
 			}
 		}
 		
@@ -261,7 +262,7 @@ public class MainFrame extends JFrame {
 					f.setImage(f_tv.getImage());
 					f.setX(e.getX());
 					f.setY(e.getY());
-					
+					f.setJPanel();
 					// 겹치는 경우 처리
 					if (containXY(e.getX(), e.getY())) {
 						break;
@@ -278,7 +279,7 @@ public class MainFrame extends JFrame {
 					f.setImage(f_wm.getImage());
 					f.setX(e.getX());
 					f.setY(e.getY());
-					
+					f.setJPanel();
 					// 겹치는 경우 처리
 					if (containXY(e.getX(), e.getY())) {
 						break;
@@ -295,7 +296,7 @@ public class MainFrame extends JFrame {
 					f.setImage(f_chair.getImage());
 					f.setX(e.getX());
 					f.setY(e.getY());
-					
+					f.setJPanel();
 					// 겹치는 경우 처리
 					if (containXY(e.getX(), e.getY())) {
 						break;
@@ -312,7 +313,7 @@ public class MainFrame extends JFrame {
 					f.setImage(f_ref.getImage());
 					f.setX(e.getX());
 					f.setY(e.getY());
-					
+					f.setJPanel();
 					// 겹치는 경우 처리
 					if (containXY(e.getX(), e.getY())) {
 						break;
@@ -329,7 +330,7 @@ public class MainFrame extends JFrame {
 					f.setImage(f_sofa.getImage());
 					f.setX(e.getX());
 					f.setY(e.getY());
-					
+					f.setJPanel();
 					// 겹치는 경우 처리
 					if (containXY(e.getX(), e.getY())) {
 						break;
