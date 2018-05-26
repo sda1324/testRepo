@@ -28,7 +28,7 @@ public class NewProjectDialog extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		{
 			JTextPane textPane = new JTextPane();
-			textPane.setText("너비 :");
+			textPane.setText("Width :");
 			contentPanel.add(textPane);
 		}
 		{
@@ -39,7 +39,7 @@ public class NewProjectDialog extends JDialog {
 		}
 		{
 			JTextPane textPane2 = new JTextPane();
-			textPane2.setText("높이 :");
+			textPane2.setText("Height :");
 			contentPanel.add(textPane2);
 		}
 		{

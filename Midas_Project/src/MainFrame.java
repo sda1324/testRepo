@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -16,13 +17,16 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 
+import javafx.scene.image.Image;
+
 public class MainFrame extends JFrame {
 
 	private static MainFrame instance;
-	public static MainFrame getInstance()
-	{
+
+	public static MainFrame getInstance() {
 		return instance;
 	}
+
 	private JPanel contentPane;
 	private JTable table;
 	MyPanel panel_1;
@@ -37,7 +41,7 @@ public class MainFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					
+				
 					MainFrame frame = new MainFrame();
 					instance = frame;
 					frame.setVisible(true);
@@ -64,7 +68,7 @@ public class MainFrame extends JFrame {
 		contentPane.add(panel, BorderLayout.EAST);
 		
 		NewProjectDialog dialog = new NewProjectDialog(this);
-		JButton btnNewButton = new JButton("�깉 �봽濡쒖젥�듃");
+		JButton btnNewButton = new JButton("새 프로젝트");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -75,10 +79,11 @@ public class MainFrame extends JFrame {
 		
 		panel.add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("�봽濡쒖젥�듃 ���옣");
+		JButton btnNewButton_1 = new JButton("프로젝트 저장");
+		btnNewButton_1.addMouseListener(new MouseOverListener(btnNewButton_1));
 		panel.add(btnNewButton_1);
 		
-		JButton btnNewButton_2 = new JButton("�봽濡쒖젥�듃 遺덈윭�삤湲�");
+		JButton btnNewButton_2 = new JButton("프로젝트 불러오기");
 		panel.add(btnNewButton_2);
 		
 		table = new JTable();
@@ -90,21 +95,49 @@ public class MainFrame extends JFrame {
 	}
 	
 	class MyPanel extends JPanel {
-	ArrayList<Shape> shapeArray = new ArrayList<Shape>();
+	//ArrayList<Shape> shapeArray = new ArrayList<Shape>();
+	/*
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
 		for (Shape s : shapeArray)
 			g2.draw(s);
-	}
+			
+	}*/
 	
-	public void drawOutline() { //媛��옣�옄由� 踰쎈㈃ 洹몃━�뒗 �븿�닔
-		Shape s = new Rectangle2D.Float(project.basic_x, project.basic_y, project.width, project.height);
-		shapeArray.clear();
-		shapeArray.add(s);
-		repaint();
+	public void drawOutline() { //가장자리 벽면 그리는 함수
+		panel_1.setLayout(null);
+		int x0 = project.basic_x;
+		int x1 = project.basic_x + project.width;
+		int y0 = project.basic_y;
+		int y1 = project.basic_y + project.height;
+		
+		Room mainRoom = new Room();
+		mainRoom.north = new Wall(x0, y0, x1, y0, 0);
+		mainRoom.north.JPanelSize();
+		mainRoom.north.addMouseListener(new MouseOverListener(mainRoom.north.panel));
+		panel_1.add(mainRoom.north.panel);
+		mainRoom.north.panel.setVisible(true);
+		
+		mainRoom.east = new Wall(x1, y0, x1, y1, 1);
+		mainRoom.east.addMouseListener(new MouseOverListener(mainRoom.east.panel));
+		mainRoom.east.JPanelSize();
+		panel_1.add(mainRoom.east.panel);
+		mainRoom.east.panel.setVisible(true);
+		
+		mainRoom.south = new Wall(x1, y1, x0, y1, 2);
+		mainRoom.south.addMouseListener(new MouseOverListener(mainRoom.south.panel));
+		mainRoom.south.JPanelSize();
+		panel_1.add(mainRoom.south.panel);
+		mainRoom.south.panel.setVisible(true);
+		
+		mainRoom.west = new Wall(x0, y1, x0, y0, 3);
+		mainRoom.west.addMouseListener(new MouseOverListener(mainRoom.west.panel));
+		mainRoom.west.JPanelSize();
+		panel_1.add(mainRoom.west.panel);
+		mainRoom.west.panel.setVisible(true);
+		panel_1.revalidate();
+		panel_1.repaint();
+	}
 	}
 }
-}
-
-
