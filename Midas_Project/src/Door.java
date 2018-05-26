@@ -1,6 +1,5 @@
 import javax.swing.JPanel;
 import java.awt.Color;
-import java.awt.geom.Rectangle2D;
 
 public class Door {
 	JPanel panel = new JPanel();

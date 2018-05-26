@@ -163,6 +163,7 @@ public class MainFrame extends JFrame {
 			int y0 = project.basic_y;
 			int y1 = project.basic_y + project.height;
 			Shape s = new Rectangle2D.Float(project.basic_x, project.basic_y, project.width, project.height);
+			
 			shapeArray.clear();
 			shapeArray.add(s);
 			

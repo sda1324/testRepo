@@ -13,11 +13,23 @@ public class Room {
 	public void SetAdditionalDoor(int x0, int y0, int x1, int y1, int vector)
 	{
 		Door door = new Door(0,0,20,0);
-		if(vector == 0 || vector == 2)
+		switch(vector)
+		{
+		case 0:
 			door.setDir(1);
-		else
-			door.setDir(0);
-		door.SetJPanelSize(x0, y0, x1, y1);
+			door.SetJPanelSize(x0, y0, x1, y1);
+			break;
+		case 1:
+			door.SetJPanelSize(x0, y0, x1, y1);
+			break;
+		case 2:
+			door.setDir(1);
+			door.SetJPanelSize(x1, y1, x0, y0);
+			break;
+		case 3:
+			door.SetJPanelSize(x1, y1, x0, y0);
+			break;
+		}
 		doorArray.add(door);
 		MainFrame.getInstance().panel_1.add(door.panel);
 		door.panel.setVisible(true);

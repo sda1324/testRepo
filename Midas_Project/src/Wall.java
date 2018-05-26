@@ -30,11 +30,25 @@ public class Wall extends JPanel{
 	public void SetDefaultWindow()
 	{
 		window = new Window(0,0,20,0);
-		if(vector == 0 || vector == 2)
+		switch(vector)
+		{
+		case 0:
 			window.SetDir(1);
-		else
+			window.SetJPanelSize(first_x, first_y, second_x, second_y);
+			break;
+		case 1:
 			window.SetDir(0);
-		window.SetJPanelSize(first_x, first_y, second_x, second_y);
+			window.SetJPanelSize(first_x, first_y, second_x, second_y);
+			break;
+		case 2:
+			window.SetDir(1);
+			window.SetJPanelSize(second_x, second_y, first_x, first_y);
+			break;
+		case 3:
+			window.SetDir(0);
+			window.SetJPanelSize(second_x, second_y, first_x, first_y);
+			break;
+		}
 		windowArray.add(window);
 		MainFrame.getInstance().panel_1.add(window.panel);
 		window.panel.setVisible(true);
