@@ -150,6 +150,7 @@ public class Project {
 				m.panel_1.add(d.panel);
 			}
 		}
+		m.panel_1.repaint();
 	}
 	
 }
