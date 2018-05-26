@@ -73,19 +73,15 @@ public class Door {
 	public void setWidth(int width) {
 		this.width = width;
 	}
-
 	public int getHeight() {
 		return height;
 	}
-
 	public void setHeight(int height) {
 		this.height = height;
 	}
-
 	public int getDir() {
 		return dir;
 	}
-
 	public void setDir(int dir) {
 		this.dir = dir;
 	}
