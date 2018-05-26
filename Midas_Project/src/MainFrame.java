@@ -1,6 +1,5 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -18,8 +17,6 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JTextPane;
-import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
 public class MainFrame extends JFrame {
@@ -35,10 +32,7 @@ public class MainFrame extends JFrame {
 	Project project = new Project();
 
 	private char cmd = 'N';
-	ImageIcon originIcon;
-	Image originImg;
-	Image changedImg;
-	ImageIcon icon;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -98,47 +92,37 @@ public class MainFrame extends JFrame {
 		panel.add("south",panel_2);
 		panel_2.setLayout(new BoxLayout(panel_2, BoxLayout.Y_AXIS));
 		
-		originIcon = new ImageIcon("src/icon/tv.png");  
-		originImg = originIcon.getImage(); 
-		changedImg= originImg.getScaledInstance(100, 100, Image.SCALE_SMOOTH );
-		icon = new ImageIcon(changedImg);
-		JButton btn_tv = new JButton(icon);
-		btn_tv.setName("tv");
+		Furniture f_tv = new Furniture(100, 100, "tv");
+		f_tv.setImage(new ImageIcon("src/icon/tv.png"));
+		JButton btn_tv = new JButton(f_tv.getImage());
+		btn_tv.setName(f_tv.getName());
 		btn_tv.addActionListener(new MyListener());
 		panel_2.add(btn_tv);
 		
-		originIcon = new ImageIcon("src/icon/washing_machine.png");  
-		originImg = originIcon.getImage(); 
-		changedImg= originImg.getScaledInstance(100, 120, Image.SCALE_SMOOTH );
-		icon = new ImageIcon(changedImg);
-		JButton btn_wm = new JButton(icon);
+		Furniture f_wm = new Furniture(100, 120, "washing machine");
+		f_wm.setImage(new ImageIcon("src/icon/washing_machine.png"));
+		JButton btn_wm = new JButton(f_wm.getImage());
 		btn_wm.setName("washing machine");
 		btn_wm.addActionListener(new MyListener());
 		panel_2.add(btn_wm);
 		
-		originIcon = new ImageIcon("src/icon/chair.png");  
-		originImg = originIcon.getImage(); 
-		changedImg= originImg.getScaledInstance(100, 100, Image.SCALE_SMOOTH );
-		icon = new ImageIcon(changedImg);
-		JButton btn_chair = new JButton(icon);
+		Furniture f_chair = new Furniture(100, 100, "chair");
+		f_chair.setImage(new ImageIcon("src/icon/chair.png"));
+		JButton btn_chair = new JButton(f_chair.getImage());
 		btn_chair.setName("chair");
 		btn_chair.addActionListener(new MyListener());
 		panel_2.add(btn_chair);
 		
-		originIcon = new ImageIcon("src/icon/refrigerator.png");  
-		originImg = originIcon.getImage(); 
-		changedImg= originImg.getScaledInstance(100, 100, Image.SCALE_SMOOTH );
-		icon = new ImageIcon(changedImg);
-		JButton btn_ref = new JButton(icon);
+		Furniture f_ref = new Furniture(100, 100, "tv");
+		f_ref.setImage(new ImageIcon("src/icon/refrigerator.png"));
+		JButton btn_ref = new JButton(f_ref.getImage());
 		btn_ref.setName("refrigerator");
 		btn_ref.addActionListener(new MyListener());
 		panel_2.add(btn_ref);
 		
-		originIcon = new ImageIcon("src/icon/sofa.png");  
-		originImg = originIcon.getImage(); 
-		changedImg= originImg.getScaledInstance(100, 100, Image.SCALE_SMOOTH );
-		icon = new ImageIcon(changedImg);
-		JButton btn_sofa = new JButton(icon);
+		Furniture f_sofa = new Furniture(100,100,"sofa");
+		f_sofa.setImage(new ImageIcon("src/icon/sofa.png"));
+		JButton btn_sofa = new JButton(f_sofa.getImage());
 		btn_sofa.setName("sofa");
 		btn_sofa.addActionListener(new MyListener());
 		panel_2.add(btn_sofa);
