@@ -59,8 +59,8 @@ public class PopupMenuWindow extends JPanel {
 		@Override
 		public void mouseReleased(MouseEvent e) {
 			// TODO Auto-generated method stub
-			clicked_x = e.getXOnScreen()-main.getBounds().x;
-			clicked_y = e.getYOnScreen()-main.getBounds().y;
+			clicked_x = e.getXOnScreen()-main.getBounds().x -14;
+			clicked_y = e.getYOnScreen()-main.getBounds().y -36;
 			int width = pnt_x - clicked_x;
 			int height = pnt_y - clicked_y;
 			System.out.println(width + " " + height);
@@ -76,6 +76,10 @@ public class PopupMenuWindow extends JPanel {
 					south.setBounds(pnt_x, clicked_y, width, 1);
 					west.setBounds(pnt_x, pnt_y, 1, height);
 					east.setBounds(clicked_x, pnt_y, 1, height);
+					north.addMouseListener(new MouseOverListener(north));
+					south.addMouseListener(new MouseOverListener(south));
+					west.addMouseListener(new MouseOverListener(west));
+					east.addMouseListener(new MouseOverListener(east));
 					main.panel_1.shapeArray.add(new Rectangle2D.Float(pnt_x, pnt_y, width, 1));
 					main.panel_1.shapeArray.add(new Rectangle2D.Float(pnt_x, clicked_y, width, 1));
 					main.panel_1.shapeArray.add(new Rectangle2D.Float(pnt_x, pnt_y, 1, height));
@@ -205,8 +209,8 @@ public class PopupMenuWindow extends JPanel {
 		return popup;
 	}
 	public void show(int x, int y) {
-		pnt_x = x;
-		pnt_y = y;
+		pnt_x = x-14;
+		pnt_y = y - 36;
 		popup.show(main, x, y);
 	}
 	public void SetItem(String className) {
