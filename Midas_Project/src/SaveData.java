@@ -17,7 +17,7 @@ import javafx.scene.paint.Color;
 
 public class SaveData {
 	
-	public void save(Project p) throws IOException {
+	public void save(Project p) {
 /*
 		String s=null;
 		for(Furniture f : p.furniture_list)
@@ -44,8 +44,9 @@ public class SaveData {
 			furnitureObject.put("y", f.getY());
 			furnitureList.add(furnitureObject);
 		}
-		System.out.println(furnitureList.size());
 		projectInfo.put("furnitureList", furnitureList);
+		
+		System.out.println(projectInfo.toString());
 		
 		/*
 		JSONObject roomList = new JSONObject(); 
