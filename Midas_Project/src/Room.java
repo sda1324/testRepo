@@ -4,6 +4,10 @@ public class Room {
 	int first_y;
 	int second_x;
 	int second_y;
+	Wall east;
+	Wall west;
+	Wall north;
+	Wall south;
 	public int getFirst_x() {
 		return first_x;
 	}
