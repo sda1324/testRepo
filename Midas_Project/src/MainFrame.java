@@ -263,75 +263,95 @@ public class MainFrame extends JFrame {
 		void drawFurniture(MouseEvent e) {
 			Furniture f;
 			switch (cmd) {
-			case 'T': {
-				f = new Furniture(f_tv.getWidth(), f_tv.getHeight(), f_tv.getName());
-				//s = new Rectangle2D.Float(e.getX(), e.getY(), fixedWidth, fixedHeight);
-				f.setImage(f_tv.getImage());
-				f.setX(e.getX());
-				f.setY(e.getY());
-				
-				// 겹치는 경우 처리
-				if (containXY(e.getX(), e.getY())) {
-					//repaint();
+				case 'T': {
+					f = new Furniture(f_tv.getWidth(), f_tv.getHeight(), f_tv.getName());
+					f.setImage(f_tv.getImage());
+					f.setX(e.getX());
+					f.setY(e.getY());
+					
+					// 겹치는 경우 처리
+					if (containXY(e.getX(), e.getY())) {
+						break;
+					}
+	
+					// 겹치지 않는다면 Furniture 배열에 추가
+					furnitureArray.add(f);
+					repaint();
+					cmd = 'N';// 재초기화. 즉 다시 버튼을 눌러야 효과 적용
 					break;
 				}
-
-				// 겹치지 않는다면 Shape 배열에 추가
-				furnitureArray.add(f);
-				cmd = 'N';// 재초기화. 즉 다시 버튼을 눌러야 효과 적용
-				//repaint();
-				break;
-
-			}
-/*
-			case 'L': {
-				s = new Line2D.Float(e.getX(), e.getY(), e.getX() + fixedWidth,e.getY() + fixedHeight);
-
-				if (containXY(e.getX(), e.getY())) {
+				case 'W': {
+					f = new Furniture(f_wm.getWidth(), f_wm.getHeight(), f_wm.getName());
+					f.setImage(f_wm.getImage());
+					f.setX(e.getX());
+					f.setY(e.getY());
+					
+					// 겹치는 경우 처리
+					if (containXY(e.getX(), e.getY())) {
+						break;
+					}
+	
+					// 겹치지 않는다면 furniture 배열에 추가
+					furnitureArray.add(f);
+					repaint();
+					cmd = 'N';// 재초기화. 즉 다시 버튼을 눌러야 효과 적용
+					break;
+				}
+				case 'C': {
+					f = new Furniture(f_chair.getWidth(), f_chair.getHeight(), f_chair.getName());
+					f.setImage(f_chair.getImage());
+					f.setX(e.getX());
+					f.setY(e.getY());
+					
+					// 겹치는 경우 처리
+					if (containXY(e.getX(), e.getY())) {
+						break;
+					}
+	
+					// 겹치지 않는다면 furniture 배열에 추가
+					furnitureArray.add(f);
+					repaint();
+					cmd = 'N';// 재초기화. 즉 다시 버튼을 눌러야 효과 적용
+					break;
+				}
+				case 'R': {
+					f = new Furniture(f_ref.getWidth(), f_ref.getHeight(), f_ref.getName());
+					f.setImage(f_ref.getImage());
+					f.setX(e.getX());
+					f.setY(e.getY());
+					
+					// 겹치는 경우 처리
+					if (containXY(e.getX(), e.getY())) {
+						break;
+					}
+	
+					// 겹치지 않는다면 furniture 배열에 추가
+					furnitureArray.add(f);
+					repaint();
+					cmd = 'N';// 재초기화. 즉 다시 버튼을 눌러야 효과 적용
+					break;
+				}
+				case 'S': {
+					f = new Furniture(f_sofa.getWidth(), f_sofa.getHeight(), f_sofa.getName());
+					f.setImage(f_sofa.getImage());
+					f.setX(e.getX());
+					f.setY(e.getY());
+					
+					// 겹치는 경우 처리
+					if (containXY(e.getX(), e.getY())) {
+						break;
+					}
+	
+					// 겹치지 않는다면 furniture 배열에 추가
+					furnitureArray.add(f);
+					repaint();
+					cmd = 'N';// 재초기화. 즉 다시 버튼을 눌러야 효과 적용
+					break;
+				}
+				default: {
 					repaint();
 					break;
 				}
-
-				shapeArray.add(s);
-
-				cmd = 'N';
-
-				repaint();
-
-				break;
-
-			}
-
-			case 'E': {
-
-				s = new Ellipse2D.Float(e.getX(), e.getY(), fixedWidth, fixedHeight);
-
-				if (containXY(e.getX(), e.getY())) {
-
-					repaint();
-
-					break;
-
-				}
-
-				shapeArray.add(s);
-
-				cmd = 'N';
-
-				repaint();
-
-				break;
-
-			}
-*/
-			default: {
-
-				repaint();
-
-				break;
-
-			}
-
 			}
 
 		}
