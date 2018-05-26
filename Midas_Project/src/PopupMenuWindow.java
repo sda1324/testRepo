@@ -5,6 +5,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.Rectangle2D;
 import java.awt.Color;
+import java.awt.Shape;
 import java.awt.event.*;
 import javax.swing.*;
 
@@ -73,7 +74,9 @@ public class PopupMenuWindow extends JPanel {
 				width = -width;
 				if(height < 0) {
 					height = -height;
-					newRoom = new Room();
+					 Shape s = new Rectangle2D.Float(pnt_x, pnt_y, width, height);
+				     MainFrame.getInstance().panel_1.shapeArray.add(s);
+					newRoom = new Room(pnt_x, pnt_y, width, height);
 					newRoom.north = new Wall(pnt_x, pnt_y, width, 1,0, newRoom);
 					newRoom.north.addMouseListener(new MouseOverListener(newRoom.north.panel));
 					newRoom.north.JPanelSize();
@@ -87,13 +90,11 @@ public class PopupMenuWindow extends JPanel {
 					newRoom.east.addMouseListener(new MouseOverListener(newRoom.east.panel));
 					newRoom.east.JPanelSize();
 					newRoom.SetDefaultDoor(pnt_x, pnt_y, width, height);
-					main.panel_1.shapeArray.add(new Rectangle2D.Float(pnt_x, pnt_y, width, 1));
-					main.panel_1.shapeArray.add(new Rectangle2D.Float(pnt_x, clicked_y, width, 1));
-					main.panel_1.shapeArray.add(new Rectangle2D.Float(pnt_x, pnt_y, 1, height));
-					main.panel_1.shapeArray.add(new Rectangle2D.Float(clicked_x, pnt_y, 1, height));
-				}
+					}
 				else {		
-					newRoom = new Room();
+					 Shape s = new Rectangle2D.Float(pnt_x, clicked_y, width, height);
+				     MainFrame.getInstance().panel_1.shapeArray.add(s);
+					newRoom = new Room(pnt_x, clicked_y, width, height);
 					newRoom.north = new Wall(pnt_x, clicked_y, width, 1,0, newRoom);
 					newRoom.north.addMouseListener(new MouseOverListener(newRoom.north.panel));
 					newRoom.north.JPanelSize();
@@ -107,16 +108,15 @@ public class PopupMenuWindow extends JPanel {
 					newRoom.east.addMouseListener(new MouseOverListener(newRoom.east.panel));
 					newRoom.east.JPanelSize();
 					newRoom.SetDefaultDoor(pnt_x, clicked_y, width, height);
-					main.panel_1.shapeArray.add(new Rectangle2D.Float(pnt_x, clicked_y, width, 1));
-					main.panel_1.shapeArray.add(new Rectangle2D.Float(pnt_x, pnt_y, width, 1));
-					main.panel_1.shapeArray.add(new Rectangle2D.Float(pnt_x, clicked_y, 1, height));
-					main.panel_1.shapeArray.add(new Rectangle2D.Float(clicked_x, clicked_y, 1, height));
+					
 				}
 			}
 			else {
 				if(height < 0) {
 					height = -height;
-					newRoom = new Room();
+					 Shape s = new Rectangle2D.Float(clicked_x, pnt_y, width, height);
+				     MainFrame.getInstance().panel_1.shapeArray.add(s);
+					newRoom = new Room(clicked_x, pnt_y, width, height);
 					newRoom.north = new Wall(clicked_x, pnt_y, width, 1,0, newRoom);
 					newRoom.north.addMouseListener(new MouseOverListener(newRoom.north.panel));
 					newRoom.north.JPanelSize();
@@ -130,13 +130,11 @@ public class PopupMenuWindow extends JPanel {
 					newRoom.east.addMouseListener(new MouseOverListener(newRoom.east.panel));
 					newRoom.east.JPanelSize();
 					newRoom.SetDefaultDoor(clicked_x, pnt_y, width, height);
-					main.panel_1.shapeArray.add(new Rectangle2D.Float(clicked_x, pnt_y, width, 1));
-					main.panel_1.shapeArray.add(new Rectangle2D.Float(clicked_x, clicked_y, width, 1));
-					main.panel_1.shapeArray.add(new Rectangle2D.Float(clicked_x, pnt_y, 1, height));
-					main.panel_1.shapeArray.add(new Rectangle2D.Float(pnt_x, pnt_y, 1, height));
 				}
 				else {
-					newRoom = new Room();
+					 Shape s = new Rectangle2D.Float(clicked_x, clicked_y, width, height);
+				     MainFrame.getInstance().panel_1.shapeArray.add(s);
+					newRoom = new Room(clicked_x, clicked_y, width, height);
 					newRoom.north = new Wall(clicked_x, clicked_y, width, 1,0, newRoom);
 					newRoom.north.addMouseListener(new MouseOverListener(newRoom.north.panel));
 					newRoom.north.JPanelSize();
@@ -150,11 +148,7 @@ public class PopupMenuWindow extends JPanel {
 					newRoom.east.addMouseListener(new MouseOverListener(newRoom.east.panel));
 					newRoom.east.JPanelSize();
 					newRoom.SetDefaultDoor(clicked_x, clicked_y, width, height);
-					main.panel_1.shapeArray.add(new Rectangle2D.Float(clicked_x, clicked_y, width, 1));
-					main.panel_1.shapeArray.add(new Rectangle2D.Float(clicked_x, pnt_y, width, 1));
-					main.panel_1.shapeArray.add(new Rectangle2D.Float(clicked_x, clicked_y, 1, height));
-					main.panel_1.shapeArray.add(new Rectangle2D.Float(pnt_x, clicked_y, 1, height));
-					
+						
 				}
 			}
 			
@@ -166,6 +160,7 @@ public class PopupMenuWindow extends JPanel {
 			newRoom.south.panel.setVisible(true);
 			newRoom.east.panel.setVisible(true);
 			newRoom.west.panel.setVisible(true);
+			MainFrame.getInstance().project.SetRoom(newRoom);
 			for(Door d : newRoom.GetDoorList())
 			{
 				main.panel_1.add(d.panel);
@@ -254,12 +249,6 @@ public class PopupMenuWindow extends JPanel {
 		popup.show(main, x, y);
 	}
 	public void SetItem(String className) {
-		// 0: blank
-		// 1: wall
-		// 2: point
-		// 3: furniture
-		//4: window
-		//5: door
 		JMenuItem item;
 		switch (className) {
 		case "Blank":
@@ -272,8 +261,8 @@ public class PopupMenuWindow extends JPanel {
 			break;
 			
 		case "Wall":
-			popup.add(item = new JMenuItem("Edit Room"));
-			item.addActionListener(menuListener);
+			//popup.add(item = new JMenuItem("Edit Room"));
+			//item.addActionListener(menuListener);
 			popup.add(item = new JMenuItem("Add Room"));
 			item.addActionListener(menuListener);
 			popup.add(item = new JMenuItem("Add Door"));
@@ -283,39 +272,28 @@ public class PopupMenuWindow extends JPanel {
 			popup.add(item = new JMenuItem("Remove Room"));
 			item.addActionListener(removeRoom);
 			break;
-		case "Point":
-			popup.add(item = new JMenuItem("Edit Room"));
-			item.addActionListener(menuListener);
-			popup.add(item = new JMenuItem("Add Room"));
-			item.addActionListener(menuListener);
-			popup.add(item = new JMenuItem("Remove Room"));
-			item.addActionListener(removeRoom);
-			break;
 		case "Furniture":
-			//popup.add(item = new JMenuItem("Resize Furniture"));
-			//item.addActionListener(menuListener);
 			popup.add(item = new JMenuItem("Remove Furniture"));
 			item.addActionListener(removeFurniture);
 			popup.add(item = new JMenuItem("move Furniture"));
-			item.addActionListener(menuListener);
+			item.addActionListener(menuListener);//Do This
 			break;
 		case "Window":
 			popup.add(item = new JMenuItem("Resize Window"));
-			item.addActionListener(menuListener);
+			item.addActionListener(menuListener);//Do This
 			popup.add(item = new JMenuItem("Remove Window"));
 			item.addActionListener(removeWindow);
 			popup.add(item = new JMenuItem("move Window"));
-			item.addActionListener(moveWindow);
+			item.addActionListener(moveWindow);//Do This
 			break;
 		case "Door":
 			popup.add(item = new JMenuItem("Resize Door"));
-			item.addActionListener(menuListener);
+			item.addActionListener(menuListener);//Do This
 			popup.add(item = new JMenuItem("Remove Door"));
 			item.addActionListener(removeDoor);
 			popup.add(item = new JMenuItem("move Door"));
-			item.addActionListener(menuListener);
+			item.addActionListener(menuListener);//Do This
 			break;
-			
 		default:
 			popup.add(item = new JMenuItem("Add Furniture"));
 			item.addActionListener(menuListener);

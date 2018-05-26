@@ -164,8 +164,8 @@ public class MainFrame extends JFrame {
       
       public void drawOutline() { // 가장자리 벽면 그리는 함수
          Shape s = new Rectangle2D.Float(project.basic_x, project.basic_y, project.width, project.height);
-         shapeArray.clear();
-         //shapeArray.add(s);
+         //shapeArray.clear();
+         shapeArray.add(s);
 
          panel_1.setLayout(null);
          int x0 = project.basic_x;
@@ -173,7 +173,7 @@ public class MainFrame extends JFrame {
          int width = project.width;
          int height = project.height;
 
-         Room mainRoom = new Room();
+         Room mainRoom = new Room(x0, y0, width, height);
          mainRoom.north = new Wall(x0, y0, width, 2, 0, mainRoom);
          mainRoom.north.JPanelSize();
          mainRoom.north.addMouseListener(new MouseOverListener(mainRoom.north.panel));
@@ -211,6 +211,7 @@ public class MainFrame extends JFrame {
          shapeArray.add(s);
          
          mainRoom.SetDefaultDoor(x0, y0, width, height);
+         project.SetRoom(mainRoom);
          for(Door d : mainRoom.GetDoorList())
          {
             panel_1.add(d.panel);
