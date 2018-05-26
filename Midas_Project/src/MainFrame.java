@@ -96,7 +96,7 @@ public class MainFrame extends JFrame {
           public void actionPerformed(ActionEvent e) {
         	  SaveData s= new SaveData ();
         	  s.save(project);
-        	  
+        	 
         	  ArrayList<Furniture> a = new ArrayList<Furniture>();
         	  for(Furniture f : a )
         		  f.RemoveFurniture();
@@ -121,6 +121,14 @@ public class MainFrame extends JFrame {
        });
 
       panel.add(btnNewButton_2);
+      
+      JButton btnNewButton_3 = new JButton("Save image");
+      btnNewButton_3.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+        	  
+          }
+       });
+      panel.add(btnNewButton_3);
 
       
       Panel panel_2 = new Panel();
@@ -190,7 +198,7 @@ public class MainFrame extends JFrame {
       public void drawOutline() { // 가장자리 벽면 그리는 함수
          Shape s = new Rectangle2D.Float(project.basic_x, project.basic_y, project.width, project.height);
          //shapeArray.clear();
-         shapeArray.add(s);
+         //shapeArray.add(s);
 
          panel_1.setLayout(null);
          int x0 = project.basic_x;
