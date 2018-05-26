@@ -13,6 +13,7 @@ public class Room {
 	public void SetDefaultDoor(int x0, int y0, int x1, int y1)
 	{
 		Door door = new Door(0,0,20,0);
+
 		door.setDir(1);
 		door.SetJPanelSize(x0, y0, x1, y1);
 		doorArray.add(door);

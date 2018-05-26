@@ -25,7 +25,17 @@ public class Wall extends JPanel{
 	}
 	public void SetDefaultWindow()
 	{
-		Window door = new Window(0,0,20,0);
+		window = new Window(0,0,20,0);
+		if(vector == 0 || vector == 2)
+			window.SetDir(1);
+		else
+			window.SetDir(0);
+		window.SetJPanelSize(first_x, first_y, second_x, second_y);
+		windowArray.add(window);
+		MainFrame.getInstance().panel_1.add(window.panel);
+		window.panel.setVisible(true);
+		MainFrame.getInstance().panel_1.revalidate();
+		MainFrame.getInstance().panel_1.repaint();
 	}
 	public int getVector() {
 		return vector;
