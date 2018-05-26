@@ -93,4 +93,5 @@ public class NewProjectDialog extends JDialog {
 		}
 	}
 	
+	
 }
