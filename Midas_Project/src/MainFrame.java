@@ -116,6 +116,7 @@ public class MainFrame extends JFrame {
           public void actionPerformed(ActionEvent e) {
         	  SaveData s = new SaveData();
         	  project = s.getData();
+        	  project.drawAll();
         	  
           }
        });

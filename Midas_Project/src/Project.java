@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Shape;
 import java.util.ArrayList;
 
@@ -111,10 +112,10 @@ public class Project {
 	public void drawAll() {
 		for(Furniture f : furniture_list)
 		{
+			f.setJPanel();
+			f.panel.setVisible(true);
 			MainFrame.getInstance().panel_1.furnitureArray.add(f);
-			f.panel.setBackground(Color.BLACK);
 			MainFrame.getInstance().panel_1.add(f.panel);
-			MainFrame.getInstance().panel_1.revalidate();
 			MainFrame.getInstance().panel_1.repaint();
 		}
 	}

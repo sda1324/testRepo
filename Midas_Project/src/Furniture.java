@@ -119,4 +119,5 @@ public class Furniture {
 	public void setY(int y) {
 		this.y = y;
 	}
+	
 }
