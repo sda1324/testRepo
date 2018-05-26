@@ -42,13 +42,21 @@ public class Room {
 	public void RemoveRoom()
 	{
 		east.RemoveWindow(null);
-		MainFrame.getInstance().panel_1.remove(east);
+		MainFrame.getInstance().panel_1.remove(east.panel);
+		MainFrame.getInstance().panel_1.revalidate();
+		MainFrame.getInstance().panel_1.repaint();
 		west.RemoveWindow(null);
-		MainFrame.getInstance().panel_1.remove(west);
+		MainFrame.getInstance().panel_1.remove(west.panel);
+		MainFrame.getInstance().panel_1.revalidate();
+		MainFrame.getInstance().panel_1.repaint();
 		south.RemoveWindow(null);
-		MainFrame.getInstance().panel_1.remove(south);
+		MainFrame.getInstance().panel_1.remove(south.panel);
+		MainFrame.getInstance().panel_1.revalidate();
+		MainFrame.getInstance().panel_1.repaint();
 		north.RemoveWindow(null);
-		MainFrame.getInstance().panel_1.remove(north);
+		MainFrame.getInstance().panel_1.remove(north.panel);
+		MainFrame.getInstance().panel_1.revalidate();
+		MainFrame.getInstance().panel_1.repaint();
 		
 		for(Door d : doorArray)
 		{

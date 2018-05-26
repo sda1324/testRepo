@@ -29,15 +29,18 @@ public class Wall extends JPanel {
 	}
 
 	public void RemoveWindow(Window window) {
+
 		if (window == null) {
-			for (Window w : windowArray) {
-				MainFrame.getInstance().panel_1.remove(w.panel);
-				windowArray.remove(w);
+			for (int i = 0; i < windowArray.size(); ++i) {
+				MainFrame.getInstance().panel_1.remove(windowArray.get(i).panel);
+				windowArray.remove(i);
+				MainFrame.getInstance().panel_1.revalidate();
+				MainFrame.getInstance().panel_1.repaint();
 			}
-			MainFrame.getInstance().panel_1.revalidate();
-			MainFrame.getInstance().panel_1.repaint();
-		} else {
-			if (windowArray.size() != 1) {
+
+		} 
+		else {
+			if (windowArray.size() != 0) {
 				for (int i = 0; i < windowArray.size(); ++i) {
 					if (windowArray.get(i) == window) {
 						MainFrame.getInstance().panel_1.remove(window.panel);
