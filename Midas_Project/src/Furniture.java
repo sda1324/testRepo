@@ -11,11 +11,16 @@ public class Furniture {
 	private String name;
 	private Color color;
 	private ImageIcon imageicon;
+	private int x;
+	private int y;
 	
 	public Furniture (int width, int height, String name) {
 		this.width = width;
 		this.height = height;
 		this.name = name;
+	}
+	public Furniture() {
+		
 	}
 	
 	public ImageIcon getImage() {
@@ -54,6 +59,7 @@ public class Furniture {
 	{
 		this.width = width;
 	}
+
 	public float getHeight()
 	{
 		return height;
@@ -61,5 +67,21 @@ public class Furniture {
 	public void setHeight(int height)
 	{
 		this.height = height;
+	}
+
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
 	}
 }

@@ -8,6 +8,10 @@ import java.awt.Panel;
 import java.awt.Shape;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
@@ -32,6 +36,11 @@ public class MainFrame extends JFrame {
 	Project project = new Project();
 
 	private char cmd = 'N';
+	Furniture f_tv;
+	Furniture f_ref;
+	Furniture f_wm;
+	Furniture f_chair;
+	Furniture f_sofa;
 	
 	/**
 	 * Launch the application.
@@ -92,35 +101,35 @@ public class MainFrame extends JFrame {
 		panel.add("south",panel_2);
 		panel_2.setLayout(new BoxLayout(panel_2, BoxLayout.Y_AXIS));
 		
-		Furniture f_tv = new Furniture(100, 100, "tv");
+		f_tv = new Furniture(100, 100, "tv");
 		f_tv.setImage(new ImageIcon("src/icon/tv.png"));
 		JButton btn_tv = new JButton(f_tv.getImage());
 		btn_tv.setName(f_tv.getName());
 		btn_tv.addActionListener(new MyListener());
 		panel_2.add(btn_tv);
 		
-		Furniture f_wm = new Furniture(100, 120, "washing machine");
+		f_wm = new Furniture(100, 120, "washing machine");
 		f_wm.setImage(new ImageIcon("src/icon/washing_machine.png"));
 		JButton btn_wm = new JButton(f_wm.getImage());
 		btn_wm.setName("washing machine");
 		btn_wm.addActionListener(new MyListener());
 		panel_2.add(btn_wm);
 		
-		Furniture f_chair = new Furniture(100, 100, "chair");
+		f_chair = new Furniture(100, 100, "chair");
 		f_chair.setImage(new ImageIcon("src/icon/chair.png"));
 		JButton btn_chair = new JButton(f_chair.getImage());
 		btn_chair.setName("chair");
 		btn_chair.addActionListener(new MyListener());
 		panel_2.add(btn_chair);
 		
-		Furniture f_ref = new Furniture(100, 100, "tv");
+		f_ref = new Furniture(100, 100, "tv");
 		f_ref.setImage(new ImageIcon("src/icon/refrigerator.png"));
 		JButton btn_ref = new JButton(f_ref.getImage());
 		btn_ref.setName("refrigerator");
 		btn_ref.addActionListener(new MyListener());
 		panel_2.add(btn_ref);
 		
-		Furniture f_sofa = new Furniture(100,100,"sofa");
+		f_sofa = new Furniture(100,100,"sofa");
 		f_sofa.setImage(new ImageIcon("src/icon/sofa.png"));
 		JButton btn_sofa = new JButton(f_sofa.getImage());
 		btn_sofa.setName("sofa");
@@ -136,13 +145,19 @@ public class MainFrame extends JFrame {
 	}
 
 	class MyPanel extends JPanel {
+		public MyPanel() {
+			addMouseListener(new MyMouseListener());
+		}
 
 		ArrayList<Shape> shapeArray = new ArrayList<Shape>();
+		ArrayList<Furniture> furnitureArray = new ArrayList<Furniture>();
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
 			Graphics2D g2 = (Graphics2D) g;
 			for (Shape s : shapeArray)
 				g2.draw(s);
+			for(Furniture f : furnitureArray) 
+				g.drawImage(f.getImage().getImage(), f.getX(), f.getY(), null);
 		}
 		
 		/*
@@ -153,6 +168,8 @@ public class MainFrame extends JFrame {
 			repaint();
 		}
 		*/
+		
+		/*
 		public void drawDoor(Door door) { //draw only outer line
 			Shape s;
 			if(door.dir == 1)
@@ -161,7 +178,8 @@ public class MainFrame extends JFrame {
 				s = new Rectangle2D.Float(project.basic_x+door.first_x-3, project.basic_y+door.first_y, 6, 30);
 			shapeArray.add(s);
 			repaint();
-		}
+		}*/
+		
 		public void drawOutline() { // 가장자리 벽면 그리는 함수
 			panel_1.setLayout(null);
 			int x0 = project.basic_x;
@@ -196,6 +214,126 @@ public class MainFrame extends JFrame {
 			panel_1.revalidate();
 			panel_1.repaint();
 		}
+		class MyMouseListener implements MouseListener {
+
+			public void mousePressed(MouseEvent e) {
+			}
+			public void mouseReleased(MouseEvent e) {
+			}
+			public void mouseEntered(MouseEvent e) {
+			}
+			public void mouseExited(MouseEvent e) {
+			}
+			public void mouseClicked(MouseEvent e) {
+				drawFurniture(e);
+			}
+		}
+		
+		boolean containXY(int x, int y) {
+			int fixedWidth = 100;
+			int fixedHeight = 100;
+				
+			if (shapeArray != null) {
+				for (Shape s : shapeArray) {
+					if (s instanceof Rectangle2D.Float) {
+						Rectangle2D.Float r = (Rectangle2D.Float) s;
+						for (int i = 0; i <= 50; i++) {
+							if ((r.x <= x + i && x + i <= r.x + fixedWidth) && (r.y <= y + i && y + i <= r.y+ fixedHeight))
+								return true;
+						}
+					} else if (s instanceof Line2D.Float) {
+						Line2D.Float l = (Line2D.Float) s;
+						for (int i = 0; i <= 50; i++) {
+							if ((l.x1 <= x + i && x + i <= l.x2)&& (l.y1 <= y + i && y + i <= l.y2))
+								return true;
+						}
+					} else if (s instanceof Ellipse2D.Float) {
+						Ellipse2D.Float e = (Ellipse2D.Float) s;
+						for (int i = 0; i <= 50; i++) {
+							if ((e.x <= x + i && x + i <= e.x + fixedWidth)
+									&& (e.y <= y + i && y + i <= e.y+ fixedHeight))
+								return true;
+						}
+					}
+				}
+			}
+			return false;
+		}
+		
+		void drawFurniture(MouseEvent e) {
+			Furniture f = new Furniture();
+			switch (cmd) {
+			case 'T': {
+				//s = new Rectangle2D.Float(e.getX(), e.getY(), fixedWidth, fixedHeight);
+				f = f_tv;
+				f.setX(e.getX());
+				f.setY(e.getY());
+				
+				// 겹치는 경우 처리
+				if (containXY(e.getX(), e.getY())) {
+					//repaint();
+					break;
+				}
+
+				// 겹치지 않는다면 Shape 배열에 추가
+				furnitureArray.add(f);
+				cmd = 'N';// 재초기화. 즉 다시 버튼을 눌러야 효과 적용
+				//repaint();
+				break;
+
+			}
+/*
+			case 'L': {
+				s = new Line2D.Float(e.getX(), e.getY(), e.getX() + fixedWidth,e.getY() + fixedHeight);
+
+				if (containXY(e.getX(), e.getY())) {
+					repaint();
+					break;
+				}
+
+				shapeArray.add(s);
+
+				cmd = 'N';
+
+				repaint();
+
+				break;
+
+			}
+
+			case 'E': {
+
+				s = new Ellipse2D.Float(e.getX(), e.getY(), fixedWidth, fixedHeight);
+
+				if (containXY(e.getX(), e.getY())) {
+
+					repaint();
+
+					break;
+
+				}
+
+				shapeArray.add(s);
+
+				cmd = 'N';
+
+				repaint();
+
+				break;
+
+			}
+*/
+			default: {
+
+				repaint();
+
+				break;
+
+			}
+
+			}
+
+		}
 	}
 	
 	private class MyListener implements ActionListener {
@@ -204,18 +342,21 @@ public class MainFrame extends JFrame {
 			JButton b = (JButton) e.getSource();
 			if (b.getName()=="tv") {
 				cmd = 'T';// tv
+				System.out.println("tv");
 			} else if (b.getName()=="washing machine") {
 				cmd = 'W';// washing machine
+				System.out.println("wah");
 			} else if (b.getName()=="chair") {
 				cmd = 'C';// chair
+				System.out.println("chair");
 			} else if (b.getName()=="refrigerator") {
 				cmd = 'R';// refrigerator
-				System.out.println("TT");
+				System.out.println("ref");
 			} else if (b.getName()=="sofa") {
 				cmd = 'S';// sofa
-				System.out.println("T");
+				System.out.println("sofa");
 			}
 		}
-
 	}
+	
 }

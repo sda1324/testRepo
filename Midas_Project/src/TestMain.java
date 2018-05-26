@@ -183,29 +183,14 @@ class MyFrame extends JFrame {
 		class MyMouseListener implements MouseListener {
 
 			public void mousePressed(MouseEvent e) {
-
 			}
-
-
-
 			public void mouseReleased(MouseEvent e) {
-
 			}
-
-
-
 			public void mouseEntered(MouseEvent e) {
-
 			}
-
-
 
 			public void mouseExited(MouseEvent e) {
-
 			}
-
-
-
 			public void mouseClicked(MouseEvent e) {
 
 				// graphic이 그려질 순서
@@ -300,9 +285,7 @@ class MyFrame extends JFrame {
 
 			case 'R': {
 
-				s = new Rectangle2D.Float(e.getX(), e.getY(), fixedWidth,
-
-						fixedHeight);
+				s = new Rectangle2D.Float(e.getX(), e.getY(), fixedWidth, fixedHeight);
 
 				// 겹치는 경우 처리
 
@@ -328,9 +311,7 @@ class MyFrame extends JFrame {
 
 			case 'L': {
 
-				s = new Line2D.Float(e.getX(), e.getY(), e.getX() + fixedWidth,
-
-						e.getY() + fixedHeight);
+				s = new Line2D.Float(e.getX(), e.getY(), e.getX() + fixedWidth,e.getY() + fixedHeight);
 
 				if (containXY(e.getX(), e.getY())) {
 
@@ -460,9 +441,7 @@ class MyFrame extends JFrame {
 
 					s1 = new Rectangle2D.Float((r.x) - 2, (r.y) - 2, 4, 4);
 
-					s2 = new Rectangle2D.Float((r.x) + fixedWidth - 2, (r.y)
-
-							+ fixedHeight - 2, 4, 4);
+					s2 = new Rectangle2D.Float((r.x) + fixedWidth - 2, (r.y) + fixedHeight - 2, 4, 4);
 
 					littleShapeArray.add(s1);
 

@@ -71,7 +71,7 @@ public class NewProjectDialog extends JDialog {
 						Door door = new Door(0,0,20,0);
 						door.setDir(1);
 						mainframe.project.door_list.add(door);
-						mainframe.panel_1.drawDoor(door);
+						//mainframe.panel_1.drawDoor(door);
 						
 			            dispose();
 					}
