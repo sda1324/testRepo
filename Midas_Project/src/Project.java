@@ -126,20 +126,28 @@ public class Project {
 		for(Room r : room_list)
 		{
 			r.east.JPanelSize();
-			r.east.panel.addMouseListener(new MouseOverListener(r.east));
+			r.east.addMouseListener(new MouseOverListener(r.east.panel));
 			m.panel_1.add(r.east.panel);
+			for(Window w : r.east.windowArray)
+			{
+				w.SetResizeJPanel(w.getWidth());
+				w.panel.addMouseListener(new MouseOverListener(w));
+				m.panel_1.add(w.panel);
+			}
 			r.west.JPanelSize();
-			r.west.panel.addMouseListener(new MouseOverListener(r.west));
+			r.west.addMouseListener(new MouseOverListener(r.west.panel));
 			m.panel_1.add(r.west.panel);
 			r.south.JPanelSize();
-			r.south.panel.addMouseListener(new MouseOverListener(r.south));
+			r.south.addMouseListener(new MouseOverListener(r.south.panel));
 			m.panel_1.add(r.south.panel);
 			r.north.JPanelSize();
-			r.north.panel.addMouseListener(new MouseOverListener(r.north));
+			r.north.addMouseListener(new MouseOverListener(r.north.panel));
 			m.panel_1.add(r.north.panel);
 			for(Door d : r.doorArray)
 			{
-				
+				d.SetResizeJPanel(d.getWidth());
+				d.panel.addMouseListener(new MouseOverListener(d));
+				m.panel_1.add(d.panel);
 			}
 		}
 	}
