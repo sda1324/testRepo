@@ -1,3 +1,4 @@
+import java.awt.Shape;
 import java.util.ArrayList;
 
 public class Project {
@@ -8,9 +9,11 @@ public class Project {
 	int basic_x; 
 	int basic_y;
 	
+	ArrayList<Furniture> furniture_list = new ArrayList<Furniture>();
 	ArrayList<Room> room_list = new ArrayList<Room>();
 	ArrayList<Window> window_list = new ArrayList<Window>();
 	ArrayList<Door> door_list = new ArrayList<Door>();
+	ArrayList<Shape> shapeArray = new ArrayList<Shape>();
 	
 	public Project() {
 		

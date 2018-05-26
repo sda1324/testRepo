@@ -150,8 +150,8 @@ public class MainFrame extends JFrame {
 			addMouseListener(new MyMouseListener());
 		}
 
-		ArrayList<Shape> shapeArray = new ArrayList<Shape>();
-		ArrayList<Furniture> furnitureArray = new ArrayList<Furniture>();
+		ArrayList<Shape> shapeArray = project.shapeArray;
+		ArrayList<Furniture> furnitureArray = project.furniture_list;
 		
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
