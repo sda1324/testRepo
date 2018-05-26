@@ -91,10 +91,26 @@ public class MainFrame extends JFrame {
 		panel.add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("Save Project");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SaveData s = new SaveData();
+				s.save(project);
+				project = new Project();
+				panel_1 = new MyPanel();
+				panel_1.setBackground(Color.WHITE);
+				repaint();
+			}
+		});
 		panel.add(btnNewButton_1);
 
 		JButton btnNewButton_2 = new JButton("Open Project");
-
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SaveData s = new SaveData();
+				project = s.getData();
+				repaint();
+			}
+		});
 		panel.add(btnNewButton_2);
 
 		
@@ -216,6 +232,8 @@ public class MainFrame extends JFrame {
 				panel_1.add(d.panel);
 				d.panel.setVisible(true);
 			}
+			
+			project.room_list.add(mainRoom);
 
 			panel_1.revalidate();
 			panel_1.repaint();

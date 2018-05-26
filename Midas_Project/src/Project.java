@@ -55,6 +55,46 @@ public class Project {
 	public void setBasic_y(int basic_y) {
 		this.basic_y = basic_y;
 	}
+
+	public ArrayList<Furniture> getFurniture_list() {
+		return furniture_list;
+	}
+
+	public void setFurniture_list(ArrayList<Furniture> furniture_list) {
+		this.furniture_list = furniture_list;
+	}
+
+	public ArrayList<Room> getRoom_list() {
+		return room_list;
+	}
+
+	public void setRoom_list(ArrayList<Room> room_list) {
+		this.room_list = room_list;
+	}
+
+	public ArrayList<Window> getWindow_list() {
+		return window_list;
+	}
+
+	public void setWindow_list(ArrayList<Window> window_list) {
+		this.window_list = window_list;
+	}
+
+	public ArrayList<Door> getDoor_list() {
+		return door_list;
+	}
+
+	public void setDoor_list(ArrayList<Door> door_list) {
+		this.door_list = door_list;
+	}
+
+	public ArrayList<Shape> getShapeArray() {
+		return shapeArray;
+	}
+
+	public void setShapeArray(ArrayList<Shape> shapeArray) {
+		this.shapeArray = shapeArray;
+	}
 	
 	
 }
