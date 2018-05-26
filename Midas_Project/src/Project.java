@@ -120,6 +120,10 @@ public class Project {
 			MainFrame.getInstance().panel_1.add(f.panel);
 			MainFrame.getInstance().panel_1.repaint();
 		}
+		for(Room r : room_list)
+		{
+			
+		}
 	}
 	
 }
