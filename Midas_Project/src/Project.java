@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class Project {
 
@@ -7,6 +8,10 @@ public class Project {
 	//기준이 되는 x, y
 	int basic_x; 
 	int basic_y;
+	
+	ArrayList<Room> room_list = new ArrayList<Room>();
+	ArrayList<Window> window_list = new ArrayList<Window>();
+	ArrayList<Door> door_list = new ArrayList<Door>();
 	
 	public Project() {
 		
