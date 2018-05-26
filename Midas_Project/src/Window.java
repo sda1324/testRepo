@@ -3,64 +3,94 @@ import java.awt.Color;
 import javax.swing.JPanel;
 
 public class Window {
-	int first_x;
-	int first_y;
-	int second_x;
-	int second_y;
+	int x;
+	int y;
+	int width;
+	int height;
 	JPanel panel = new JPanel();
 	int dir;
-	
+	Wall wall;
+
 	public Window() {
+
 	}
 
-	public Window(int first_x, int first_y, int second_x, int second_y) {
-		this.first_x = first_x;
-		this.first_y = first_y;
-		this.second_x = second_x;
-		this.second_y = second_y;
+	public Window(int x, int y, int width, int height) {
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.height = height;
 	}
-	public void SetJPanelSize(int x0, int y0, int x1, int y1) {
-		panel.setBackground(Color.BLUE);
-		if (dir == 1) {
-			panel.setBounds(x0+first_x, y0+first_y-3, 30, 6);
-			panel.addMouseListener(new MouseOverListener(this));
-		} else {
-			panel.setBounds(x0+first_x-3, y0+first_y,6, 30);
-			panel.addMouseListener(new MouseOverListener(this));
+
+	public void EditPosition() {
+		int w1;
+		int w2;
+		
+		if(dir == 0)
+		{
+			w1 = wall.getY();
+			w2 = wall.getHeight();
+		}
+		else
+		{
+			w1 = wall.getX();
+			w2 = wall.getWidth();
 		}
 	}
-
-	public int getFirst_x() {
-		return first_x;
-	}
-	public void SetDir(int dir)
+	public void RemoveWindow()
 	{
+		wall.RemoveWindow(this);
+	}
+	public void SetJPanelSize(int x0, int y0, int x1, int y1, Wall wall) {
+		panel.setBackground(Color.BLUE);
+		if (dir == 1) {
+			panel.setBounds(x0 + x, y0 + y - 3, 30, 6);
+			panel.addMouseListener(new MouseOverListener(this));
+		} else {
+			panel.setBounds(x0 + x - 3, y0 + y, 6, 30);
+			panel.addMouseListener(new MouseOverListener(this));
+		}
+		this.wall = wall;
+	}
+
+	public int getX() {
+		return x;
+	}
+
+	public void SetDir(int dir) {
 		this.dir = dir;
 	}
-	public int GetDir()
-	{
+
+	public int GetDir() {
 		return dir;
 	}
-	public void setFirst_x(int first_x) {
-		this.first_x = first_x;
+
+	public void setX(int x) {
+		this.x = x;
 	}
-	public int getFirst_y() {
-		return first_y;
+
+	public int getY() {
+		return y;
 	}
-	public void setFirst_y(int first_y) {
-		this.first_y = first_y;
+
+	public void setY(int y) {
+		this.y = y;
 	}
-	public int getSecond_x() {
-		return second_x;
+
+	public int getWidth() {
+		return width;
 	}
-	public void setSecond_x(int second_x) {
-		this.second_x = second_x;
+
+	public void setWidth(int width) {
+		this.width = width;
 	}
-	public int getSecond_y() {
-		return second_y;
+
+	public int getHeight() {
+		return height;
 	}
-	public void setSecond_y(int second_y) {
-		this.second_y = second_y;
+
+	public void setHeight(int height) {
+		this.height = height;
 	}
-	
+
 }

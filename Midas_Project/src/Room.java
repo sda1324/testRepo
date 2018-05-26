@@ -1,3 +1,4 @@
+import java.awt.Component;
 import java.util.ArrayList;
 
 public class Room {
@@ -10,24 +11,26 @@ public class Room {
 	Wall north;
 	Wall south;
 	ArrayList<Door> doorArray = new ArrayList<Door>();
-	public void SetAdditionalDoor(int x0, int y0, int x1, int y1, int vector)
-	{
-		Door door = new Door(0,0,20,0);
-		switch(vector)
-		{
+
+	public void SetAdditionalDoor(int x, int y, int width, int height, int vector) {
+		Door door = new Door(0, 0, 20, 0, this);
+		switch (vector) {
+
 		case 0:
 			door.setDir(1);
-			door.SetJPanelSize(x0, y0, x1, y1);
+			door.SetJPanelSize(x, y, width, height);
 			break;
 		case 1:
-			door.SetJPanelSize(x0, y0, x1, y1);
+			door.setDir(0);
+			door.SetJPanelSize(x + width, y, width, height);
 			break;
 		case 2:
 			door.setDir(1);
-			door.SetJPanelSize(x1, y1, x0, y0);
+			door.SetJPanelSize(x, y + height, width, height);
 			break;
 		case 3:
-			door.SetJPanelSize(x1, y1, x0, y0);
+			door.setDir(0);
+			door.SetJPanelSize(x, y, width, height);
 			break;
 		}
 		doorArray.add(door);
@@ -36,43 +39,79 @@ public class Room {
 		MainFrame.getInstance().panel_1.revalidate();
 		MainFrame.getInstance().panel_1.repaint();
 	}
-	public void SetDefaultDoor(int x0, int y0, int x1, int y1)
+	public void RemoveRoom()
 	{
-		Door door = new Door(0,0,20,0);
-
+		east.RemoveWindow(null);
+		MainFrame.getInstance().panel_1.remove(east);
+		west.RemoveWindow(null);
+		MainFrame.getInstance().panel_1.remove(west);
+		south.RemoveWindow(null);
+		MainFrame.getInstance().panel_1.remove(south);
+		north.RemoveWindow(null);
+		MainFrame.getInstance().panel_1.remove(north);
+		
+		for(Door d : doorArray)
+		{
+			MainFrame.getInstance().panel_1.remove(d.panel);
+		}
+		
+		MainFrame.getInstance().panel_1.revalidate();
+		MainFrame.getInstance().panel_1.repaint();
+	}
+	public void RemoveDoor(Door door) {
+		if (doorArray.size() != 1) {
+			for ( int i = 0; i<doorArray.size();++i) {
+				if (doorArray.get(i) == door) {
+					MainFrame.getInstance().panel_1.remove(door.panel);
+					doorArray.remove(i);
+					MainFrame.getInstance().panel_1.revalidate();
+					MainFrame.getInstance().panel_1.repaint();
+					break;
+				}
+			}
+		}
+	}
+	public void SetDefaultDoor(int x0, int y0, int x1, int y1) {
+		Door door = new Door(0, 0, 20, 0, this);
 		door.setDir(1);
 		door.SetJPanelSize(x0, y0, x1, y1);
 		doorArray.add(door);
-
-		
 	}
-	public ArrayList<Door> GetDoorList()
-	{
+
+	public ArrayList<Door> GetDoorList() {
 		return doorArray;
 	}
+
 	public int getFirst_x() {
 		return first_x;
 	}
+
 	public void setFirst_x(int first_x) {
 		this.first_x = first_x;
 	}
+
 	public int getFirst_y() {
 		return first_y;
 	}
+
 	public void setFirst_y(int first_y) {
 		this.first_y = first_y;
 	}
+
 	public int getSecond_x() {
 		return second_x;
 	}
+
 	public void setSecond_x(int second_x) {
 		this.second_x = second_x;
 	}
+
 	public int getSecond_y() {
 		return second_y;
 	}
+
 	public void setSecond_y(int second_y) {
 		this.second_y = second_y;
 	}
-	
+
 }
