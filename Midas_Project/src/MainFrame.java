@@ -165,49 +165,54 @@ public class MainFrame extends JFrame {
 		public void drawOutline() { // 가장자리 벽면 그리는 함수
 			Shape s = new Rectangle2D.Float(project.basic_x, project.basic_y, project.width, project.height);
 			shapeArray.clear();
-			shapeArray.add(s);
+			//shapeArray.add(s);
 
 			panel_1.setLayout(null);
 			int x0 = project.basic_x;
 			int y0 = project.basic_y;
-<<<<<<< HEAD
-			int y1 = project.basic_y + project.height;
 			
-			s = new Rectangle2D.Float(project.basic_x, project.basic_y, project.width, project.height);
-			shapeArray.add(s);
-			
-=======
+			//s = new Rectangle2D.Float(project.basic_x, project.basic_y, project.width, project.height);
+			//shapeArray.add(s);
+		
 			int width = project.width;
 			int height = project.height;
 
->>>>>>> 52d02b722e4f4d83253bd266be89aa35e09c2ba8
 			Room mainRoom = new Room();
-			mainRoom.north = new Wall(x0, y0, width, 1, 0, mainRoom);
+			mainRoom.north = new Wall(x0, y0, width, 2, 0, mainRoom);
 			mainRoom.north.JPanelSize();
 			mainRoom.north.addMouseListener(new MouseOverListener(mainRoom.north.panel));
 			panel_1.add(mainRoom.north.panel);
 			mainRoom.north.panel.setVisible(true);
-			s = new Rectangle2D.Float(mainRoom.north.getFirst_x(), mainRoom.north.getFirst_y(), 
-					mainRoom.north.getSecond_x()-mainRoom.north.getFirst_x(), mainRoom.north.getSecond_y()-mainRoom.north.getFirst_y());
+			s = new Rectangle2D.Float(mainRoom.north.getX(), mainRoom.north.getY(), 
+					mainRoom.north.getWidth(), mainRoom.north.getHeight());
 			shapeArray.add(s);
 
-			mainRoom.east = new Wall(x0+width, y0, 1, height, 1, mainRoom);
+			mainRoom.east = new Wall(x0+width, y0, 2, height, 1, mainRoom);
 			mainRoom.east.addMouseListener(new MouseOverListener(mainRoom.east.panel));
 			mainRoom.east.JPanelSize();
 			panel_1.add(mainRoom.east.panel);
 			mainRoom.east.panel.setVisible(true);
+			s = new Rectangle2D.Float(mainRoom.east.getX(), mainRoom.east.getY(), 
+					mainRoom.east.getWidth(), mainRoom.east.getHeight());
+			shapeArray.add(s);
 
-			mainRoom.south = new Wall(x0, y0+height, width, 1, 2, mainRoom);
+			mainRoom.south = new Wall(x0, y0+height, width, 2, 2, mainRoom);
 			mainRoom.south.addMouseListener(new MouseOverListener(mainRoom.south.panel));
 			mainRoom.south.JPanelSize();
 			panel_1.add(mainRoom.south.panel);
 			mainRoom.south.panel.setVisible(true);
+			s = new Rectangle2D.Float(mainRoom.south.getX(), mainRoom.south.getY(), 
+					mainRoom.south.getWidth(), mainRoom.south.getHeight());
+			shapeArray.add(s);
 
-			mainRoom.west = new Wall(x0, y0, 1, height, 3, mainRoom);
+			mainRoom.west = new Wall(x0, y0, 2, height, 3, mainRoom);
 			mainRoom.west.addMouseListener(new MouseOverListener(mainRoom.west.panel));
 			mainRoom.west.JPanelSize();
 			panel_1.add(mainRoom.west.panel);
 			mainRoom.west.panel.setVisible(true);
+			s = new Rectangle2D.Float(mainRoom.west.getX(), mainRoom.west.getY(), 
+					mainRoom.west.getWidth(), mainRoom.west.getHeight());
+			shapeArray.add(s);
 			
 			mainRoom.SetDefaultDoor(x0, y0, width, height);
 			for(Door d : mainRoom.GetDoorList())
@@ -244,9 +249,11 @@ public class MainFrame extends JFrame {
 					Rectangle2D.Float r = (Rectangle2D.Float) s;
 					fixedWidth = (int)r.width;
 					fixedHeight = (int)r.height;
-					for (int i = 0; i <= 100; i++) {
-						if ((r.x <= x + i && x + i <= r.x + fixedWidth) && (r.y <= y + i && y + i <= r.y+ fixedHeight))
-							return true;
+					for (int i = 0; i <= 110; i++) {
+						for(int j=0; j<110;j++) {
+							if ((r.x <= x + i && x + i <= r.x + fixedWidth) && (r.y <= y + j && y + j <= r.y+ fixedHeight))
+								return true;
+						}
 					}
 				}
 			}

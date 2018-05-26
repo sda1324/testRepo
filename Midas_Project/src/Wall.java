@@ -126,21 +126,21 @@ public class Wall extends JPanel {
 		panel.setBackground(Color.BLACK);
 		switch (vector) {
 		case 0:
-			panel.setBounds(x, y, width + 1, 1);
+			panel.setBounds(x, y, width + 1, 2);
 			panel.addMouseListener(new MouseOverListener(this));
 			break;
 		case 1:
-			panel.setBounds(x + width - 1, y, 1, height + 1);
+			panel.setBounds(x + width - 1, y, 2, height + 1);
 
 			panel.addMouseListener(new MouseOverListener(this));
 			break;
 		case 2:
-			panel.setBounds(x, y + height - 1, width + 1, 1);
+			panel.setBounds(x, y + height - 1, width + 1, 2);
 			panel.addMouseListener(new MouseOverListener(this));
 
 			break;
 		case 3:
-			panel.setBounds(x, y, 1, height + 1);
+			panel.setBounds(x, y, 2, height + 1);
 			panel.addMouseListener(new MouseOverListener(this));
 
 			break;
