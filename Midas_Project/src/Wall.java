@@ -23,6 +23,10 @@ public class Wall extends JPanel{
 		this.vector = vector;
 		this.room = room;
 	}
+	public void SetAdditionalDoor()
+	{
+		room.SetAdditionalDoor(first_x, first_y, second_x, second_y, vector);
+	}
 	public void SetDefaultWindow()
 	{
 		window = new Window(0,0,20,0);

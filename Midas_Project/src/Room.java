@@ -10,6 +10,20 @@ public class Room {
 	Wall north;
 	Wall south;
 	ArrayList<Door> doorArray = new ArrayList<Door>();
+	public void SetAdditionalDoor(int x0, int y0, int x1, int y1, int vector)
+	{
+		Door door = new Door(0,0,20,0);
+		if(vector == 0 || vector == 2)
+			door.setDir(1);
+		else
+			door.setDir(0);
+		door.SetJPanelSize(x0, y0, x1, y1);
+		doorArray.add(door);
+		MainFrame.getInstance().panel_1.add(door.panel);
+		door.panel.setVisible(true);
+		MainFrame.getInstance().panel_1.revalidate();
+		MainFrame.getInstance().panel_1.repaint();
+	}
 	public void SetDefaultDoor(int x0, int y0, int x1, int y1)
 	{
 		Door door = new Door(0,0,20,0);
@@ -17,6 +31,7 @@ public class Room {
 		door.setDir(1);
 		door.SetJPanelSize(x0, y0, x1, y1);
 		doorArray.add(door);
+
 		
 	}
 	public ArrayList<Door> GetDoorList()

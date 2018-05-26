@@ -191,8 +191,6 @@ public class MainFrame extends JFrame {
 			panel_1.add(mainRoom.west.panel);
 			mainRoom.west.panel.setVisible(true);
 			
-			
-			
 			mainRoom.SetDefaultDoor(x0, y0, x1, y1);
 			for(Door d : mainRoom.GetDoorList())
 			{
@@ -200,20 +198,8 @@ public class MainFrame extends JFrame {
 				d.panel.setVisible(true);
 			}
 
-			//project.door_list.add(door);
-			//panel_1.drawDoor(door);
 			panel_1.revalidate();
 			panel_1.repaint();
-		}
-		public void drawDoor(Door door) { //draw only outer line
-
-			Shape s;
-			if(door.dir == 1)
-				s = new Rectangle2D.Float(project.basic_x+door.first_x, project.basic_y+door.first_y-3, 30, 6);
-			else
-				s = new Rectangle2D.Float(project.basic_x+door.first_x-3, project.basic_y+door.first_y, 6, 30);
-			shapeArray.add(s);
-			repaint();
 		}
 	}
 	
