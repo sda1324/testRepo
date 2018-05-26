@@ -96,6 +96,17 @@ public class MainFrame extends JFrame {
           public void actionPerformed(ActionEvent e) {
         	  SaveData s= new SaveData ();
         	  s.save(project);
+        	  
+        	  ArrayList<Furniture> a = new ArrayList<Furniture>();
+        	  for(Furniture f : a )
+        		  f.RemoveFurniture();
+        	  ArrayList<Room> b = new ArrayList<Room>();
+        	  for(Room r : b )
+        		  r.RemoveRoom();
+        	  project = new Project();
+        	  
+        	  panel_1.removeAll();
+        	  panel_1.updateUI();
           }
        });
       panel.add(btnNewButton_1);
