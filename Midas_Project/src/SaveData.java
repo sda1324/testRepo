@@ -26,7 +26,8 @@ public class SaveData {
 		
 		JSONArray furnitureList = new JSONArray(); 
 		
-		for(Furniture f : p.getFurniture_list()) {
+		System.out.println(p.furniture_list.size());
+		for(Furniture f :p.getFurniture_list()) {
 			JSONObject furnitureObject = new JSONObject(); 
 			furnitureObject.put("width", f.getWidth() );
 			furnitureObject.put("height", f.getHeight());

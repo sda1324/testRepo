@@ -308,6 +308,7 @@ public class MainFrame extends JFrame {
                furnitureArray.add(f);
                f.panel.addMouseListener(new MouseOverListener(f));
                f.panel.setVisible(true);
+               project.furniture_list.add(f);
                //f.panel.setBackground(Color.BLACK);
                panel_1.add(f.panel);
                repaint();
@@ -329,6 +330,7 @@ public class MainFrame extends JFrame {
                f.panel.addMouseListener(new MouseOverListener(f));
                f.panel.setVisible(true);
                panel_1.add(f.panel);
+               project.furniture_list.add(f);
                repaint();
                cmd = 'N';// 재초기화. 즉 다시 버튼을 눌러야 효과 적용
                break;
@@ -349,6 +351,7 @@ public class MainFrame extends JFrame {
                f.panel.addMouseListener(new MouseOverListener(f));
                f.panel.setVisible(true);
                panel_1.add(f.panel);
+               project.furniture_list.add(f);
                repaint();
                cmd = 'N';// 재초기화. 즉 다시 버튼을 눌러야 효과 적용
                break;
@@ -369,7 +372,7 @@ public class MainFrame extends JFrame {
                f.panel.addMouseListener(new MouseOverListener(f));
                f.panel.setVisible(true);
                panel_1.add(f.panel);
-
+               project.furniture_list.add(f);
                repaint();
                cmd = 'N';// 재초기화. 즉 다시 버튼을 눌러야 효과 적용
                break;
@@ -380,6 +383,7 @@ public class MainFrame extends JFrame {
                f.setX(e.getX());
                f.setY(e.getY());
                f.setJPanel();
+               
                // 겹치는 경우 처리
                if (containXY(e.getX(), e.getY())) {
                   break;
@@ -390,6 +394,7 @@ public class MainFrame extends JFrame {
                f.panel.addMouseListener(new MouseOverListener(f));
                f.panel.setVisible(true);
                panel_1.add(f.panel);
+               project.furniture_list.add(f);
                repaint();
                cmd = 'N';// 재초기화. 즉 다시 버튼을 눌러야 효과 적용
                break;
