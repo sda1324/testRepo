@@ -22,6 +22,14 @@ public class PopupMenuWindow extends JPanel {
 			System.out.println("Popup menu item [" + e.getActionCommand() + "] was pressed.");
 		}
 	};
+	ActionListener makeWindow = new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			Wall wall = (Wall) source;
+			wall.SetDefaultWindow();
+		}
+	};
 	public JPopupMenu GetPopup() {
 		return popup;
 	}
@@ -53,7 +61,7 @@ public class PopupMenuWindow extends JPanel {
 			popup.add(item = new JMenuItem("Add Door"));
 			item.addActionListener(menuListener);
 			popup.add(item = new JMenuItem("Add Window"));
-			item.addActionListener(menuListener);
+			item.addActionListener(makeWindow);
 			popup.add(item = new JMenuItem("Remove Room"));
 			item.addActionListener(menuListener);
 			break;

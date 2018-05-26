@@ -1,7 +1,6 @@
 import java.awt.Color;
-import java.awt.Dimension;
+import java.util.ArrayList;
 
-import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
 public class Wall extends JPanel{
@@ -12,6 +11,8 @@ public class Wall extends JPanel{
 	int second_x;
 	int second_y;
 	Room room;
+	Window window;
+	ArrayList<Window> windowArray = new ArrayList<Window>();
 	JPanel panel = new JPanel();
 	public Wall(int fX, int fY, int sX, int sY, int vector, Room room)
 	{
@@ -21,6 +22,20 @@ public class Wall extends JPanel{
 		second_y = sY;
 		this.vector = vector;
 		this.room = room;
+	}
+	public void SetDefaultWindow()
+	{
+		window = new Window(0,0,20,0);
+		if(vector == 0 || vector == 2)
+			window.SetDir(1);
+		else
+			window.SetDir(0);
+		window.SetJPanelSize(first_x, first_y, second_x, second_y);
+		windowArray.add(window);
+		MainFrame.getInstance().panel_1.add(window.panel);
+		window.panel.setVisible(true);
+		MainFrame.getInstance().panel_1.revalidate();
+		MainFrame.getInstance().panel_1.repaint();
 	}
 	public int getVector() {
 		return vector;
@@ -59,24 +74,24 @@ public class Wall extends JPanel{
 		switch(vector)
 		{
 		case 0:
-			panel.setBounds(first_x, first_y, second_x - first_x, 5);
+			panel.setBounds(first_x, first_y, second_x - first_x, 1);
 			//panel.setSize(second_x - first_x, 10);
 			//panel.setLocation(first_x, first_y);
 			panel.addMouseListener(new MouseOverListener(this));
 			break;
 		case 1:
-			panel.setBounds(first_x, first_y, 5,second_y - first_y);
+			panel.setBounds(first_x, first_y, 1,second_y - first_y);
 			//panel.setSize(10,second_y - first_y);
 			//panel.setLocation(first_x, first_y);
 			panel.addMouseListener(new MouseOverListener(this));
 			break;
 		case 2:
-			panel.setBounds(second_x, second_y, first_x - second_x, 5);
+			panel.setBounds(second_x, second_y, first_x - second_x, 1);
 			panel.addMouseListener(new MouseOverListener(this));
 			//panel.setLocation(second_x, second_y);
 			break;
 		case 3:
-			panel.setBounds(second_x, second_y, 5, first_y - second_y);
+			panel.setBounds(second_x, second_y, 1, first_y - second_y);
 			panel.addMouseListener(new MouseOverListener(this));
 			//panel.setSize(10, first_y - second_y);
 			//panel.setLocation(second_x, second_y);

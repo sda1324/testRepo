@@ -151,6 +151,7 @@ public class MainFrame extends JFrame {
 
 		ArrayList<Shape> shapeArray = new ArrayList<Shape>();
 		ArrayList<Furniture> furnitureArray = new ArrayList<Furniture>();
+		
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
 			Graphics2D g2 = (Graphics2D) g;
@@ -186,7 +187,10 @@ public class MainFrame extends JFrame {
 			int x1 = project.basic_x + project.width;
 			int y0 = project.basic_y;
 			int y1 = project.basic_y + project.height;
-
+			Shape s = new Rectangle2D.Float(project.basic_x, project.basic_y, project.width, project.height);
+			shapeArray.clear();
+			shapeArray.add(s);
+			
 			Room mainRoom = new Room();
 			mainRoom.north = new Wall(x0, y0, x1, y0, 0, mainRoom);
 			mainRoom.north.JPanelSize();
@@ -211,9 +215,22 @@ public class MainFrame extends JFrame {
 			mainRoom.west.JPanelSize();
 			panel_1.add(mainRoom.west.panel);
 			mainRoom.west.panel.setVisible(true);
+			
+			
+			
+			mainRoom.SetDefaultDoor(x0, y0, x1, y1);
+			for(Door d : mainRoom.GetDoorList())
+			{
+				panel_1.add(d.panel);
+				d.panel.setVisible(true);
+			}
+
+			//project.door_list.add(door);
+			//panel_1.drawDoor(door);
 			panel_1.revalidate();
 			panel_1.repaint();
 		}
+
 		class MyMouseListener implements MouseListener {
 
 			public void mousePressed(MouseEvent e) {
@@ -354,6 +371,17 @@ public class MainFrame extends JFrame {
 				}
 			}
 
+/*
+		public void drawDoor(Door door) { //draw only outer line
+
+			Shape s;
+			if(door.dir == 1)
+				s = new Rectangle2D.Float(project.basic_x+door.first_x, project.basic_y+door.first_y-3, 30, 6);
+			else
+				s = new Rectangle2D.Float(project.basic_x+door.first_x-3, project.basic_y+door.first_y, 6, 30);
+			shapeArray.add(s);
+			repaint();
+*/
 		}
 	}
 	
