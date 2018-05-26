@@ -37,6 +37,7 @@ public class SaveData {
 		System.out.println(p.furniture_list.size());
 		for(Furniture f :p.getFurniture_list()) {
 			JSONObject furnitureObject = new JSONObject(); 
+			furnitureObject.put("imageUrl", f.getURL() );
 			furnitureObject.put("width", f.getWidth() );
 			furnitureObject.put("height", f.getHeight());
 			furnitureObject.put("name", f.getName());
@@ -188,6 +189,7 @@ public class SaveData {
 		try { 
 			Object obj = parser.parse(new FileReader("src/text/save.json"));
 			JSONObject jsonObject = (JSONObject) obj; 
+			p.imageUrl = jsonObject.get("imageUrl").toString();
 			p.width = Integer.parseInt(jsonObject.get("width").toString());
 			p.height = Integer.parseInt(jsonObject.get("height").toString());
 			p.basic_x = Integer.parseInt(jsonObject.get("basic_x").toString());
