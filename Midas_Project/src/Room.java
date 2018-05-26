@@ -1,4 +1,5 @@
 import java.awt.Component;
+import java.awt.Shape;
 import java.util.ArrayList;
 
 public class Room {
@@ -6,12 +7,21 @@ public class Room {
 	int first_y;
 	int second_x;
 	int second_y;
+	int width;
+	int height;
 	Wall east;
 	Wall west;
 	Wall north;
 	Wall south;
 	ArrayList<Door> doorArray = new ArrayList<Door>();
 
+	public Room(int x, int y, int width, int height)
+	{
+		first_x = x;
+		first_y = y;
+		this.width = width;
+		this.height = height;
+	}
 	public void SetAdditionalDoor(int x, int y, int width, int height, int vector) {
 		Door door = new Door(0, 0, 20, 0, this);
 		switch (vector) {
@@ -62,7 +72,16 @@ public class Room {
 		{
 			MainFrame.getInstance().panel_1.remove(d.panel);
 		}
-		
+		ArrayList<Shape> tempArray = MainFrame.getInstance().panel_1.shapeArray;
+		for(int i =0; i<tempArray.size();++i)
+		{
+			if(tempArray.get(i).getBounds().getX() == first_x && tempArray.get(i).getBounds().getY() == first_y
+					&& tempArray.get(i).getBounds().getWidth() == width && tempArray.get(i).getBounds().getHeight() == height)
+			{
+				tempArray.remove(i);
+			}
+		}
+		MainFrame.getInstance().project.RemoveRoom(this);
 		MainFrame.getInstance().panel_1.revalidate();
 		MainFrame.getInstance().panel_1.repaint();
 	}

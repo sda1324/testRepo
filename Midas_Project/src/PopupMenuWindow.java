@@ -5,6 +5,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.Rectangle2D;
 import java.awt.Color;
+import java.awt.Shape;
 import java.awt.event.*;
 import javax.swing.*;
 
@@ -35,8 +36,6 @@ public class PopupMenuWindow extends JPanel {
 			case "Add Room":
 				main.panel_1.addMouseListener(new AddRoomListener());
 				break;
-			case "move Door":
-				break;
 			default:
 				break;
 			}
@@ -52,10 +51,8 @@ public class PopupMenuWindow extends JPanel {
 
 		@Override
 		public void mousePressed(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
+			// TODO Auto-generated method stub			
 		}
-
 		@Override
 		public void mouseReleased(MouseEvent e) {
 			// TODO Auto-generated method stub
@@ -63,93 +60,102 @@ public class PopupMenuWindow extends JPanel {
 			clicked_y = e.getYOnScreen() - main.getLocation().y - 36;
 			int width = pnt_x - clicked_x;
 			int height = pnt_y - clicked_y;
-			JPanel north = new JPanel();
-			JPanel south = new JPanel();
-			JPanel west = new JPanel();
-			JPanel east = new JPanel();
+			Room newRoom;
 			if(width < 0) {
 				width = -width;
 				if(height < 0) {
 					height = -height;
-					north.setBounds(pnt_x, pnt_y, width, 1);
-					south.setBounds(pnt_x, clicked_y, width, 1);
-					west.setBounds(pnt_x, pnt_y, 1, height);
-					east.setBounds(clicked_x, pnt_y, 1, height);
-					north.addMouseListener(new MouseOverListener(new Wall(pnt_x,pnt_y,width,height,0,new Room())));
-					south.addMouseListener(new MouseOverListener(new Wall(pnt_x,pnt_y,width,height,2,new Room())));
-					west.addMouseListener(new MouseOverListener(new Wall(pnt_x,pnt_y,width,height,3,new Room())));
-					east.addMouseListener(new MouseOverListener(new Wall(pnt_x,pnt_y,width,height,1,new Room())));
-					main.panel_1.shapeArray.add(new Rectangle2D.Float(pnt_x, pnt_y, width, 1));
-					main.panel_1.shapeArray.add(new Rectangle2D.Float(pnt_x, clicked_y, width, 1));
-					main.panel_1.shapeArray.add(new Rectangle2D.Float(pnt_x, pnt_y, 1, height));
-					main.panel_1.shapeArray.add(new Rectangle2D.Float(clicked_x, pnt_y, 1, height));
-					
-					
-				}
-				else {
-					north.setBounds(pnt_x, clicked_y, width, 1);
-					south.setBounds(pnt_x, pnt_y, width, 1);
-					west.setBounds(pnt_x, clicked_y, 1, height);
-					east.setBounds(clicked_x, clicked_y, 1, height);
-					north.addMouseListener(new MouseOverListener(new Wall(pnt_x,clicked_y,width,height,0,new Room())));
-					south.addMouseListener(new MouseOverListener(new Wall(pnt_x,clicked_y,width,height,2,new Room())));
-					west.addMouseListener(new MouseOverListener(new Wall(pnt_x,clicked_y,width,height,3,new Room())));
-					east.addMouseListener(new MouseOverListener(new Wall(pnt_x,clicked_y,width,height,1,new Room())));
-					main.panel_1.shapeArray.add(new Rectangle2D.Float(pnt_x, clicked_y, width, 1));
-					main.panel_1.shapeArray.add(new Rectangle2D.Float(pnt_x, pnt_y, width, 1));
-					main.panel_1.shapeArray.add(new Rectangle2D.Float(pnt_x, clicked_y, 1, height));
-					main.panel_1.shapeArray.add(new Rectangle2D.Float(clicked_x, clicked_y, 1, height));
+					 Shape s = new Rectangle2D.Float(pnt_x, pnt_y, width, height);
+				     MainFrame.getInstance().panel_1.shapeArray.add(s);
+					newRoom = new Room(pnt_x, pnt_y, width, height);
+					newRoom.north = new Wall(pnt_x, pnt_y, width, 1,0, newRoom);
+					newRoom.north.addMouseListener(new MouseOverListener(newRoom.north.panel));
+					newRoom.north.JPanelSize();
+					newRoom.south = new Wall(pnt_x, clicked_y, width, 1,2, newRoom);
+					newRoom.south.addMouseListener(new MouseOverListener(newRoom.south.panel));
+					newRoom.south.JPanelSize();
+					newRoom.west = new Wall(pnt_x, pnt_y, 1, height,3, newRoom);
+					newRoom.west.addMouseListener(new MouseOverListener(newRoom.west.panel));
+					newRoom.west.JPanelSize();
+					newRoom.east = new Wall(clicked_x, pnt_y, 1, height,1, newRoom);
+					newRoom.east.addMouseListener(new MouseOverListener(newRoom.east.panel));
+					newRoom.east.JPanelSize();
+					newRoom.SetDefaultDoor(pnt_x, pnt_y, width, height);
+					}
+				else {		
+					 Shape s = new Rectangle2D.Float(pnt_x, clicked_y, width, height);
+				     MainFrame.getInstance().panel_1.shapeArray.add(s);
+					newRoom = new Room(pnt_x, clicked_y, width, height);
+					newRoom.north = new Wall(pnt_x, clicked_y, width, 1,0, newRoom);
+					newRoom.north.addMouseListener(new MouseOverListener(newRoom.north.panel));
+					newRoom.north.JPanelSize();
+					newRoom.south = new Wall(pnt_x, pnt_y, width, 1,2, newRoom);
+					newRoom.south.addMouseListener(new MouseOverListener(newRoom.south.panel));
+					newRoom.south.JPanelSize();
+					newRoom.west = new Wall(pnt_x, clicked_y, 1, height,3, newRoom);
+					newRoom.west.addMouseListener(new MouseOverListener(newRoom.west.panel));
+					newRoom.west.JPanelSize();
+					newRoom.east = new Wall(clicked_x, clicked_y, 1, height,1, newRoom);
+					newRoom.east.addMouseListener(new MouseOverListener(newRoom.east.panel));
+					newRoom.east.JPanelSize();
+					newRoom.SetDefaultDoor(pnt_x, clicked_y, width, height);
 					
 				}
 			}
 			else {
 				if(height < 0) {
 					height = -height;
-					north.setBounds(clicked_x, pnt_y, width, 1);
-					south.setBounds(clicked_x, clicked_y, width, 1);
-					west.setBounds(clicked_x, pnt_y, 1, height);
-					east.setBounds(pnt_x, pnt_y, 1, height);
-					north.addMouseListener(new MouseOverListener(new Wall(clicked_x,pnt_y,width,height,0,new Room())));
-					south.addMouseListener(new MouseOverListener(new Wall(clicked_x,pnt_y,width,height,2,new Room())));
-					west.addMouseListener(new MouseOverListener(new Wall(clicked_x,pnt_y,width,height,3,new Room())));
-					east.addMouseListener(new MouseOverListener(new Wall(clicked_x,pnt_y,width,height,1,new Room())));
-					main.panel_1.shapeArray.add(new Rectangle2D.Float(clicked_x, pnt_y, width, 1));
-					main.panel_1.shapeArray.add(new Rectangle2D.Float(clicked_x, clicked_y, width, 1));
-					main.panel_1.shapeArray.add(new Rectangle2D.Float(clicked_x, pnt_y, 1, height));
-					main.panel_1.shapeArray.add(new Rectangle2D.Float(pnt_x, pnt_y, 1, height));
+					 Shape s = new Rectangle2D.Float(clicked_x, pnt_y, width, height);
+				     MainFrame.getInstance().panel_1.shapeArray.add(s);
+					newRoom = new Room(clicked_x, pnt_y, width, height);
+					newRoom.north = new Wall(clicked_x, pnt_y, width, 1,0, newRoom);
+					newRoom.north.addMouseListener(new MouseOverListener(newRoom.north.panel));
+					newRoom.north.JPanelSize();
+					newRoom.south = new Wall(clicked_x, clicked_y, width, 1,2, newRoom);
+					newRoom.south.addMouseListener(new MouseOverListener(newRoom.south.panel));
+					newRoom.south.JPanelSize();
+					newRoom.west = new Wall(clicked_x, pnt_y, 1, height,3, newRoom);
+					newRoom.west.addMouseListener(new MouseOverListener(newRoom.west.panel));
+					newRoom.west.JPanelSize();
+					newRoom.east = new Wall(pnt_x, pnt_y, 1, height,1, newRoom);
+					newRoom.east.addMouseListener(new MouseOverListener(newRoom.east.panel));
+					newRoom.east.JPanelSize();
+					newRoom.SetDefaultDoor(clicked_x, pnt_y, width, height);
 				}
 				else {
-					north.setBounds(clicked_x, clicked_y, width, 1);
-					south.setBounds(clicked_x, pnt_y, width, 1);
-					west.setBounds(clicked_x, clicked_y, 1, height);
-					east.setBounds(pnt_x, clicked_y, 1, height);
-					north.addMouseListener(new MouseOverListener(new Wall(clicked_x,clicked_y,width,height,0,new Room())));
-					south.addMouseListener(new MouseOverListener(new Wall(clicked_x,clicked_y,width,height,2,new Room())));
-					west.addMouseListener(new MouseOverListener(new Wall(clicked_x,clicked_y,width,height,3,new Room())));
-					east.addMouseListener(new MouseOverListener(new Wall(clicked_x,clicked_y,width,height,1,new Room())));
-					main.panel_1.shapeArray.add(new Rectangle2D.Float(clicked_x, clicked_y, width, 1));
-					main.panel_1.shapeArray.add(new Rectangle2D.Float(clicked_x, pnt_y, width, 1));
-					main.panel_1.shapeArray.add(new Rectangle2D.Float(clicked_x, clicked_y, 1, height));
-					main.panel_1.shapeArray.add(new Rectangle2D.Float(pnt_x, clicked_y, 1, height));
-					
+					 Shape s = new Rectangle2D.Float(clicked_x, clicked_y, width, height);
+				     MainFrame.getInstance().panel_1.shapeArray.add(s);
+					newRoom = new Room(clicked_x, clicked_y, width, height);
+					newRoom.north = new Wall(clicked_x, clicked_y, width, 1,0, newRoom);
+					newRoom.north.addMouseListener(new MouseOverListener(newRoom.north.panel));
+					newRoom.north.JPanelSize();
+					newRoom.south = new Wall(clicked_x, pnt_y, width, 1,2, newRoom);
+					newRoom.south.addMouseListener(new MouseOverListener(newRoom.south.panel));
+					newRoom.south.JPanelSize();
+					newRoom.west = new Wall(clicked_x, clicked_y, 1, height,3, newRoom);
+					newRoom.west.addMouseListener(new MouseOverListener(newRoom.west.panel));
+					newRoom.west.JPanelSize();
+					newRoom.east = new Wall(pnt_x, clicked_y, 1, height,1, newRoom);
+					newRoom.east.addMouseListener(new MouseOverListener(newRoom.east.panel));
+					newRoom.east.JPanelSize();
+					newRoom.SetDefaultDoor(clicked_x, clicked_y, width, height);
 				}
 			}
-			north.setBackground(Color.BLACK);
-			south.setBackground(Color.BLACK);
-			west.setBackground(Color.BLACK);
-			east.setBackground(Color.BLACK);
-			main.panel_1.add(north);
-			main.panel_1.add(south);
-			main.panel_1.add(west);
-			main.panel_1.add(east);
-			north.setVisible(true);
-			south.setVisible(true);
-			west.setVisible(true);
-			east.setVisible(true);
-			north = null;
-			south = null;
-			west = null;
-			east = null;
+			
+			main.panel_1.add(newRoom.north.panel);
+			main.panel_1.add(newRoom.south.panel);
+			main.panel_1.add(newRoom.west.panel);
+			main.panel_1.add(newRoom.east.panel);
+			newRoom.north.panel.setVisible(true);
+			newRoom.south.panel.setVisible(true);
+			newRoom.east.panel.setVisible(true);
+			newRoom.west.panel.setVisible(true);
+			MainFrame.getInstance().project.SetRoom(newRoom);
+			for(Door d : newRoom.GetDoorList())
+			{
+				main.panel_1.add(d.panel);
+				d.panel.setVisible(true);
+			}
 			main.panel_1.removeMouseListener(this);
 			main.panel_1.repaint();
 			
@@ -186,9 +192,47 @@ public class PopupMenuWindow extends JPanel {
 
 		@Override
 		public void mouseReleased(MouseEvent e) {
-			int x = e.getXOnScreen() - main.getLocation().x - 14;
-			int y = e.getYOnScreen() - main.getLocation().y - 36;
-			win.EditPosition(x,y);
+			int x = e.getX();
+			int y = e.getY();
+			win.SetJPanelMove(x, y);
+			main.panel_1.removeMouseListener(this);
+			
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseExited(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+	}
+	class moveDoorListener implements MouseListener{
+		Door door;
+		public moveDoorListener(Door d) {
+			door = d;
+		}
+
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			// TODO Auto-generated method stub
+		}
+
+		@Override
+		public void mousePressed(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent e) {
+			int x = e.getX();
+			int y = e.getY();
+			door.SetJPanelMove(x, y);
 			main.panel_1.removeMouseListener(this);
 			
 		}
@@ -230,6 +274,15 @@ public class PopupMenuWindow extends JPanel {
 			window.RemoveWindow();
 		}
 	};
+	ActionListener moveDoor = new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			Door door = (Door)source;
+			main.panel_1.addMouseListener(new moveDoorListener(door));
+		}
+	};
+	
 	ActionListener removeRoom = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -254,6 +307,14 @@ public class PopupMenuWindow extends JPanel {
 			door.RemoveDoor();
 		}
 	};
+	ActionListener removeFurniture = new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			Furniture furniture = (Furniture) source;
+			furniture.RemoveFurniture();
+		}
+	};
 	public JPopupMenu GetPopup() {
 		return popup;
 	}
@@ -263,12 +324,6 @@ public class PopupMenuWindow extends JPanel {
 		popup.show(main, x, y);
 	}
 	public void SetItem(String className) {
-		// 0: blank
-		// 1: wall
-		// 2: point
-		// 3: furniture
-		//4: window
-		//5: door
 		JMenuItem item;
 		switch (className) {
 		case "Blank":
@@ -281,8 +336,8 @@ public class PopupMenuWindow extends JPanel {
 			break;
 			
 		case "Wall":
-			popup.add(item = new JMenuItem("Edit Room"));
-			item.addActionListener(menuListener);
+			//popup.add(item = new JMenuItem("Edit Room"));
+			//item.addActionListener(menuListener);
 			popup.add(item = new JMenuItem("Add Room"));
 			item.addActionListener(menuListener);
 			popup.add(item = new JMenuItem("Add Door"));
@@ -292,39 +347,28 @@ public class PopupMenuWindow extends JPanel {
 			popup.add(item = new JMenuItem("Remove Room"));
 			item.addActionListener(removeRoom);
 			break;
-		case "Point":
-			popup.add(item = new JMenuItem("Edit Room"));
-			item.addActionListener(menuListener);
-			popup.add(item = new JMenuItem("Add Room"));
-			item.addActionListener(menuListener);
-			popup.add(item = new JMenuItem("Remove Room"));
-			item.addActionListener(removeRoom);
-			break;
 		case "Furniture":
-			popup.add(item = new JMenuItem("Resize Furniture"));
-			item.addActionListener(menuListener);
 			popup.add(item = new JMenuItem("Remove Furniture"));
-			item.addActionListener(menuListener);
+			item.addActionListener(removeFurniture);
 			popup.add(item = new JMenuItem("move Furniture"));
-			item.addActionListener(menuListener);
+			item.addActionListener(menuListener);//Do This
 			break;
 		case "Window":
 			popup.add(item = new JMenuItem("Resize Window"));
-			item.addActionListener(menuListener);
+			item.addActionListener(menuListener);//Do This
 			popup.add(item = new JMenuItem("Remove Window"));
 			item.addActionListener(removeWindow);
 			popup.add(item = new JMenuItem("move Window"));
-			item.addActionListener(moveWindow);
+			item.addActionListener(moveWindow);//Do This
 			break;
 		case "Door":
 			popup.add(item = new JMenuItem("Resize Door"));
-			item.addActionListener(menuListener);
+			item.addActionListener(menuListener);//Do This
 			popup.add(item = new JMenuItem("Remove Door"));
 			item.addActionListener(removeDoor);
 			popup.add(item = new JMenuItem("move Door"));
-			item.addActionListener(menuListener);
+			item.addActionListener(moveDoor);//Do This
 			break;
-			
 		default:
 			popup.add(item = new JMenuItem("Add Furniture"));
 			item.addActionListener(menuListener);
