@@ -41,6 +41,8 @@ public class MainFrame extends JFrame {
 	Project project = new Project();
 
 	private char cmd = 'N';
+	public boolean exists = false;
+	public Furniture tempFurniture;
 	Furniture f_tv;
 	Furniture f_ref;
 	Furniture f_wm;
@@ -131,26 +133,38 @@ public class MainFrame extends JFrame {
 						BufferedImage.TYPE_INT_BGR);
 				Graphics g = image.createGraphics();
 				panel_1.paint(g);
-				 try {
-				ImageIO.write(image, "png", new File("Image.png"));
+				
+					 JFileChooser c = new JFileChooser();
+					 int rVal = c.showSaveDialog(MainFrame.this);
+					 if (rVal == JFileChooser.APPROVE_OPTION) {
+						 File selectedFile = c.getSelectedFile();
+						 try {
+							 String fileName = selectedFile.getCanonicalPath();
+							 if (!fileName.endsWith(".png")) {
+					                selectedFile = new File(fileName + ".png");
+					            }
+							 ImageIO.write(image, "png", selectedFile);
+						 }catch(IOException e1) {
+							 e1.printStackTrace();
+						 }
+					 }
+				//ImageIO.write(image, "png", new File("Image.png"));
 				// SaveLocation s = new SaveLocation();
 				// s.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				// s.setVisible(true);
-				// JFileChooser c = new JFileChooser();
+				// 
 				// Demonstrate "Save" dialog:
-				// int rVal = c.showSaveDialog(MainFrame.this);
-				// if (rVal == JFileChooser.APPROVE_OPTION) {
+				
+				
 				// filename.setText(c.getSelectedFile().getName());
 				// dir.setText(c.getCurrentDirectory().toString());
 				// Save
 
-				 }
+				 
 				// if (rVal == JFileChooser.CANCEL_OPTION) {
 				//
 				// }} 
-				 catch (IOException ex) {
-
-				}
+	
 			}
 		});
 		panel.add(btnNewButton_3);
@@ -284,7 +298,12 @@ public class MainFrame extends JFrame {
 			}
 
 			public void mouseReleased(MouseEvent e) {
-				drawFurniture(e);
+				if(!exists)
+					drawFurniture(e);
+				else
+				{
+					moveFurniture(e);
+				}
 			}
 
 			public void mouseEntered(MouseEvent e) {
@@ -319,6 +338,17 @@ public class MainFrame extends JFrame {
 			return false;
 		}
 
+		void moveFurniture(MouseEvent e)
+		{
+			if (containXY(e.getX(), e.getY())) {
+				return;
+			}
+			tempFurniture.setX(e.getX());
+			tempFurniture.setY(e.getY());
+			tempFurniture.setJPanel();
+			exists = false;
+			repaint();
+		}
 		void drawFurniture(MouseEvent e) {
 			Furniture f;
 			switch (cmd) {
@@ -333,7 +363,6 @@ public class MainFrame extends JFrame {
 				if (containXY(e.getX(), e.getY())) {
 					break;
 				}
-
 				// 겹치지 않는다면 Furniture 배열에 추가
 				furnitureArray.add(f);
 				f.panel.addMouseListener(new MouseOverListener(f));

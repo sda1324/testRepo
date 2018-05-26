@@ -315,6 +315,14 @@ public class PopupMenuWindow extends JPanel {
 			furniture.RemoveFurniture();
 		}
 	};
+	ActionListener moveFurniture = new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			Furniture furniture = (Furniture) source;
+			furniture.moveFurniture();
+		}
+	};
 	ActionListener resizeWindow = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -369,8 +377,8 @@ public class PopupMenuWindow extends JPanel {
 		case "Furniture":
 			popup.add(item = new JMenuItem("Remove Furniture"));
 			item.addActionListener(removeFurniture);
-			popup.add(item = new JMenuItem("move Furniture"));
-			item.addActionListener(menuListener);// Do This
+			//popup.add(item = new JMenuItem("move Furniture"));
+			//item.addActionListener(moveFurniture);// Do This
 			break;
 		case "Window":
 			popup.add(item = new JMenuItem("Resize Window"));
