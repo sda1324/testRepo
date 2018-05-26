@@ -1,7 +1,4 @@
 import java.awt.Color;
-import java.awt.Dimension;
-
-import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
 public class Wall extends JPanel{
@@ -59,24 +56,24 @@ public class Wall extends JPanel{
 		switch(vector)
 		{
 		case 0:
-			panel.setBounds(first_x, first_y, second_x - first_x, 5);
+			panel.setBounds(first_x, first_y, second_x - first_x, 1);
 			//panel.setSize(second_x - first_x, 10);
 			//panel.setLocation(first_x, first_y);
 			panel.addMouseListener(new MouseOverListener(this));
 			break;
 		case 1:
-			panel.setBounds(first_x, first_y, 5,second_y - first_y);
+			panel.setBounds(first_x, first_y, 1,second_y - first_y);
 			//panel.setSize(10,second_y - first_y);
 			//panel.setLocation(first_x, first_y);
 			panel.addMouseListener(new MouseOverListener(this));
 			break;
 		case 2:
-			panel.setBounds(second_x, second_y, first_x - second_x, 5);
+			panel.setBounds(second_x, second_y, first_x - second_x, 1);
 			panel.addMouseListener(new MouseOverListener(this));
 			//panel.setLocation(second_x, second_y);
 			break;
 		case 3:
-			panel.setBounds(second_x, second_y, 5, first_y - second_y);
+			panel.setBounds(second_x, second_y, 1, first_y - second_y);
 			panel.addMouseListener(new MouseOverListener(this));
 			//panel.setSize(10, first_y - second_y);
 			//panel.setLocation(second_x, second_y);

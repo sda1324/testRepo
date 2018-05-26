@@ -1,7 +1,7 @@
 
 
 import javax.swing.JPanel;
-
+import javax.swing.SwingUtilities;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -32,7 +32,7 @@ public class MouseOverListener extends JPanel implements MouseListener {
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-		if(e.isPopupTrigger()) 
+		if(SwingUtilities.isRightMouseButton(e)) 
 		{
 			//0: blank
 			//1: wall

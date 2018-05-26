@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class Room {
 	int first_x;
@@ -8,6 +9,19 @@ public class Room {
 	Wall west;
 	Wall north;
 	Wall south;
+	ArrayList<Door> doorArray = new ArrayList<Door>();
+	public void SetDefaultDoor(int x0, int y0, int x1, int y1)
+	{
+		Door door = new Door(0,0,20,0);
+		door.setDir(1);
+		door.SetJPanelSize(x0, y0, x1, y1);
+		doorArray.add(door);
+		
+	}
+	public ArrayList<Door> GetDoorList()
+	{
+		return doorArray;
+	}
 	public int getFirst_x() {
 		return first_x;
 	}
