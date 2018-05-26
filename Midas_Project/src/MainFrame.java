@@ -90,21 +90,31 @@ public class MainFrame extends JFrame {
 	}
 	
 	class MyPanel extends JPanel {
-	ArrayList<Shape> shapeArray = new ArrayList<Shape>();
-	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		Graphics2D g2 = (Graphics2D) g;
-		for (Shape s : shapeArray)
-			g2.draw(s);
+		ArrayList<Shape> shapeArray = new ArrayList<Shape>();
+		public void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			Graphics2D g2 = (Graphics2D) g;
+			for (Shape s : shapeArray)
+				g2.draw(s);
+		}
+		
+		public void drawOutline() { //draw only outer line
+			Shape s = new Rectangle2D.Float(project.basic_x, project.basic_y, project.width, project.height);
+			shapeArray.clear();
+			shapeArray.add(s);
+			repaint();
+		}
+		
+		public void drawDoor(Door door) { //draw only outer line
+			Shape s;
+			if(door.dir == 1)
+				s = new Rectangle2D.Float(project.basic_x+door.first_x, project.basic_y+door.first_y-3, 30, 6);
+			else
+				s = new Rectangle2D.Float(project.basic_x+door.first_x-3, project.basic_y+door.first_y, 6, 30);
+			shapeArray.add(s);
+			repaint();
+		}
 	}
-	
-	public void drawOutline() { //draw only outer line
-		Shape s = new Rectangle2D.Float(project.basic_x, project.basic_y, project.width, project.height);
-		shapeArray.clear();
-		shapeArray.add(s);
-		repaint();
-	}
-}
 }
 
 

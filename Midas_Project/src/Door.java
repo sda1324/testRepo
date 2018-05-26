@@ -4,6 +4,17 @@ public class Door {
 	int first_y;
 	int second_x;
 	int second_y;
+	int dir; // 1: horizon , 2: vertical 
+	
+	public Door() {
+	}
+	
+	public Door(int first_x, int first_y, int second_x, int second_y) {
+		this.first_x = first_x;
+		this.first_y = first_y;
+		this.second_x = second_x;
+		this.second_y = second_y;
+	}
 	public int getFirst_x() {
 		return first_x;
 	}
@@ -27,5 +38,13 @@ public class Door {
 	}
 	public void setSecond_y(int second_y) {
 		this.second_y = second_y;
+	}
+
+	public int getDir() {
+		return dir;
+	}
+
+	public void setDir(int dir) {
+		this.dir = dir;
 	}
 }
