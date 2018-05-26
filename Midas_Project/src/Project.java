@@ -116,13 +116,19 @@ public class Project {
 		{
 			f.setJPanel();
 			f.panel.setVisible(true);
+			f.panel.addMouseListener(new MouseOverListener(f));
 			MainFrame.getInstance().panel_1.furnitureArray.add(f);
+			
 			MainFrame.getInstance().panel_1.add(f.panel);
 			MainFrame.getInstance().panel_1.repaint();
 		}
 		for(Room r : room_list)
 		{
-			
+			r.east.JPanelSize();
+			r.east.panel.addMouseListener(new MouseOverListener(r));
+			r.west.JPanelSize();
+			r.south.JPanelSize();
+			r.north.JPanelSize();
 		}
 	}
 	
