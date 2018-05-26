@@ -46,7 +46,7 @@ public class Door {
 		}
 	}
 	public void SetResizeJPanel(int width) {
-		panel.setBackground(Color.BLUE);
+		panel.setBackground(Color.YELLOW);
 		if (dir == 1) {
 			panel.setBounds(x0 + x, y0 + y - 3, width, 6);
 			panel.addMouseListener(new MouseOverListener(this));
