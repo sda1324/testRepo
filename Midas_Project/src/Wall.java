@@ -15,6 +15,10 @@ public class Wall extends JPanel {
 	ArrayList<Window> windowArray = new ArrayList<Window>();
 	JPanel panel = new JPanel();
 
+	public Wall()
+	{
+		
+	}
 	public Wall(int fX, int fY, int width, int height, int vector, Room room) {
 		x = fX;
 		y = fY;

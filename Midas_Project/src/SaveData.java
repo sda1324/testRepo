@@ -27,7 +27,7 @@ public class SaveData {
 		projectInfo.put("basic_y", p.getBasic_y());
 		
 		//Furniture
-		JSONArray furnitureList = new JSONArray(); 
+		JSONArray furnitureList = new JSONArray();
 		
 		System.out.println(p.furniture_list.size());
 		for(Furniture f :p.getFurniture_list()) {
@@ -218,6 +218,7 @@ public class SaveData {
 				r.setSecond_y(Integer.parseInt(j.get("second_y").toString()));
 				
 				JSONObject east = (JSONObject) j.get("east");
+				r.east = new Wall();
 				r.east.vector = Integer.parseInt(east.get("vector").toString());
 				r.east.x = Integer.parseInt(east.get("x").toString());
 				r.east.y = Integer.parseInt(east.get("y").toString());
@@ -239,6 +240,7 @@ public class SaveData {
 				//r.east.windowArray = windowList;
 				
 				JSONObject west = (JSONObject) j.get("west");
+				r.west = new Wall();
 				r.west.vector = Integer.parseInt(west.get("vector").toString());
 				r.west.x = Integer.parseInt(west.get("x").toString());
 				r.west.y = Integer.parseInt(west.get("y").toString());
@@ -260,6 +262,7 @@ public class SaveData {
 				//r.west.windowArray = westwindowList;
 				
 				JSONObject north = (JSONObject) j.get("north");
+				r.north = new Wall();
 				r.north.vector = Integer.parseInt(north.get("vector").toString());
 				r.north.x = Integer.parseInt(north.get("x").toString());
 				r.north.y = Integer.parseInt(north.get("y").toString());
@@ -281,6 +284,7 @@ public class SaveData {
 				//r.north.windowArray = northwindowList;
 				
 				JSONObject south = (JSONObject) j.get("south");
+				r.south = new Wall();
 				r.south.vector = Integer.parseInt(south.get("vector").toString());
 				r.south.x = Integer.parseInt(south.get("x").toString());
 				r.south.y = Integer.parseInt(south.get("y").toString());
