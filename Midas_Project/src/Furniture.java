@@ -1,52 +1,87 @@
-import javafx.scene.image.Image;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+
 import javafx.scene.paint.Color;
 
 public class Furniture {
 
-	private float width;
-	private float height;
+	private int width;
+	private int height;
 	private String name;
 	private Color color;
-	private Image image;
+	private ImageIcon imageicon;
+	private int x;
+	private int y;
 	
-	public void SetImage(Image image)
-	{
-		this.image = image;
+	public Furniture (int width, int height, String name) {
+		this.width = width;
+		this.height = height;
+		this.name = name;
 	}
-	public Image GetImage()
-	{
-		return image;
+	public Furniture() {
+		
 	}
-	public Color GetColor()
+	
+	public ImageIcon getImage() {
+		this.imageicon = imageicon;  
+		Image originImg = this.imageicon.getImage(); 
+		Image changedImg= originImg.getScaledInstance(width, height, Image.SCALE_SMOOTH );
+		ImageIcon icon = new ImageIcon(changedImg);
+		return icon;
+	}
+	
+	public void setImage(ImageIcon imageicon)
+	{
+		this.imageicon = imageicon;
+	}
+	public Color getColor()
 	{
 		return color;
 	}
-	public void SetColor(Color color)
+	public void setColor(Color color)
 	{
 		this.color = color;
 	}
-	public String GetName()
+	public String getName()
 	{
 		return name;
 	}
-	public void SetName(String name)
+	public void setName(String name)
 	{
 		this.name = name;
 	}
-	public float GetWidth()
+	public int getWidth()
 	{
 		return width;
 	}
-	public void SetWidth(float width)
+	public void setWidth(int width)
 	{
 		this.width = width;
 	}
-	public float GetHeight()
+
+	public int getHeight()
 	{
 		return height;
 	}
-	public void SetHeight(float height)
+	public void setHeight(int height)
 	{
 		this.height = height;
+	}
+
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
 	}
 }

@@ -68,6 +68,11 @@ public class NewProjectDialog extends JDialog {
 						mainframe.project.setBasic_y((mainframe.panel_1.getHeight()-height)/2);
 						mainframe.panel_1.drawOutline();
 						
+						Door door = new Door(0,0,20,0);
+						door.setDir(1);
+						mainframe.project.door_list.add(door);
+						//mainframe.panel_1.drawDoor(door);
+						
 			            dispose();
 					}
 				});
