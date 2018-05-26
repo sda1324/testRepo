@@ -31,7 +31,7 @@ public class SaveData {
 		projectInfo.put("basic_x", p.getBasic_x());
 		projectInfo.put("basic_y", p.getBasic_y());
 		
-		
+		//Furniture
 		JSONArray furnitureList = new JSONArray(); 
 		
 		System.out.println(p.furniture_list.size());
@@ -44,8 +44,9 @@ public class SaveData {
 			furnitureObject.put("y", f.getY());
 			furnitureList.add(furnitureObject);
 		}
-		projectInfo.put("furnitureList", furnitureList);
+		projectInfo.put("furniture_list", furnitureList);
 		
+		// Room
 		JSONArray roomList = new JSONArray();
 		for (Room r : p.getRoom_list()) {
 			JSONObject roomObject = new JSONObject(); 
@@ -153,6 +154,7 @@ public class SaveData {
 			}
 			roomList.add(roomObject);
 		}
+		projectInfo.put("room_list", roomList);
 		
 		
 		System.out.println(projectInfo.toString());
@@ -191,6 +193,7 @@ public class SaveData {
 			p.basic_x = Integer.parseInt(jsonObject.get("basic_x").toString());
 			p.basic_y = Integer.parseInt(jsonObject.get("basic_y").toString());
 
+			//furniture
 			JSONArray JSONfurnitureList = (JSONArray) jsonObject.get("furnitureList");
 			for(int i=0;i<JSONfurnitureList.size();i++) {
 				JSONObject j = (JSONObject) JSONfurnitureList.get(i);
@@ -201,8 +204,9 @@ public class SaveData {
 				f.setImage((ImageIcon) j.get("imageicon"));
 				f.setX(Integer.parseInt(j.get("x").toString()));
 				f.setY(Integer.parseInt(j.get("y").toString()));
-				
 			}
+			
+			
 			
 		} catch (FileNotFoundException e) { e.printStackTrace(); 
 		} catch (IOException e) { e.printStackTrace(); 
