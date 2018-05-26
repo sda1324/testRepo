@@ -1,10 +1,7 @@
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 
 import javax.swing.ImageIcon;
 
@@ -12,8 +9,6 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-
-import javafx.scene.paint.Color;
 
 public class SaveData {
 	
@@ -189,7 +184,6 @@ public class SaveData {
 		try { 
 			Object obj = parser.parse(new FileReader("src/text/save.json"));
 			JSONObject jsonObject = (JSONObject) obj; 
-			p.imageUrl = jsonObject.get("imageUrl").toString();
 			p.width = Integer.parseInt(jsonObject.get("width").toString());
 			p.height = Integer.parseInt(jsonObject.get("height").toString());
 			p.basic_x = Integer.parseInt(jsonObject.get("basic_x").toString());
@@ -201,6 +195,7 @@ public class SaveData {
 			for(int i=0;i<JSONfurnitureList.size();i++) {
 				JSONObject j = (JSONObject) JSONfurnitureList.get(i);
 				Furniture f = new Furniture();
+				f.setURL(j.get("imageUrl").toString());
 				f.setWidth(Integer.parseInt(j.get("width").toString()));
 				f.setHeight(Integer.parseInt(j.get("height").toString()));
 				f.setName((String)j.get("name"));
