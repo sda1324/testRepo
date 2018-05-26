@@ -41,6 +41,7 @@ public class MainFrame extends JFrame {
 	Furniture f_wm;
 	Furniture f_chair;
 	Furniture f_sofa;
+	Shape s;
 	
 	/**
 	 * Launch the application.
@@ -187,9 +188,8 @@ public class MainFrame extends JFrame {
 			int x1 = project.basic_x + project.width;
 			int y0 = project.basic_y;
 			int y1 = project.basic_y + project.height;
-			Shape s = new Rectangle2D.Float(project.basic_x, project.basic_y, project.width, project.height);
 			
-			shapeArray.clear();
+			s = new Rectangle2D.Float(project.basic_x, project.basic_y, project.width, project.height);
 			shapeArray.add(s);
 			
 			Room mainRoom = new Room();
@@ -198,6 +198,9 @@ public class MainFrame extends JFrame {
 			mainRoom.north.addMouseListener(new MouseOverListener(mainRoom.north.panel));
 			panel_1.add(mainRoom.north.panel);
 			mainRoom.north.panel.setVisible(true);
+			s = new Rectangle2D.Float(mainRoom.north.getFirst_x(), mainRoom.north.getFirst_y(), 
+					mainRoom.north.getSecond_x()-mainRoom.north.getFirst_x(), mainRoom.north.getSecond_y()-mainRoom.north.getFirst_y());
+			shapeArray.add(s);
 
 			mainRoom.east = new Wall(x1, y0, x1, y1, 1, mainRoom);
 			mainRoom.east.addMouseListener(new MouseOverListener(mainRoom.east.panel));
@@ -243,30 +246,17 @@ public class MainFrame extends JFrame {
 		}
 		
 		boolean containXY(int x, int y) {
-			int fixedWidth = 100;
-			int fixedHeight = 100;
+			int fixedWidth;
+			int fixedHeight;
 				
 			if (shapeArray != null) {
 				for (Shape s : shapeArray) {
-					if (s instanceof Rectangle2D.Float) {
-						Rectangle2D.Float r = (Rectangle2D.Float) s;
-						for (int i = 0; i <= 50; i++) {
-							if ((r.x <= x + i && x + i <= r.x + fixedWidth) && (r.y <= y + i && y + i <= r.y+ fixedHeight))
-								return true;
-						}
-					} else if (s instanceof Line2D.Float) {
-						Line2D.Float l = (Line2D.Float) s;
-						for (int i = 0; i <= 50; i++) {
-							if ((l.x1 <= x + i && x + i <= l.x2)&& (l.y1 <= y + i && y + i <= l.y2))
-								return true;
-						}
-					} else if (s instanceof Ellipse2D.Float) {
-						Ellipse2D.Float e = (Ellipse2D.Float) s;
-						for (int i = 0; i <= 50; i++) {
-							if ((e.x <= x + i && x + i <= e.x + fixedWidth)
-									&& (e.y <= y + i && y + i <= e.y+ fixedHeight))
-								return true;
-						}
+					Rectangle2D.Float r = (Rectangle2D.Float) s;
+					fixedWidth = (int)r.width;
+					fixedHeight = (int)r.height;
+					for (int i = 0; i <= 100; i++) {
+						if ((r.x <= x + i && x + i <= r.x + fixedWidth) && (r.y <= y + i && y + i <= r.y+ fixedHeight))
+							return true;
 					}
 				}
 			}
