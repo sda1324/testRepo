@@ -346,6 +346,7 @@ public class MainFrame extends JFrame {
 
 /*
 		public void drawDoor(Door door) { //draw only outer line
+
 			Shape s;
 			if(door.dir == 1)
 				s = new Rectangle2D.Float(project.basic_x+door.first_x, project.basic_y+door.first_y-3, 30, 6);
