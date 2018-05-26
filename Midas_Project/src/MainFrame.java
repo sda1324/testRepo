@@ -154,15 +154,12 @@ public class MainFrame extends JFrame {
 		ArrayList<Furniture> furnitureArray = new ArrayList<Furniture>();
 		
 		public void paintComponent(Graphics g) {
-			
 			super.paintComponent(g);
-			/*
 			Graphics2D g2 = (Graphics2D) g;
 			for (Shape s : shapeArray)
 				g2.draw(s);
 			for(Furniture f : furnitureArray) 
 				g.drawImage(f.getImage().getImage(), f.getX(), f.getY(), null);
-				*/
 		}
 		
 		public void drawOutline() { // 가장자리 벽면 그리는 함수
@@ -182,10 +179,8 @@ public class MainFrame extends JFrame {
 			mainRoom.north.addMouseListener(new MouseOverListener(mainRoom.north.panel));
 			panel_1.add(mainRoom.north.panel);
 			mainRoom.north.panel.setVisible(true);
-
 			s = new Rectangle2D.Float(mainRoom.north.getX(), mainRoom.north.getY(), 
 					mainRoom.north.getWidth(), mainRoom.north.getHeight());
-			
 			shapeArray.add(s);
 
 			mainRoom.east = new Wall(x0+width, y0, 2, height, 1, mainRoom);
