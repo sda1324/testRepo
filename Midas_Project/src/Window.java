@@ -67,6 +67,7 @@ public class Window {
 		this.wall = wall;
 	}
 	public void SetResizeJPanel(int width) {
+		this.width = width;
 		panel.setBackground(Color.BLUE);
 		if (dir == 1) {
 			panel.setBounds(x0 + x, y0 + y - 3, width, 6);

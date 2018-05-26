@@ -78,10 +78,6 @@ public class Furniture {
 	{
 		return color;
 	}
-	public void setColor(Color color)
-	{
-		this.color = color;
-	}
 	public String getName()
 	{
 		return name;
