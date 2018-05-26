@@ -174,7 +174,7 @@ public class PopupMenuWindow extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			Window window = (Window)source;
-			//window.RemoveWindow();
+			window.RemoveWindow();
 		}
 	};
 	ActionListener removeRoom = new ActionListener() {
@@ -182,7 +182,7 @@ public class PopupMenuWindow extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			Wall wall = (Wall)source;
-			//wall.RemoveRoom();
+			wall.RemoveRoom();
 		}
 	};
 	ActionListener makeDoor = new ActionListener() {
@@ -198,7 +198,7 @@ public class PopupMenuWindow extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			Door door = (Door) source;
-			//door.RemoveDoor();
+			door.RemoveDoor();
 		}
 	};
 	public JPopupMenu GetPopup() {
@@ -226,6 +226,7 @@ public class PopupMenuWindow extends JPanel {
 			popup.add(item = new JMenuItem("Save File"));
 			item.addActionListener(menuListener);
 			break;
+			
 		case "Wall":
 			popup.add(item = new JMenuItem("Edit Room"));
 			item.addActionListener(menuListener);
@@ -279,7 +280,6 @@ public class PopupMenuWindow extends JPanel {
 			popup.add(item = new JMenuItem("Save File"));
 			item.addActionListener(menuListener);
 			break;
-		
 		}
 	}
 }
