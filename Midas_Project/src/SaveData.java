@@ -39,7 +39,7 @@ public class SaveData {
 			furnitureObject.put("x", f.getX());
 			furnitureObject.put("y", f.getY());
 			furnitureList.add(furnitureObject);
-			MainFrame.getInstance().panel_1.remove(f.panel);
+			//MainFrame.getInstance().panel_1.remove(f.panel);
 		}
 		projectInfo.put("furniture_list", furnitureList);
 		
